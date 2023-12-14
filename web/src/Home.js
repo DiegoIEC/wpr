@@ -1,5 +1,3 @@
-import './Home.css';
-
 const userName = "gebruiker"
 const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
 const completedResearchCount = 100
