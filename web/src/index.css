@@ -57,3 +57,40 @@ footer {
   margin-top: 1em;
   padding: 0.5em;
 }
+.research-list {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.research-item {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.research-item h2 {
+  color: #333333;
+}
+
+.research-item p {
+  color: #666666;
+}
+
+.tags {
+  padding: 5px 0;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  padding: 2px 8px;
+  margin-right: 5px;
+  font-size: 0.9em;
+}
+
+img {
+  height: 50px; /* Adjust as needed */
+  float: right; /* Aligns the logo to the right */
+}
