@@ -8,17 +8,22 @@
     justify-content: space-between;
     align-items: center;
 }
+.title{
+    margin:0;
+    color: #1CA883;
+    text-align: left;
+}
 
-.links {
+.navbar-right {
     display: flex;
 }
 
-.links a {
-    margin-right: 10px;
+.navbar-right a {
+    margin-left: 20px;
     color: #1CA883;
     text-decoration: none;
 }
 
-.links a:hover {
+.navbar-right a:hover {
     text-decoration: underline;
 }

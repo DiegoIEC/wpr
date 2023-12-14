@@ -8,12 +8,11 @@
   padding: 1em;
   color: #1CA883;
 }
-
 .App-header h1,
 nav a {
   color: #1CA883;
   text-decoration: none;
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 nav a:hover {
@@ -50,6 +49,7 @@ footer {
   color: #1CA883;
   padding: 1em;
   text-align: center;
+  margin: 0;
 }
 
 .contribution-stats div {
@@ -105,6 +105,6 @@ footer {
 }
 
 img {
-  height: 50px; /* Adjust as needed */
-  float: right; /* Aligns the logo to the right */
+  height: 50px; 
+  float: right; 
 }
