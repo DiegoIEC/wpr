@@ -1,0 +1,30 @@
+main {
+    padding: 1em;
+  }
+  
+  section {
+    margin-bottom: 2em;
+  }
+  
+  .welcome, .latest-news, .ongoing-research, .contribution {
+    background-color: #002266;
+    padding: 1em;
+  }
+  
+  button {
+    background-color: #009900;
+    color: white;
+    padding: 0.5em 1em;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #007700;
+  }
+
+  .contribution-stats div {
+    background-color: #006600;
+    margin-top: 1em;
+    padding: 0.5em;
+  }
