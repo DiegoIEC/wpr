@@ -1,13 +1,18 @@
+import './Navbar.css';
 const NavBar = () => {
     return (
           <nav className="navbar">
-            <h1>Accessibility</h1>
-            <div className="links">
-                <a href="/">Home</a>
-                <a href="/account">Mijn account</a>
-                <a href="/onderzoeken">Onderzoeken</a>
-                <a href="/settings">Instellingen</a>
-                <a href="/logout">Uitloggen</a>
+
+            <div className="navbar-content">
+              <h1 className="title">Accessibility</h1>
+              <div className="navbar-right">
+                  <a href="/">Home</a>
+                  <a href="/account">Mijn account</a>
+                  <a href="./Onderzoeken.js">Onderzoeken</a>
+                  <a href="/settings">Instellingen</a>
+                  <a href="/logout">Uitloggen</a>
+              </div>
+
             </div>
           </nav>
     );

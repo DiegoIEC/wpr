@@ -4,16 +4,15 @@
 }
 
 .App-header {
-  background-color: #0044cc;
+  background-color: black;
   padding: 1em;
-  color: white;
+  color: #1CA883;
 }
-
 .App-header h1,
 nav a {
-  color: white;
+  color: #1CA883;
   text-decoration: none;
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 nav a:hover {
@@ -21,11 +20,11 @@ nav a:hover {
 }
 
 main {
-  padding: 1em;
+  padding: 0em;
 }
 
 section {
-  margin-bottom: 2em;
+  margin-bottom: 0em;
 }
 
 .welcome, .latest-news, .ongoing-research, .contribution {
@@ -46,14 +45,29 @@ button:hover {
 }
 
 footer {
-  background-color: #003366;
-  color: white;
+  background-color: #000000;
+  color: #1CA883;
   padding: 1em;
   text-align: center;
+  margin: 0;
 }
 
 .contribution-stats div {
   background-color: #006600;
+  color:#131B56; 
+  text-align: center;
+  margin-top: 1em;
+  padding: 0.5em;
+}
+.contribution-stats-blue div {
+  background-color: #131B56; 
+  color: #1CA883;
+  text-align: center;
+  margin-top: 1em;
+  padding: 0.5em;
+}
+.contribution-stats-green div {
+  background-color: #1CA883; 
   margin-top: 1em;
   padding: 0.5em;
 }
@@ -91,6 +105,6 @@ footer {
 }
 
 img {
-  height: 50px; /* Adjust as needed */
-  float: right; /* Aligns the logo to the right */
+  height: 50px; 
+  float: right; 
 }
