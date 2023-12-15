@@ -1,5 +1,6 @@
 import NavBar from './Navbar';
-import Home from './Home';
+import Home_ED from './Home_ED';
+import Home_ALG from './Home_ALG';
 import Footer from './Footer';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Onderzoeken from './Onderzoeken';
@@ -14,7 +15,7 @@ function App() {
         </header>
         <main>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<Home_ALG />}></Route>
         </Routes>
         <Routes>
           <Route path="/onderzoeken" element={<Onderzoeken />}></Route>
