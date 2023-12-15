@@ -58,7 +58,7 @@ footer {
   padding: 0.5em;
 }
 .research-list {
-  background-color: #f0f0f0;
+  background-color: #131B56;
   padding: 20px;
 }
 
@@ -70,11 +70,11 @@ footer {
 }
 
 .research-item h2 {
-  color: #333333;
+  color: #131B56;
 }
 
 .research-item p {
-  color: #666666;
+  color: #131B56;
 }
 
 .tags {
@@ -83,7 +83,7 @@ footer {
 
 .tag {
   display: inline-block;
-  background-color: #e0e0e0;
+  background-color: #009900;
   border-radius: 3px;
   padding: 2px 8px;
   margin-right: 5px;
