@@ -4,6 +4,7 @@ import Footer from './Footer';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Onderzoeken from './Onderzoeken';
 import Onderzoek from './Onderzoek';
+import Organisaties from './Organisaties';
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/onderzoek" element={<Onderzoek />}></Route>
+        </Routes>
+
+        <Routes>
+          <Route path="/Organisaties" element={<Organisaties />}></Route>
         </Routes>
           
         </main>
