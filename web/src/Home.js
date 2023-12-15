@@ -7,38 +7,49 @@ const Home = () => {
     
     return (
         <div className="home">
-            <section className="welcome section-background-blue text-color-green">
-            <h2 className="center-text">Welkom {userName}</h2>
+            <section className="welcome section-background-blue text-color-green block-content">
+            <div className="block-left format-div">
+            <h2 className="center-text format-title">Welkom {userName}</h2>
             <p className="center-text">Hieronder een overzicht met onderzoeken waarvoor u in aanmerking komt</p>
             <button className="center-button button-green"> Onderzoeken </button>
-          </section>
-          <section className="latest-news section-background-green text-color-blue">
-            <h2 className="center-text">Laatste nieuws</h2>
+            </div>
+            <div className="block-right format-div">
+            <h2 className="center-text format-title">Laatste nieuws</h2>
+            <p className="center-text">Het laatste nieuws omtrent online toegankelijkheid</p>
             <div className="news-content">
-              {/* Content for latest news */}
+            <p className="center-text">Google nieuws API...</p>
+            </div>
             </div>
           </section>
-          <section className="ongoing-research text-color-green">
-            <h2 className="center-text">Lopende onderzoeken</h2>
+          <section className="ongoing-research remove-margins section-background-green text-color-blue">
+            <h2 className="center-text format-title">Lopende onderzoeken</h2>
+            <div className="block-middle-border-blue">
             <ul className="center-text">
               {ongoingResearch.map((research, index) => (
                 <li key={index}>{research}</li>
               ))}
             </ul>
-          </section>
-          <section className="contribution section-background-green text-color-blue">
-            <h2 className="center-text">Uw bijdrage</h2>
-            <p className="center-text">Bekijk de verschillende onderzoeken die u zijn uitgevoerd</p>
-            <button className="center-button button-blue">Bekijk details</button>
-            <div className="contribution-stats-blue">
-              <div>U heeft meegedaan aan {completedResearchCount} onderzoeken</div>
-              <div>Ontvangen compensatie.. €{compensation}</div>
             </div>
           </section>
+          <section className="contribution remove-margins section-background-blue text-color-green">
+            <h2 className="center-text format-title">Uw bijdrage</h2>
+            <p className="center-text">Bekijk de verschillende onderzoeken die u zijn uitgevoerd</p>
+            <button className="center-button button-green">Bekijk details</button>
+            <div className="contribution-stats-blue block-content">
+            <div className="block-left-border">
+              <h2 className="center-text smaller-text">U heeft meegedaan aan zoveel onderzoeken:</h2>
+              <p className="center-text">{completedResearchCount}</p>
+            </div>
+            <div className="block-right-border">
+                <h2 className="center-text smaller-text">Ontvangen compensatie:</h2>
+                <p className="center-text">€{compensation}</p>
+            </div>
+          </div>
+        </section>
 
 
 
-        </div>
+      </div>
     );
 }
     
