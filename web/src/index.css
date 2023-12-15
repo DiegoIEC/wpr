@@ -18,6 +18,20 @@ nav a {
 nav a:hover {
   text-decoration: underline;
 }
+.main-content {
+  padding: 20px;
+  background-color: #002266;
+}
+
+.onderzoeknaam {
+  padding: 20px;
+  background-color: #002266;
+}
+
+.research-details, .methodology, .section3 {
+  margin-bottom: 20px;
+  background-color: #002266;
+}
 
 main {
   padding: 0em;
