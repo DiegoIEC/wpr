@@ -1,0 +1,51 @@
+body{
+    margin:0;
+}
+.center-text {
+    text-align: center;
+}
+.center-button{
+    display: block;
+    margin: 0 auto;
+}
+.section-background-blue {
+    background-color: #131B56; 
+    padding: 20px; 
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.div-background-blue{
+    background-color: #131B56; 
+    padding: 10px;
+}
+.div-background-green{
+    background-color: #1CA883; 
+    padding: 10px;
+}
+.section-background-green {
+    background-color: #1CA883; 
+    padding: 20px; 
+}
+.text-color-blue {
+    color: #131B56; 
+}
+.text-color-green {
+    color: #1CA883; 
+}
+.button-green {
+    background-color: #1CA883;
+    color: #131B56; 
+    padding: 0.5em 1em;
+    border-radius:5%;
+    border: none;
+    cursor: pointer;
+}
+.button-blue {
+    background-color: #131B56;
+    color: #1CA883; 
+    padding: 0.5em 1em;
+    border-radius:5%;
+    border: none;
+    cursor: pointer;
+}

@@ -1,0 +1,29 @@
+.navbar {
+    background-color: black; 
+    padding: 10px; 
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title{
+    margin:0;
+    color: #1CA883;
+    text-align: left;
+}
+
+.navbar-right {
+    display: flex;
+}
+
+.navbar-right a {
+    margin-left: 20px;
+    color: #1CA883;
+    text-decoration: none;
+}
+
+.navbar-right a:hover {
+    text-decoration: underline;
+}
