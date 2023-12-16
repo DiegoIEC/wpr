@@ -1,5 +1,6 @@
 import NavBar from './Navbar';
 import Home_ED from './Home_ED';
+import Login from './Login';
 import Home_ALG from './Home_ALG';
 import Footer from './Footer';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -16,19 +17,14 @@ function App() {
         </header>
         <main>
         <Routes>
-          <Route path="/" element={<Home_ALG />}></Route>
+            <Route path="/" element={<Home_ALG />} />
+            <Route path="/home_ED" element={<Home_ED />} />
+            <Route path="/onderzoeken" element={<Onderzoeken />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/onderzoek" element={<Onderzoek />} />
+            <Route path="/onderzoeken" element={<Onderzoeken />}/>
+            <Route path="/Organisaties" element={<Organisaties />}/>
         </Routes>
-        <Routes>
-          <Route path="/onderzoeken" element={<Onderzoeken />}></Route>
-        </Routes>
-        <Routes>
-          <Route path="/onderzoek" element={<Onderzoek />}></Route>
-        </Routes>
-
-        <Routes>
-          <Route path="/Organisaties" element={<Organisaties />}></Route>
-        </Routes>
-          
         </main>
         <Footer />
       </div>

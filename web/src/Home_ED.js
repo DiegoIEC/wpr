@@ -3,7 +3,7 @@ const userName = "gebruiker"
 const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
 const completedResearchCount = 100
 const compensation =  10
-const Home = () => {
+const Home_ED = () => {
     
     return (
         <div className="home">
@@ -56,4 +56,4 @@ const Home = () => {
 
 
 
-export default Home;
+export default Home_ED;
