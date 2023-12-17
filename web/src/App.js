@@ -6,7 +6,9 @@ import Footer from './Footer';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Onderzoeken from './Onderzoeken';
 import Onderzoek from './Onderzoek';
+import ApiTest from './ApiTest';
 import Organisaties from './Organisaties';
+
 
 function App() {
   return (
@@ -25,6 +27,16 @@ function App() {
             <Route path="/onderzoeken" element={<Onderzoeken />}/>
             <Route path="/Organisaties" element={<Organisaties />}/>
         </Routes>
+        <Routes>
+          <Route path="/onderzoeken" element={<Onderzoeken />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/onderzoek" element={<Onderzoek />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/apitest" element={<ApiTest />}></Route>
+        </Routes>
+          
         </main>
         <Footer />
       </div>
