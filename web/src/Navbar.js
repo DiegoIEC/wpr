@@ -8,9 +8,11 @@ const NavBar = () => {
               <div className="navbar-right">
                   <a href="/">Home</a>
                   <a href="/account">Mijn account</a>
-                  <a href="./Onderzoeken.js">Onderzoeken</a>
+                  <a href="./Onderzoeken">Onderzoeken</a>
                   <a href="/settings">Instellingen</a>
                   <a href="/logout">Uitloggen</a>
+                  <a href="/Organisaties">Organisaties</a>
+                  <a href="./Login">Inloggen</a>
               </div>
 
             </div>

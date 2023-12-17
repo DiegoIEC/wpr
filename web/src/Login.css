@@ -97,9 +97,8 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     color: #1CA883;
     text-align: center;
     align-items: center;
-    border: 1px solid #1CA883;
     width: 30%;
-    border-radius: 10px;
+    border:0;
     padding: 30px;
     margin: 20px auto;
 }
@@ -108,7 +107,6 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     color: #131B56;
     text-align: center;
     align-items: center;
-    border: 1px solid #131B56;
     width: 30%;
     border-radius: 10px;
     padding: 30px;
@@ -171,7 +169,8 @@ form {
     max-width: 80%;
     padding: 1rem;
     border-radius: 10px;
-    border: 1px solid #1CA883;
+    border: 1px solid #131B56;
+    background:  #1CA883;
   }
   form > div {
     display: flex;
@@ -202,36 +201,15 @@ form {
   }
   .input > div {
     padding: 0.5rem 1rem;
-    background: #131B56;
+    background: #1CA883;
     margin-left: 0.5rem;
-    color: #131B56;
-    font-weight: 700;
-    cursor: pointer;
-  }
-  .add-btn {
-    padding: 0.5rem 1rem;
-    background: #131B56;
-    border: none;
-    font-size: 0.9rem;
-    color: #131B56;
+    color: #1CA883;
     font-weight: 700;
     cursor: pointer;
   }
   .center {
     display: flex;
     justify-content: center;
-  }
-  .submit-btn {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    border: 1px solid #131B56;
-    border-radius: 5px;
-    background: #1CA883;
-    margin: 1.2rem 0;
-    color: #131B56;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
   }
   .dialog-box {
     margin: 0.5rem 0;
