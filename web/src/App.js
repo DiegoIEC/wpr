@@ -26,17 +26,8 @@ function App() {
             <Route path="/onderzoek" element={<Onderzoek />} />
             <Route path="/onderzoeken" element={<Onderzoeken />}/>
             <Route path="/Organisaties" element={<Organisaties />}/>
-        </Routes>
-        <Routes>
-          <Route path="/onderzoeken" element={<Onderzoeken />}></Route>
-        </Routes>
-        <Routes>
-          <Route path="/onderzoek" element={<Onderzoek />}></Route>
-        </Routes>
-        <Routes>
-          <Route path="/apitest" element={<ApiTest />}></Route>
-        </Routes>
-          
+            <Route path="/apitest" element={<ApiTest />}/>
+        </Routes>         
         </main>
         <Footer />
       </div>

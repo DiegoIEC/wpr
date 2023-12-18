@@ -1,13 +1,14 @@
+import React from 'react';
 import { Navigate } from 'react-router-dom';
-import './Login.css';
+import { useNavigate } from 'react-router-dom';
+import Home_ED from './Home_ED';
 
-function Loes() {
-  return <Navigate to="/home_ED" />;
-}
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const handleLogin = () => {
-    Loes();
+    navigate('/home_ED');
   };
     
     return (
