@@ -78,6 +78,15 @@ footer {
   margin-top: 1em;
   padding: 0.5em;
 }
+.contribution-stats-black div{
+  background-color: #D9EBF7;
+  border-color: #3b3b3b;
+  color:black; 
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 0.5em;
+}
 .contribution-stats-blue div {
   background-color: #131B56; 
   color: #1CA883;

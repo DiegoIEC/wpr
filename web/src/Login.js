@@ -10,7 +10,8 @@ const Login = () => {
   const [loginError, setLoginError] = useState(false);
   const [loginCounter, setLoginCounter] = useState(4);
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     console.log('Email:', email);
     console.log('Password:', password);
     if (email === 'test@test.nl' && password === 'test') {
@@ -37,7 +38,7 @@ const Login = () => {
             </section>
             <section className="welcome section-background-blue text-color-green">
               <div className="contribution-stats-green block-middle-border-blue">
-                <form>
+                <form onSubmit={handleLogin}>
                   <div className="input-group">
                     <label htmlFor="email">Email</label>
                     <input
@@ -64,7 +65,7 @@ const Login = () => {
                       </div>
                   )}
                   <div>
-                    <button type="button" className="center-button button-blue" onClick={handleLogin}>
+                    <button type="submit" className="center-button button-blue">
                       Login
                     </button>
                     <button type="button" className="center-button button-blue">
