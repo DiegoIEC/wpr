@@ -1,3 +1,6 @@
+
+
+
 const PrivacyVerklaring = () => {
     return (
           <div className="privacyverklaring">

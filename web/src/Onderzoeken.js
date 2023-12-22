@@ -1,3 +1,4 @@
+import NavBar from './Navbar';
 const researchData = [
   {
     id: 1,
