@@ -1,0 +1,11 @@
+# Ignore all files in the bin and obj directories
+**/bin/
+**/obj/
+
+# Ignore all .dll and .exe files
+**/*.dll
+**/*.exe
+**/*.pdb
+
+# Ignore specific cache files
+**/webapi.csproj.CoreCompileInputs.cache
