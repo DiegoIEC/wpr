@@ -25,7 +25,7 @@ namespace webapi.Controllers
             _context.Deskundigen.Add(deskundige);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDeskundige", new { id = deskundige.UserId}, deskundige);
+            return CreatedAtAction("GetDeskundige", new { id = deskundige.UserId }, deskundige);
         }
 
         // GET: api/Deskundige/5
