@@ -136,3 +136,11 @@ img {
   height: 50px; 
   float: right; 
 }
+ul {
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 8px;
+}

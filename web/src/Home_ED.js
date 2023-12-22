@@ -7,11 +7,11 @@ const Home_ED = () => {
     
     return (
         <div className="home">
-            <section className="welcome section-background-blue text-color-green block-content">
+            <section className="welcome section-background text-color-black block-content">
             <div className="block-left format-div">
             <h2 className="center-text format-title">Welkom {userName}</h2>
             <p className="center-text">Hieronder een overzicht met onderzoeken waarvoor u in aanmerking komt</p>
-            <button className="center-button button-green"> Onderzoeken </button>
+            <button className="center-button button-black"> Onderzoeken </button>
             </div>
             <div className="block-right format-div">
             <h2 className="center-text format-title">Laatste nieuws</h2>
@@ -21,9 +21,9 @@ const Home_ED = () => {
             </div>
             </div>
           </section>
-          <section className="ongoing-research remove-margins section-background-green text-color-blue">
+          <section className="ongoing-research remove-margins section-background text-color-black">
             <h2 className="center-text format-title">Lopende onderzoeken</h2>
-            <div className="block-middle-border-blue">
+            <div className="block-middle-border">
             <ul className="center-text">
               {ongoingResearch.map((research, index) => (
                 <li key={index}>{research}</li>
@@ -31,11 +31,11 @@ const Home_ED = () => {
             </ul>
             </div>
           </section>
-          <section className="contribution remove-margins section-background-blue text-color-green">
+          <section className="contribution remove-margins section-background text-color-black">
             <h2 className="center-text format-title">Uw bijdrage</h2>
             <p className="center-text">Bekijk de verschillende onderzoeken die u zijn uitgevoerd</p>
-            <button className="center-button button-green">Bekijk details</button>
-            <div className="contribution-stats-blue block-content">
+            <button className="center-button button-black">Bekijk details</button>
+            <div className="contribution-stats-black block-content">
             <div className="block-left-border">
               <h2 className="center-text smaller-text">U heeft meegedaan aan zoveel onderzoeken:</h2>
               <p className="center-text">{completedResearchCount}</p>

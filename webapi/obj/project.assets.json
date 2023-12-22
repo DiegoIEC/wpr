@@ -1484,19 +1484,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bart\\.nuget\\packages\\": {}
+    "C:\\Users\\bartv\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
+      "projectUniqueName": "c:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
-      "packagesPath": "C:\\Users\\Bart\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\obj\\",
+      "projectPath": "c:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\webapi.csproj",
+      "packagesPath": "C:\\Users\\bartv\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Bart\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\bartv\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
