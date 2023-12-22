@@ -25,7 +25,7 @@ namespace webapi.Controllers
             _context.Deskundigen.Add(deskundige);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDeskundige", new { id = deskundige.Id }, deskundige);
+            return CreatedAtAction("GetDeskundige", new { id = deskundige.UserId }, deskundige);
         }
 
         // GET: api/Deskundige/5
@@ -46,7 +46,7 @@ namespace webapi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDeskundige(int id, Deskundige deskundige)
         {
-            if (id != deskundige.Id)
+            if (id != deskundige.UserId)
             {
                 return BadRequest();
             }
@@ -90,7 +90,7 @@ namespace webapi.Controllers
 
         private bool DeskundigeExists(int id)
         {
-            return _context.Deskundigen.Any(e => e.Id == id);
+            return _context.Deskundigen.Any(e => e.UserId == id);
         }
     }
 }
