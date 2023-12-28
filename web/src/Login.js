@@ -14,13 +14,14 @@ const Login = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch('api/Login', {
+      const response = await fetch('webapi/Controllers/LoginController/api/Login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
       });
+      console.log(response)
 
       if (response.ok) {
         // Login successful, navigate to the desired page

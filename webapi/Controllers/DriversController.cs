@@ -9,8 +9,6 @@ namespace webapi.Controllers;
 [Route("[controller]")]
 public class DriversController : ControllerBase
 {
-
-
     private readonly ILogger<DriversController> _logger;
     private readonly ApiDbContext _context;
 

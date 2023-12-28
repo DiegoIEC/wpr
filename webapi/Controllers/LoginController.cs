@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace webapi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class LoginController : ControllerBase
     {
         private readonly ApiDbContext _context;
