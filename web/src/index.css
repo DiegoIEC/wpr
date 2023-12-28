@@ -136,3 +136,8 @@ img {
   height: 50px; 
   float: right; 
 }
+.beperkingen-list{
+  padding: 20px;
+  border-color: #3b3b3b;
+  color:black;
+}

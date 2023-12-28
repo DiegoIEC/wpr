@@ -3,6 +3,7 @@ using System;
 using DemoApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace webapi.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231228012251_final-migration")]
+    partial class finalmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,8 +165,7 @@ namespace webapi.Migrations
 
                     b.HasKey("VerzorgerID");
 
-                    b.HasIndex("DeskundigeID")
-                        .IsUnique();
+                    b.HasIndex("DeskundigeID");
 
                     b.ToTable("Verzorgers");
                 });
@@ -318,8 +320,8 @@ namespace webapi.Migrations
             modelBuilder.Entity("DemoApp.Models.Verzorger", b =>
                 {
                     b.HasOne("DemoApp.Models.Deskundige", "Deskundige")
-                        .WithOne()
-                        .HasForeignKey("DemoApp.Models.Verzorger", "DeskundigeID")
+                        .WithMany()
+                        .HasForeignKey("DeskundigeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -10,3 +10,4 @@ node_modules
 
 # Ignore specific cache files
 **/webapi.csproj.CoreCompileInputs.cache
+.fake

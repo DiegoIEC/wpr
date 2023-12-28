@@ -87,6 +87,13 @@ namespace webapi.Controllers
 
             return NoContent();
         }
+        
+        // GET: api/Beperking
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Beperking>>> GetBeperkingen()
+        {
+            return await _context.Beperkingen.ToListAsync();
+        }
 
         private bool BeperkingExists(int id)
         {
