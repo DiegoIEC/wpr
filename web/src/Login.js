@@ -10,24 +10,38 @@ const Login = () => {
   const [loginError, setLoginError] = useState(false);
   const [loginCounter, setLoginCounter] = useState(4);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    if (email === 'test@test.nl' && password === 'test') {
-      navigate('/home_ED');
-    }
-    else{
-      if (loginCounter == 1){
-        navigate('/')
+    
+    try {
+      const response = await fetch('api/Login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        // Login successful, navigate to the desired page
+        console.log(response);
+        navigate('/home_ED');
+      } else {
+        // Login failed, handle the error
+        const errorMessage = await response.text();
+        console.error(errorMessage);
+
+        if (loginCounter === 1) {
+          navigate('/');
+        } else {
+          setLoginCounter(loginCounter - 1);
+          setLoginError(true);
+          setEmail('');
+          setPassword('');
+        }
       }
-      else{
-      console.log('Incorrect email or password');
-      setLoginCounter(loginCounter - 1);
-      setLoginError(true);
-      setEmail('');
-      setPassword('');
-      }
+    } catch (error) {
+      console.error('An error occurred during login:', error);
     }
   };
     
