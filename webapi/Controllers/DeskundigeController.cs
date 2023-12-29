@@ -88,6 +88,13 @@ namespace webapi.Controllers
             return NoContent();
         }
 
+        // GET: api/Deskundige
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Deskundige>>> GetDeskundige()
+        {
+            return await _context.Deskundigen.ToListAsync();
+        }
+
         private bool DeskundigeExists(int id)
         {
             return _context.Deskundigen.Any(e => e.UserId == id);

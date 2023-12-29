@@ -3,6 +3,7 @@ using System;
 using DemoApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace webapi.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231228005104_deskundige-migration5")]
+    partial class deskundigemigration5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,37 +138,6 @@ namespace webapi.Migrations
                     b.ToTable("Users", (string)null);
 
                     b.UseTptMappingStrategy();
-                });
-
-            modelBuilder.Entity("DemoApp.Models.Verzorger", b =>
-                {
-                    b.Property<int>("VerzorgerID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("VerzorgerID"));
-
-                    b.Property<int>("DeskundigeID")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Naam")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Postcode")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("VerzorgerID");
-
-                    b.HasIndex("DeskundigeID")
-                        .IsUnique();
-
-                    b.ToTable("Verzorgers");
                 });
 
             modelBuilder.Entity("DeskundigeBeperking", b =>
@@ -313,17 +285,6 @@ namespace webapi.Migrations
                     b.Navigation("Receiver");
 
                     b.Navigation("Sender");
-                });
-
-            modelBuilder.Entity("DemoApp.Models.Verzorger", b =>
-                {
-                    b.HasOne("DemoApp.Models.Deskundige", "Deskundige")
-                        .WithOne()
-                        .HasForeignKey("DemoApp.Models.Verzorger", "DeskundigeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Deskundige");
                 });
 
             modelBuilder.Entity("DeskundigeBeperking", b =>

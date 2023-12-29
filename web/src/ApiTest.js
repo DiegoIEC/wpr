@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function ApiTest() {
-  const [drivers, setDrivers] = useState([]);
+  const [beperkingen, setBeperkingen] = useState([]);
   const [error, setError] = useState('');
 
-  const fetchDrivers = () => {
-    axios.get('http://localhost:8088/drivers')
+  const fetchBeperkingen = () => {
+    axios.get('http://localhost:8088/api/beperking') // Make sure this URL is correct
       .then(response => {
-        console.log(response.data); // Check the response structure in the console
-        setDrivers(response.data);
+        setBeperkingen(response.data);
       })
       .catch(error => {
         console.error('Error fetching data: ', error);
@@ -18,19 +17,14 @@ function ApiTest() {
   };
 
   return (
-    <div className="apitest">
-      <button onClick={fetchDrivers}>Load Drivers</button>
+    <div className="beperkingen-list">
+      <button onClick={fetchBeperkingen}>Load Beperkingen</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      {drivers.length > 0 ? (
-        <ul>
-          {drivers.map(driver => (
-            // Update to display driver.name and driver.driverNumber
-            <li key={driver.id}>{driver.name} - #{driver.driverNumber}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No data available</p>
-      )}
+      <ul>
+        {beperkingen.map((beperking) => (
+          <li key={beperking.beperkingId}>{beperking.naam}</li>
+        ))}
+      </ul>
     </div>
   );
 }

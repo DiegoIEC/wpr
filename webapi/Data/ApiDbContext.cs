@@ -9,38 +9,50 @@ namespace DemoApp.Data
             : base(options)
         {
         }
-
+        public DbSet<User> Users { get; set; }
+        public DbSet<Deelname> Deelnames { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Deskundige> Deskundigen { get; set; }
         public DbSet<Beperking> Beperkingen { get; set; } 
         public DbSet<User> Users { get; set; } 
         public DbSet<DeskundigeBeperking> DeskundigeBeperkingen { get; set; } 
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Organisatie> Organisaties {get; set; }
+        public DbSet<Stichting> Stichtingen {get; set; }
+        public DbSet<Onderzoek> Onderzoeken {get; set; }
+        public DbSet<Verzorger> Verzorgers {get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            // User configuration
             modelBuilder.Entity<User>()
+                .ToTable("Users")
                 .HasKey(u => u.UserId);
-            
+
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
-            
+
             modelBuilder.Entity<User>()
                 .Property(u => u.Email)
                 .IsRequired()
                 .HasMaxLength(100);
-            
+
             modelBuilder.Entity<User>()
                 .Property(u => u.Password)
                 .IsRequired()
                 .HasMaxLength(255);
-            
+
             modelBuilder.Entity<User>()
                 .Property(u => u.Role)
                 .IsRequired()
                 .HasMaxLength(20);
+
+             // Deskundige configuration
+            modelBuilder.Entity<Deskundige>()
+                .ToTable("Deskundigen");
 
             modelBuilder.Entity<DeskundigeBeperking>()
                 .HasKey(db => new { db.DeskundigeId, db.BeperkingId });
@@ -68,6 +80,11 @@ namespace DemoApp.Data
                 .HasOne(d => d.Onderzoek)
                 .WithMany(o => o.Deelnames)
                 .HasForeignKey(d => d.OnderzoekId);
+
+            modelBuilder.Entity<Verzorger>()
+            .HasOne(v => v.Deskundige)
+            .WithOne()
+            .HasForeignKey<Verzorger>(v => v.DeskundigeID);
 
     // Add configurations for Deskundige and Onderzoek as needed
         }
