@@ -10,6 +10,7 @@ import Onderzoeken from './Onderzoeken';
 import Onderzoek from './Onderzoek';
 import ApiTest from './ApiTest';
 import Organisaties from './Organisaties';
+import DeskundigeEdit from './DeskundigeEdit';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/onderzoeken" element={<Onderzoeken />}/>
             <Route path="/Organisaties" element={<Organisaties />}/>
             <Route path="/apitest" element={<ApiTest />}/>
+            <Route path="/deskundigeedit" element={<DeskundigeEdit />}/>
         </Routes>         
         </main>
         <Footer />

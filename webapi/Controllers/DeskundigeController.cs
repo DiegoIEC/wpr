@@ -44,33 +44,56 @@ namespace webapi.Controllers
 
         // PUT: api/Deskundige/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDeskundige(int id, Deskundige deskundige)
+public async Task<IActionResult> PutDeskundige(int id, DeskundigeDto deskundigeDto)
+{
+    var deskundige = await _context.Deskundigen
+                                   .Include(d => d.DeskundigeBeperkingen)
+                                   .FirstOrDefaultAsync(d => d.UserId == id);
+
+    if (deskundige == null)
+    {
+        return NotFound();
+    }
+
+    // Update properties
+    deskundige.Postcode = deskundigeDto.Postcode;
+    deskundige.Naam = deskundigeDto.Naam;
+    deskundige.Leeftijd = deskundigeDto.Leeftijd;
+    deskundige.Beschikbaarheid = deskundigeDto.Beschikbaarheid;
+    deskundige.BenaderingVoorkeur = deskundigeDto.BenaderingVoorkeur;
+    deskundige.BenaderingCommercieel = deskundigeDto.BenaderingCommercieel;
+    deskundige.Aandoening = deskundigeDto.Aandoening;
+    // ... other properties
+
+    // Clear existing Beperkingen
+    deskundige.DeskundigeBeperkingen.Clear();
+
+    // Add new Beperkingen
+    foreach (var beperkingId in deskundigeDto.BeperkingenIds)
+    {
+        deskundige.DeskundigeBeperkingen.Add(new DeskundigeBeperking { BeperkingId = beperkingId });
+    }
+
+    _context.Entry(deskundige).State = EntityState.Modified;
+
+    try
+    {
+        await _context.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+        if (!DeskundigeExists(id))
         {
-            if (id != deskundige.UserId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(deskundige).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DeskundigeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return NotFound();
         }
+        else
+        {
+            throw;
+        }
+    }
+
+    return NoContent();
+}
 
         // DELETE: api/Deskundige/5
         [HttpDelete("{id}")]
