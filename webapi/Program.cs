@@ -31,10 +31,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection();
-
 // Using CORS policy
 app.UseCors("AllowSpecificOrigin");
+
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
