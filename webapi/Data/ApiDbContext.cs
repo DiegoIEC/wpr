@@ -79,11 +79,26 @@ namespace DemoApp.Data
                 .HasOne(d => d.Onderzoek)
                 .WithMany(o => o.Deelnames)
                 .HasForeignKey(d => d.OnderzoekId);
+            
+            modelBuilder.Entity<Deelname>()
+                .Ignore(d => d.Deskundige)
+                .Ignore(d => d.Onderzoek);
 
             modelBuilder.Entity<Verzorger>()
-            .HasOne(v => v.Deskundige)
-            .WithOne()
-            .HasForeignKey<Verzorger>(v => v.DeskundigeID);
+                .HasOne(v => v.Deskundige)
+                .WithOne()
+                .HasForeignKey<Verzorger>(v => v.DeskundigeID);
+
+
+            modelBuilder.Entity<Onderzoek>()
+                .ToTable("Onderzoeken")
+                .HasKey(o => o.OnderzoekId);
+
+
+             modelBuilder.Entity<Onderzoek>()
+                .HasMany(o => o.Deelnames)
+                .WithOne(d => d.Onderzoek)
+                .HasForeignKey(d => d.OnderzoekId);
 
     // Add configurations for Deskundige and Onderzoek as needed
         }

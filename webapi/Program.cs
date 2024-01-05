@@ -16,10 +16,8 @@ builder.Services.AddSwaggerGen();
 // Adding CORS policy
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://localhost:3000")
-            .AllowAnyHeader()
-            .AllowAnyMethod());
+    options.AddPolicy("AllowAll",
+        builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 });
 
 var app = builder.Build();
@@ -32,7 +30,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // Using CORS policy
-app.UseCors("AllowSpecificOrigin");
+app.UseCors("AllowAll");
 
 //app.UseHttpsRedirection();
 
