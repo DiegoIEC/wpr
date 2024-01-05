@@ -1,37 +1,117 @@
-const titel = "Toegankelijkheid van Bol.com voor Senioren en Slechtzienden"
-const beschrijving ="Hier zou je de tekst en subsecties van het onderzoeksdoel plaatsen"
-const methodiek = "uitleg methodiek"
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const Onderzoek = () => {
+const OnderzoekDetail = () => {
+  const [onderzoek, setOnderzoek] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [beperkingen, setBeperkingen] = useState([]);
+  const { id } = useParams(); // Get the ID from the URL
+  const navigate = useNavigate();
+  const deskundigeId = 4; // Replace with actual logged in deskundige ID
+
+  useEffect(() => {
+    // Fetch the research details
+    axios.get(`http://localhost:8088/api/onderzoek/${id}`)
+      .then(response => {
+        setOnderzoek(response.data);
+        fetchBeperkingen(response.data.beperkingenIds);
+      })
+      .catch(error => {
+        console.error('Error fetching onderzoek details:', error);
+        setLoading(false);
+      });
+  }, [id]);
+
+  const fetchBeperkingen = (beperkingenIds) => {
+    axios.get('http://localhost:8088/api/beperking')
+      .then(response => {
+        const beperkingenMap = response.data.reduce((acc, beperking) => {
+          acc[beperking.beperkingId] = beperking.naam;
+          return acc;
+        }, {});
+        const beperkingenNames = beperkingenIds.map(id => beperkingenMap[id]);
+        setBeperkingen(beperkingenNames);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching beperkingen:', error);
+        setLoading(false);
+      });
+  };
+
+  const handleDeelnemen = () => {
+    const deelnameData = {
+      DeskundigeId: deskundigeId,
+      OnderzoekId: parseInt(id), // Assuming id is a string and needs to be an integer
+      status: 1,
+      deskundige: {
+        // Populate with the deskundige details
+        userId: 17, // This should come from the actual logged-in user's data
+        // Other properties as needed
+      },
+      onderzoek: {
+        // Populate with the onderzoek details
+        onderzoekId: parseInt(id), // This should match the OnderzoekId
+        // Other properties as needed
+      }
+    };
+  
+    axios.post(`http://localhost:8088/api/deelname`, deelnameData)
+      .then(response => {
+        alert('Successfully joined the research');
+        // Update UI or state as needed
+      })
+      .catch(error => {
+        console.error('Error joining the research:', error);
+      });
+  };
+
+  const handleNietGeinteresseerd = () => {
+    const deelnameData = {
+      DeskundigeId: deskundigeId,
+      OnderzoekId: parseInt(id), // Assuming id is a string and needs to be an integer
+      status: 0,
+      deskundige: {
+        // Populate with the deskundige details
+        userId: 17, // This should come from the actual logged-in user's data
+        // Other properties as needed
+      },
+      onderzoek: {
+        // Populate with the onderzoek details
+        onderzoekId: parseInt(id), // This should match the OnderzoekId
+        // Other properties as needed
+      }
+    };
+  
+    axios.post(`http://localhost:8088/api/deelname`, deelnameData)
+      .then(response => {
+        alert('You have expressed disinterest');
+        // Update UI or state as needed
+      })
+      .catch(error => {
+        console.error('Error expressing disinterest:', error);
+      });
+  };
+
+  if (loading) {
+    return <p>Loading onderzoek details...</p>;
+  }
+
   return (
-    <div className="onderzoek">
-      <section className="onderzoeknaam">
-      <h1>{titel}</h1>
-    </section>
-
-    <section className="research-details">
-    <h2>Doel van het Onderzoek</h2>
-      <p>{beschrijving}</p>
-    </section>
-    <section className="methodology">
-      <h2>Methodologie</h2>
-      <p>{methodiek}</p>
-    </section>
-    <section className="section3">
-      <h2>Deelnemen</h2>
-      <p>Meer informatie over de inhoud van deze sectie...</p>
-      <button>Deelnemen</button>
-    </section>
+    <div className="onderzoek-detail">
+      <h1>{onderzoek?.titel}</h1>
+      <p>Type: {onderzoek?.soort}</p>
+      <p>{onderzoek?.korteBeschrijving}</p>
+      <div className="tags">
+        {beperkingen.map((beperking, index) => (
+          <span key={index} className="tag">{beperking}</span>
+        ))}
+      </div>
+      <button onClick={handleDeelnemen}>Deelnemen</button>
+      <button onClick={handleNietGeinteresseerd}>Niet geïnteresseerd</button>
     </div>
   );
-}
+};
 
-
-
-
-
-
-
-
-
-export default Onderzoek;
+export default OnderzoekDetail;

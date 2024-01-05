@@ -28,8 +28,8 @@ function App() {
             <Route path="/home_ORG" element={<Home_ORG />} />
             <Route path="/onderzoeken" element={<Onderzoeken />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/onderzoek" element={<Onderzoek />} />
-            <Route path="/onderzoeken" element={<Onderzoeken />}/>
+            <Route path="/onderzoeken" element={<Onderzoeken />} />
+            <Route path="/onderzoek/:id" element={<Onderzoek />} /> 
             <Route path="/Organisaties" element={<Organisaties />}/>
             <Route path="/apitest" element={<ApiTest />}/>
             <Route path="/deskundigeedit" element={<DeskundigeEdit />}/>

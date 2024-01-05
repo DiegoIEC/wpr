@@ -1,14 +1,15 @@
 
 public class Onderzoek
     {
-        public int OnderzoekId { get; set; } // Primary key, auto-generated
+        public int OnderzoekId { get; set; }
         public string Titel { get; set; }
+        public string KorteBeschrijving { get; set; }
+        public string Beschrijving  { get; set; }
         public double Beloning { get; set; }
         public string Locatie { get; set; }
-        public char Startdatum { get; set; } // This should probably be a DateTime
-        public char Einddatum { get; set; } // This should probably be a DateTime
-        public string Attribute { get; set; } // Unclear what type this should be
-
-        // Navigation property for the association class
+        public string Soort { get; set; }
+        public DateTime Startdatum { get; set; }
+        public DateTime Einddatum { get; set; }
+        public List<int> BeperkingenIds { get; set; }
         public virtual ICollection<Deelname> Deelnames { get; set; }
     }
