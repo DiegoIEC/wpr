@@ -1,7 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'
+//import LoginModel from '../../webapi/Models/LoginModel.cs'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +16,16 @@ const Login = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch('webapi/Controllers/LoginController/api/Login', {
+      const response = await axios.post('http://localhost:8088/api/user', {
+        email, password,
+      });
+      console.log(response)
+    }
+    catch (error) {
+      console.error('An error occurred during login:', error);
+    }
+      /*
+      const response = await fetch('http://localhost:8088/api/Login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,6 +33,7 @@ const Login = () => {
         body: JSON.stringify({ email, password }),
       });
       console.log(response)
+      
 
       if (response.ok) {
         // Login successful, navigate to the desired page
@@ -44,6 +56,7 @@ const Login = () => {
     } catch (error) {
       console.error('An error occurred during login:', error);
     }
+    */
   };
     
     return (

@@ -8,42 +8,40 @@ using Microsoft.AspNetCore.Identity;
 
 namespace webapi.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class LoginController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly ApiDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
-        public LoginController(ApiDbContext context, UserManager<User> userManager, SignInManager<User> signInManager)
+        public UserController(ApiDbContext context, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-        // POST: api/Login
+        // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<UserLoginInfo>> ValidateLogin([FromBody] LoginModel model)
+        public async Task<ActionResult<User>> PostUser([FromBody] string email, string password)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
-
-            if (user == null)
-            {
+            try{
+            var tried_user = await _context.Users.FindAsync(email);
+            if (tried_user == null){
                 return NotFound("User not found");
             }
-
-            var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, lockoutOnFailure: false);
-
-            if (result.Succeeded)
-            {
-                // You can customize the response here, e.g., generate a JWT token
+            else if (tried_user.Password == password){
                 return Ok("Login successful");
             }
-            else
-            {
+            else{
                 return BadRequest("Invalid login attempt");
+            }
+            }
+            catch (Exception e){
+                Console.WriteLine(e);
+                return StatusCode(500, "error");
             }
         }
 

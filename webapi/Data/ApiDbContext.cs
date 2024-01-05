@@ -14,7 +14,6 @@ namespace DemoApp.Data
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Deskundige> Deskundigen { get; set; }
         public DbSet<Beperking> Beperkingen { get; set; } 
-        //public DbSet<LoginModel> LoginModels { get; set; } 
         public DbSet<DeskundigeBeperking> DeskundigeBeperkingen { get; set; } 
         public DbSet<Message> Messages { get; set; }
         public DbSet<Organisatie> Organisaties {get; set; }
