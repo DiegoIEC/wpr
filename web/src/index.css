@@ -87,6 +87,15 @@ footer {
   margin-bottom: 2em;
   padding: 0.5em;
 }
+.contribution-stats-white div{
+  background-color: #242424;
+  border-color: #3b3b3b;
+  color:white; 
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 0.5em;
+}
 .contribution-stats-blue div {
   background-color: #131B56; 
   color: #1CA883;
@@ -99,6 +108,22 @@ footer {
   margin-top: 1em;
   padding: 0.5em;
 }
+.scroll-mode-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: block;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.scroll-mode-button.visible {
+  display: block;
+}
+
 .research-list {
   background-color: #131B56;
   padding: 20px;

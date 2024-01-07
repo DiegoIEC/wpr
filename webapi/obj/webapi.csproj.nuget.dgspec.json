@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj": {}
+    "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj": {
+    "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
+        "projectUniqueName": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "C:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
+        "projectPath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
         "packagesPath": "C:\\Users\\Bart\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\obj\\",
+        "outputPath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Bart\\AppData\\Roaming\\NuGet\\NuGet.Config"

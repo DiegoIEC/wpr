@@ -16,10 +16,14 @@ const Login = () => {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://localhost:8088/api/user', {
-        email, password,
-      });
-      console.log(response)
+      const response = await axios.get('http://localhost:8088/api/user', {
+        params:{
+          email: email
+        }
+      })
+      .then(response => {
+        var data = response.data;
+        console.log(response)})
     }
     catch (error) {
       console.error('An error occurred during login:', error);
