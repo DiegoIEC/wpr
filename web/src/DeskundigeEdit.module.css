@@ -1,0 +1,84 @@
+/* DeskundigeEdit.module.css */
+.deskundigeEdit {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Style for react-select */
+.basic-multi-select {
+  font-size: 1rem;
+}
+
+.select__control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.select__option {
+  padding: 8px;
+}
+
+.select__multi-value {
+  background-color: #e4e4e4;
+  border-radius: 2px;
+  display: flex;
+  margin: 2px;
+  align-items: center;
+}
+
+.select__multi-value__label {
+  padding: 2px 6px;
+}
+
+.select__multi-value__remove {
+  align-items: center;
+  display: flex;
+  padding: 2px;
+  &:hover {
+    background-color: #c4c4c4;
+    cursor: pointer;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
+
+.saveButton {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+  width: 100%; /* Full-width button */
+  box-sizing: border-box; /* So that padding and border are included in the width */
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #45a049; /* Darker shade of green */
+  }
+}
+
+/* Clear the default browser styles on the select element */
+.select__control--is-focused {
+  box-shadow: none;
+  border-color: #aaa;
+}
+
+/* Style for the dropdown menu */
+.select__menu {
+  margin-top: 0;
+}
+
+/* Style for the dropdown indicators */
+.select__dropdown-indicator {
+  padding: 0;
+  color: #888;
+}

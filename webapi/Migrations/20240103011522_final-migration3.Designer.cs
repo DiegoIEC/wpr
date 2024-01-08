@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DemoApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace webapi.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240103011522_final-migration3")]
+    partial class finalmigration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -295,7 +298,7 @@ namespace webapi.Migrations
 
             modelBuilder.Entity("Deelname", b =>
                 {
-                    b.HasOne("DemoApp.Models.Deskundige", null)
+                    b.HasOne("DemoApp.Models.Deskundige", "Deskundige")
                         .WithMany("Deelnames")
                         .HasForeignKey("DeskundigeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -306,6 +309,8 @@ namespace webapi.Migrations
                         .HasForeignKey("OnderzoekId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Deskundige");
 
                     b.Navigation("Onderzoek");
                 });

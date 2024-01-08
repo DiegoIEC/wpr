@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DemoApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace webapi.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240101225407_final-migration2")]
+    partial class finalmigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,9 +49,6 @@ namespace webapi.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("OnderzoekId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("status")
                         .HasColumnType("integer");
 
                     b.HasKey("DeskundigeId", "OnderzoekId");
@@ -202,22 +202,10 @@ namespace webapi.Migrations
                         .IsRequired()
                         .HasColumnType("integer[]");
 
-                    b.Property<string>("Beschrijving")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("Einddatum")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("KorteBeschrijving")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Locatie")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Soort")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -295,7 +283,7 @@ namespace webapi.Migrations
 
             modelBuilder.Entity("Deelname", b =>
                 {
-                    b.HasOne("DemoApp.Models.Deskundige", null)
+                    b.HasOne("DemoApp.Models.Deskundige", "Deskundige")
                         .WithMany("Deelnames")
                         .HasForeignKey("DeskundigeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -306,6 +294,8 @@ namespace webapi.Migrations
                         .HasForeignKey("OnderzoekId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Deskundige");
 
                     b.Navigation("Onderzoek");
                 });

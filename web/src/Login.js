@@ -1,7 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'
+//import LoginModel from '../../webapi/Models/LoginModel.cs'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,25 +12,55 @@ const Login = () => {
   const [loginError, setLoginError] = useState(false);
   const [loginCounter, setLoginCounter] = useState(4);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    if (email === 'test@test.nl' && password === 'test') {
-      navigate('/home_ED');
+    
+    try {
+      const response = await axios.get('http://localhost:8088/api/user', {
+        params:{
+          email: email
+        }
+      })
+      .then(response => {
+        var data = response.data;
+        console.log(response)})
     }
-    else{
-      if (loginCounter == 1){
-        navigate('/')
-      }
-      else{
-      console.log('Incorrect email or password');
-      setLoginCounter(loginCounter - 1);
-      setLoginError(true);
-      setEmail('');
-      setPassword('');
-      }
+    catch (error) {
+      console.error('An error occurred during login:', error);
     }
+      /*
+      const response = await fetch('http://localhost:8088/api/Login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      console.log(response)
+      
+
+      if (response.ok) {
+        // Login successful, navigate to the desired page
+        console.log(response);
+        navigate('/home_ED');
+      } else {
+        // Login failed, handle the error
+        const errorMessage = await response.text();
+        console.error(errorMessage);
+
+        if (loginCounter === 1) {
+          navigate('/');
+        } else {
+          setLoginCounter(loginCounter - 1);
+          setLoginError(true);
+          setEmail('');
+          setPassword('');
+        }
+      }
+    } catch (error) {
+      console.error('An error occurred during login:', error);
+    }
+    */
   };
     
     return (

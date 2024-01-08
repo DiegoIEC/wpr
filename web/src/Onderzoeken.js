@@ -1,44 +1,64 @@
-import NavBar from './Navbar';
-const researchData = [
-  {
-    id: 1,
-    title: 'Toegankelijkheid van Bol.com voor Senioren en Slechtziende',
-    type: 'Enquête',
-    description: 'Kunnen gebruikers gemakkelijk winkelen op onze site, onderzoek bestaat uit een enquête om ervaringen en feedback vast te leggen.',
-    tags: ['Senior', 'Slechtziend'],
-    logo: 'bol-logo.png' // Make sure to have this image in your public/assets folder
-  },
-  {
-    id: 2,
-    title: 'Gemeente Den Haag website',
-    type: 'Interview',
-    description: 'Interview over de gebruikservaring van de website van gemeente Den Haag.',
-    tags: ['Senior', 'Slechtziend', 'Jongeren', 'Motorische beperking'],
-    logo: 'den-haag-logo.png'
-  },
-  // ... more research data
-];
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Onderzoeken = () => {
-    return (
-      <div className="research-list">
-        <h1>Onderzoeken</h1>
-        {researchData.map((research) => (
-          <div key={research.id} className="research-item">
-            <h2>{research.title}</h2>
-            <p>Type: {research.type}</p>
-            <p>{research.description}</p>
-            <div className="tags">
-              {research.tags.map((tag, index) => (
-                <span key={index} className="tag">{tag}</span>
-              ))}
-            </div>
-            <img src={`/${research.logo}`} alt={research.title} />
-          </div>
-        ))}
-      </div>
-    );
+  const [onderzoeken, setOnderzoeken] = useState(null);
+  const [beperkingenMap, setBeperkingenMap] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch limitations to get their names
+    axios.get('http://localhost:8088/api/beperking')
+      .then(beperkingenResponse => {
+        const newBeperkingenMap = {};
+        beperkingenResponse.data.forEach(beperking => {
+          newBeperkingenMap[beperking.beperkingId] = beperking.naam;
+        });
+        setBeperkingenMap(newBeperkingenMap);
+      })
+      .catch(error => {
+        console.error('Error fetching beperkingen:', error);
+      });
+
+    // Fetch research data
+    axios.get('http://localhost:8088/api/onderzoek')
+      .then(onderzoekResponse => {
+        setOnderzoeken(onderzoekResponse.data);
+      })
+      .catch(error => {
+        console.error('Error fetching onderzoeken:', error);
+        setOnderzoeken([]); // Set as an empty array in case of error
+      });
+  }, []);
+
+  const handleMeerInfoClick = (id) => {
+    navigate(`/onderzoek/${id}`);
   };
-  
-  export default Onderzoeken;
+
+  if (onderzoeken === null) {
+    return <p>Loading onderzoeken...</p>;
+  }
+
+  return (
+    <div className="research-list">
+      <h1>Onderzoeken</h1>
+      {onderzoeken.map((onderzoek) => (
+        <div key={onderzoek.onderzoekId} className="research-item">
+          <h2>{onderzoek.titel}</h2>
+          <p>Type: {onderzoek.soort}</p>
+          <p>{onderzoek.korteBeschrijving}</p>
+          <div className="tags">
+            {onderzoek.beperkingenIds.map((id, index) => (
+              <span key={index} className="tag">{beperkingenMap[id] || 'Loading...'}</span>
+              // Display the name using the beperkingenMap or 'Loading...' if not found
+            ))}
+          </div>
+          <button onClick={() => handleMeerInfoClick(onderzoek.onderzoekId)}>Meer info</button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Onderzoeken;

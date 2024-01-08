@@ -12,34 +12,34 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     display: block;
     margin: 0 auto;
 }
-.section-background {
-    background-color: #D9EBF7; 
+.section-background-dark {
+    background-color: #3a3a3a; 
     padding: 20px; 
-    border-bottom: 2px solid #fff; 
+    border-bottom: 2px solid rgb(109, 109, 109); 
 }
 .div-border{
     padding: 10px;
     margin-top: 2em;
     margin-bottom: 2em;
 }
-.text-color-black {
-    color: black; 
+.text-color-white {
+    color: rgb(176, 253, 172); 
 }
 .text-bold{
   font-weight: bold;
 }
 
-.button-black {
-    background-color: black;
-    color: white; 
+.button-white {
+    background-color: rgb(248, 120, 8);
+    color: rgb(0, 0, 0); 
     padding: 0.5em 1em;
     border-radius:5%;
     border: none;
     cursor: pointer;
 }
-.button-big{
-    background-color: black;
-    color: white; 
+.button-big-dark{
+    background-color: white;
+    color: black; 
     padding: 1.5em;
     border-radius:5%;
     border: none;
@@ -49,16 +49,16 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     padding:1em;
     margin:10px;
 }
-.format-title{
-    border-bottom: 2px solid #fff;
-    background-color: #bde1f8;
+.format-title-dark{
+    border-bottom: 2px solid rgb(109, 109, 109);
+    background-color: #242424;
     padding-bottom: 25px;
     padding-top: 25px;
     width: 100%;
 }
-.title{
+.title-white{
     margin:0;
-    color: black;
+    color: rgb(176, 253, 172);
     text-align: left;
 }
 .block-content {
@@ -83,87 +83,87 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     padding: 0 20px; 
 }
 
-.block-middle-border {
-    color: black;
+.block-middle-border-dark {
+    color: rgb(176, 253, 172);
     text-align: center;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid rgb(109, 109, 109);
     width: 30%;
     border-radius: 10px;
     padding: 30px;
     margin: 20px auto;
 }
-.block-right-border {
+.block-right-border-dark {
     text-align: right;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 10px;
     padding: 10px;
     margin: 5px;
     margin-right: 25px;
 }
-.block-left-border{
+.block-left-border-dark{
     text-align: center;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 10px;
     padding: 10px;
     margin: 5px;
     margin-left: 25px;
 }
 
-.block-left-border,
-.block-right-border {
-    border: 1px solid black;
+.block-left-border-dark,
+.block-right-border-dark {
+    border: 1px solid white;
     border-radius: 10px;
     flex: 1; 
     max-width: 40%; 
     padding: 20px; 
 }
 
-form {
+.form-dark {
     margin: 3rem auto;
     width: 500px;
     max-width: 80%;
     padding: 1rem;
     border: 0px;
-    background-color: #D9EBF7;
+    background-color: #242424; 
   }
-  form > div {
+  .form-dark > div {
     display: flex;
   }
-  .input-group {
+  .input-group-dark {
     display: flex;
     flex-direction: column;
     margin: 1rem 0;
   }
-  .input-group > label {
-    color:black;
+  .input-group-dark > label {
+    color:rgb(176, 253, 172);
     text-align: left;
     font-size: 0.9rem;
     font-weight: 700;
     margin-bottom: 0.3rem;
   }
-  .input {
+  .input-dark {
     width: 100%;
     display: flex;
   }
-  .input > input {
+  .input-dark > input {
     padding: 0.3rem 0.5rem;
     border: 1px solid rgba(0, 0, 0, 0.2);
     width: 100%;
   }
-  .input > input:focus {
+  .input-dark > input:focus {
     outline: none;
   }
-  .input > div {
+  .input-dark > div {
     padding: 0.5rem 1rem;
     margin-left: 0.5rem;
-    color: black;
+    color: white;
     font-weight: 700;
     cursor: pointer;
   }
-  .add-btn {
+  .add-btn-dark {
     padding: 0.5rem 1rem;
     background: #141414;
     border: none;
