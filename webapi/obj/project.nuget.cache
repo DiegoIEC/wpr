@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "osepToEZRvQtNyyh9qxFvbDIQILxshRnVBgRE/9eodKiQCQX2k65t/w+u2wj9brVsDUoQOhY122a8JrN8ve0ng==",
+  "dgSpecHash": "aCW3JUNDkLe9u69XSmHTU98hvv3MHM4qRkabtP5D6eeVHaaJqDxsgR7Ab1iboQ0Vxu9QnmK5tYTEfQHYCYD0VA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
+  "projectFilePath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bart\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Bart\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.10\\microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",

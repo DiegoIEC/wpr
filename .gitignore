@@ -10,3 +10,33 @@ node_modules
 
 # Ignore specific cache files
 **/webapi.csproj.CoreCompileInputs.cache
+.fake
+webapi/bin/Debug/net7.0/webapi.dll
+webapi/bin/Debug/net7.0/webapi.dll
+webapi/bin/Debug/net7.0/webapi.exe
+webapi/obj/Debug/net7.0/refint/webapi.dll
+webapi/bin/Debug/net7.0/webapi.pdb
+webapi/obj/project.assets.json
+webapi/obj/project.nuget.cache
+webapi/obj/webapi.csproj.nuget.dgspec.json
+webapi/obj/webapi.csproj.nuget.g.props
+webapi/obj/Debug/net7.0/apphost.exe
+webapi/obj/Debug/net7.0/refint/webapi.dll
+webapi/obj/Debug/net7.0/ref/webapi.dll
+webapi/obj/Debug/net7.0/webapi.sourcelink.json
+webapi/obj/Debug/net7.0/webapi.pdb
+webapi/obj/Debug/net7.0/webapi.genruntimeconfig.cache
+webapi/obj/Debug/net7.0/webapi.GeneratedMSBuildEditorConfig.editorconfig
+webapi/obj/Debug/net7.0/webapi.dll
+webapi/obj/Debug/net7.0/webapi.csproj.CoreCompileInputs.cache
+webapi/obj/Debug/net7.0/webapi.csproj.AssemblyReference.cache
+webapi/obj/Debug/net7.0/webapi.assets.cache
+webapi/obj/Debug/net7.0/apphost.exe
+webapi/obj/Debug/net7.0/webapi.AssemblyInfoInputs.cache
+webapi/obj/webapi.csproj.nuget.g.props
+webapi/obj/webapi.csproj.nuget.dgspec.json
+webapi/obj/project.nuget.cache
+webapi/obj/project.assets.json
+webapi/bin/Debug/net7.0/webapi.pdb
+webapi/bin/Debug/net7.0/webapi.exe
+webapi/bin/Debug/net7.0/webapi.dll
