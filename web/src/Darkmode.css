@@ -13,9 +13,9 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     margin: 0 auto;
 }
 .section-background-dark {
-    background-color: #121212; 
+    background-color: #3a3a3a; 
     padding: 20px; 
-    border-bottom: 2px solid #fff; 
+    border-bottom: 2px solid rgb(109, 109, 109); 
 }
 .div-border{
     padding: 10px;
@@ -23,15 +23,15 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     margin-bottom: 2em;
 }
 .text-color-white {
-    color: white; 
+    color: rgb(176, 253, 172); 
 }
 .text-bold{
   font-weight: bold;
 }
 
 .button-white {
-    background-color: white;
-    color: black; 
+    background-color: rgb(248, 120, 8);
+    color: rgb(0, 0, 0); 
     padding: 0.5em 1em;
     border-radius:5%;
     border: none;
@@ -50,7 +50,7 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     margin:10px;
 }
 .format-title-dark{
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid rgb(109, 109, 109);
     background-color: #242424;
     padding-bottom: 25px;
     padding-top: 25px;
@@ -58,7 +58,7 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
 }
 .title-white{
     margin:0;
-    color: white;
+    color: rgb(176, 253, 172);
     text-align: left;
 }
 .block-content {
@@ -84,10 +84,10 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
 }
 
 .block-middle-border-dark {
-    color: white;
+    color: rgb(176, 253, 172);
     text-align: center;
     align-items: center;
-    border: 1px solid white;
+    border: 1px solid rgb(109, 109, 109);
     width: 30%;
     border-radius: 10px;
     padding: 30px;
@@ -127,7 +127,7 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     max-width: 80%;
     padding: 1rem;
     border: 0px;
-    background-color: #121212; 
+    background-color: #242424; 
   }
   .form-dark > div {
     display: flex;
@@ -138,7 +138,7 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     margin: 1rem 0;
   }
   .input-group-dark > label {
-    color:white;
+    color:rgb(176, 253, 172);
     text-align: left;
     font-size: 0.9rem;
     font-weight: 700;

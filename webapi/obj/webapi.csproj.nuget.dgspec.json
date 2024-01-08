@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj": {}
+    "C:\\Users\\julia\\OneDrive\\Desktop\\THUAS\\ICT\\Year2\\Website Project\\wpr\\webapi\\webapi.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj": {
+    "C:\\Users\\julia\\OneDrive\\Desktop\\THUAS\\ICT\\Year2\\Website Project\\wpr\\webapi\\webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
+        "projectUniqueName": "C:\\Users\\julia\\OneDrive\\Desktop\\THUAS\\ICT\\Year2\\Website Project\\wpr\\webapi\\webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
-        "packagesPath": "C:\\Users\\Bart\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\obj\\",
+        "projectPath": "C:\\Users\\julia\\OneDrive\\Desktop\\THUAS\\ICT\\Year2\\Website Project\\wpr\\webapi\\webapi.csproj",
+        "packagesPath": "C:\\Users\\julia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\julia\\OneDrive\\Desktop\\THUAS\\ICT\\Year2\\Website Project\\wpr\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bart\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\julia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
