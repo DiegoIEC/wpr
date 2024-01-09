@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj": {}
+    "C:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\webapi.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj": {
+    "C:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
+        "projectUniqueName": "C:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
-        "packagesPath": "C:\\Users\\Bart\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\obj\\",
+        "projectPath": "C:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\webapi.csproj",
+        "packagesPath": "C:\\Users\\bartv\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bart\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\bartv\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -38,6 +38,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "BCrypt.Net": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.10, )"
