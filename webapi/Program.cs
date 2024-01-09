@@ -38,4 +38,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Apply EF Core migrations
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApiDbContext>();
+    dbContext.Database.Migrate();
+}
+
 app.Run();
