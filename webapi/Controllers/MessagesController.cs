@@ -10,11 +10,11 @@ namespace webapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OnderzoekController : ControllerBase
+    public class MessagesController : ControllerBase
     {
         private readonly ApiDbContext _context;
 
-        public OnderzoekController(ApiDbContext context)
+        public MessagesController(ApiDbContext context)
         {
             _context = context;
         }
