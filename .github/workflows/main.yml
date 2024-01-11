@@ -20,7 +20,11 @@ jobs:
       - name: Deploy to VM
         run: |
           ssh -o "StrictHostKeyChecking=no" student@accessapp.francecentral.cloudapp.azure.com << 'ENDSSH'
-          # Your deployment commands here
+          cd wpr
+          git pull origin main
+          docker-compose down
+          docker-compose build
+          docker-compose up -d
           ENDSSH
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
