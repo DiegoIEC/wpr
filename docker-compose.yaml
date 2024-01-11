@@ -6,7 +6,6 @@ networks:
 
 services:
   demo-app:
-    image: docker.io/library/demoapp
     depends_on:
       - app_db
     container_name: demoapp-services
