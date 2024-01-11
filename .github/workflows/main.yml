@@ -21,11 +21,11 @@ jobs:
         run: |
           ssh -o "StrictHostKeyChecking=no" student@accessapp.francecentral.cloudapp.azure.com << 'ENDSSH'
           cd wpr
-          git reset --hard
+          git reset --hard HEAD
           git clean -fd
           git pull origin main
           docker compose down
-          docker compose build
+          docker compose build --no-cache
           docker compose up -d
           ENDSSH
         env:
