@@ -22,7 +22,7 @@ function DeskundigeEdit() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:8088/api/beperking')
+    axios.get('http://20.199.89.238:8088/api/beperking')
       .then(response => {
         const options = response.data.map(beperking => ({
           value: beperking.beperkingId,
@@ -36,7 +36,7 @@ function DeskundigeEdit() {
         setError('Error fetching Beperkingen');
       });
 
-    axios.get('http://localhost:8088/api/deskundige/4')
+    axios.get('http://20.199.89.238:8088/api/deskundige/4')
       .then(response => {
         setDeskundige(response.data);
         const selectedOptions = response.data.deskundigeBeperkingen.map(beperking => ({
@@ -71,7 +71,7 @@ function DeskundigeEdit() {
       delete updatedDeskundige.deelnames;
       // Add any other properties you want to exclude from the PUT request
   
-      axios.put(`http://localhost:8088/api/deskundige/${deskundige.userId}`, updatedDeskundige)
+      axios.put(`http://20.199.89.238:8088/api/deskundige/${deskundige.userId}`, updatedDeskundige)
         .then(response => {
           alert('Deskundige updated successfully');
         })
