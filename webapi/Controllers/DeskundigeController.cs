@@ -18,15 +18,48 @@ namespace webapi.Controllers
         }
 
         // POST: api/Deskundige
-        [HttpPost]
-        public async Task<ActionResult<Deskundige>> PostDeskundige(DeskundigeDto dto)
-        {
-            var deskundige = new Deskundige(dto.Email, dto.Password, dto.Role, dto.Postcode, dto.Naam, dto.Leeftijd, dto.Beschikbaarheid, dto.BenaderingVoorkeur, dto.BenaderingCommercieel, dto.Aandoening);
-            _context.Deskundigen.Add(deskundige);
-            await _context.SaveChangesAsync();
+[HttpPost]
+public async Task<ActionResult<DeskundigeDto>> PostDeskundige(DeskundigeDto dto)
+{
+    var deskundige = new Deskundige(
+        dto.Email,
+        dto.Password,
+        dto.Role,
+        dto.Postcode,
+        dto.Naam,
+        dto.Leeftijd,
+        dto.Beschikbaarheid,
+        dto.BenaderingVoorkeur,
+        dto.BenaderingCommercieel,
+        dto.Aandoening
+    );
 
-            return CreatedAtAction("GetDeskundige", new { id = deskundige.UserId }, deskundige);
+    // Handle the mapping for Beperkingen if provided in the DTO
+    if (dto.BeperkingenIds != null && dto.BeperkingenIds.Count > 0)
+    {
+        deskundige.DeskundigeBeperkingen = new List<DeskundigeBeperking>();
+        foreach (var beperkingId in dto.BeperkingenIds)
+        {
+            deskundige.DeskundigeBeperkingen.Add(new DeskundigeBeperking { DeskundigeId = deskundige.UserId, BeperkingId = beperkingId });
         }
+    }
+
+    _context.Deskundigen.Add(deskundige);
+    await _context.SaveChangesAsync();
+
+    // Create a DTO for the response
+    var returnDto = new DeskundigeDto
+    {
+        // Populate the properties of the DTO
+        Email = deskundige.Email,
+        // ... other properties
+        BeperkingenIds = deskundige.DeskundigeBeperkingen.Select(db => db.BeperkingId).ToList()
+    };
+
+    // Return the created DTO with a '201 Created' response, including the route to get the deskundige
+    return CreatedAtAction(nameof(GetDeskundige), new { id = deskundige.UserId }, returnDto);
+}
+
 
         // GET: api/Deskundige/5
         [HttpGet("{id}")]
