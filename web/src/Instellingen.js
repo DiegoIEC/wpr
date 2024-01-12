@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './Instellingen.css';
 
   const Instellingen = () => {
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [city, setStad] = useState('');
-    const [appels, SetAppel] = useState('')
 
     const updateSettings = () => {
       // Voeg logica toe om de gegevens naar de server te sturen
