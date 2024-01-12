@@ -129,7 +129,7 @@ const Register = () => {
     if (checkPW, checkPO){
       console.log('Saving user!')
       try {
-        const response = await axios.post('http://20.199.89.238:8088/api/user/register', {
+        const response = await axios.post('http://20.199.89.238:8088/api/User/Register', {
           params:{
             email: email,
             name: name,
@@ -139,7 +139,8 @@ const Register = () => {
             born: birthday,
             beperkingen: beperkingen,
             commercial: commercial,
-            preference: preference
+            preference: preference,
+            role: "ED"
           }
         })
         .then(response => {

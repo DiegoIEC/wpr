@@ -22,18 +22,23 @@ namespace webapi.Controllers
 
         // POST: api/User/Register
         [HttpPost]
-        public async Task<ActionResult<User>> RegisterUser(string email, string password, string postal, string availability, string born, List<string> beperkingen, bool commercial, string preference)
+        public async Task<ActionResult<User>> RegisterUser(string name, string email, string password, string postal, string availability, string born, List<string> beperkingen, bool commercial, string preference, string role)
         {
             try{
+                User user = new User(email, password, role);
+                Deskundige deskundige = new Deskundige(email, password, role, postal, name, leeftijd:10, beschikbaarheid:availability, aandoening:"ja", benaderingCommercieel:"ja", benaderingVoorkeur:"ja");
                 var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
 
                 if (tried_user == null){
+                    // Registratie logica:
                     return NotFound();
                 }
-                else if (tried_user.Password == password){ // Hier nog een secure methode voor maken.
-                    return tried_user;
+                else if (tried_user != null){
+                    // Deze email is al geregistreerd:
+                    return BadRequest();
                 }
                 else{
+                    // Gaat van alles fout:
                     return BadRequest();
                 }
             }
