@@ -14,7 +14,6 @@ const getRandomColor = () => {
 
 const Register = () => {
   const navigate = useNavigate();
-  //const bcrypt = require('bcryptjs');
   const [beperkingen, setBeperkingen] = useState([]);
   const [error, setError] = useState('');
   const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
@@ -110,15 +109,6 @@ const Register = () => {
     }
     console.log(selectedBeperkingen)
     };
-
-  /*
-         bcrypt.hash(password, 10, (err, hash) => {
-        if (err) {
-            console.error('Error hashing password:', err);
-        } else {
-            console.log('Hashed Password:', hash);
-        }});
-  */
 
   const handleRegister = async (e) => {
     
