@@ -19,7 +19,7 @@ namespace webapi.Controllers
             _context = context;
         }
 
-        /*
+        
         // POST: api/User
         [HttpPost]
         public async Task<ActionResult<string>> PostUser(string email, string password)
@@ -42,7 +42,7 @@ namespace webapi.Controllers
                 return StatusCode(500, "error");
             }
         }
-        */
+        
 
         // GET: api/User
         [HttpGet]
