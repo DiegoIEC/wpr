@@ -63,7 +63,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:8088/api/beperking')
+    axios.get('http://20.199.89.238:3000/api/beperking')
       .then(response => {
         const options = response.data.map(beperking => ({
           value: beperking.BeperkingId,
@@ -80,8 +80,9 @@ const Register = () => {
       const trueDays = Object.entries(availability)
         .filter(([day, isAvailable]) => isAvailable)
         .map(([day]) => day);
-    
-      return resultString = `Available days: ${trueDays.join(', ')}`;
+
+      var resultString = `Available days: ${trueDays.join(', ')}`;
+      return resultString
     };
 
   const handleRegister = async (e) => {
@@ -94,7 +95,7 @@ const Register = () => {
     if (checkPW, checkPO){
       console.log('Saving user!')
       try {
-        const response = await axios.get('http://localhost:8088/api/user/register', {
+        const response = await axios.get('http://20.199.89.238:3000/api/user/register', {
           params:{
             email: email,
             name: name,
