@@ -14,7 +14,7 @@ const getRandomColor = () => {
 
 const Register = () => {
   const navigate = useNavigate();
-  const bcrypt = require('bcryptjs');
+  //const bcrypt = require('bcryptjs');
   const [beperkingen, setBeperkingen] = useState([]);
   const [error, setError] = useState('');
   const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
