@@ -26,7 +26,8 @@ const SiteModeButton = () => {
     console.log(check);
     
     if (window.location.href.endsWith("Dark")) {
-        var loc = window.location.href.replace("_Dark", "")
+        var loc = check.replace("_Dark", "")
+        console.log(loc)
         if (loc == "home"){
           navigate('/');
         } else{
