@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './Instellingen.css';
 
-function App() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [city, setStad] = useState('');
-
-  const updateSettings = () => {
-    // Voeg logica toe om de gegevens naar de server te sturen
-    console.log('Gegevens bijgewerkt:', { name, email, city });
-  };
-
   const Instellingen = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [city, setStad] = useState('');
+    const [appels, SetAppel] = useState('')
+
+    const updateSettings = () => {
+      // Voeg logica toe om de gegevens naar de server te sturen
+      console.log('Gegevens bijgewerkt:', { name, email, city });
+    };
+
       return (
         <div className="settings-container">
           <h2>Instellingen</h2>
@@ -48,6 +48,5 @@ function App() {
         </div>
       );
     }
-  } 
 
 export default Instellingen; 
