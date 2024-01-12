@@ -16,6 +16,7 @@ const getRandomColor = () => {
 const Register = () => {
   const navigate = useNavigate();
   const [beperkingen, setBeperkingen] = useState([]);
+  const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
   const today = new Date().toISOString().split('T')[0];
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const [email, setEmail] = useState('');
@@ -116,6 +117,10 @@ const Register = () => {
 
       var resultString = `Available days: ${trueDays.join(', ')}`;
       return resultString
+    };
+  
+  const handleBeperkingChange = (selectedOptions) => {
+      setSelectedBeperkingen(selectedOptions || []);
     };
 
   const handleRegister = async (e) => {
@@ -238,20 +243,14 @@ const Register = () => {
                       <option value="telefonisch">Telefonisch</option>
                     </select>
                   </div>
-                  <div className={styles.deskundigeEdit}>
-                    <h2>Selecteer uw beperking</h2>
-                    {error && <p className={styles.error}>{error}</p>}
+                  <div className="input-group">
                     <Select
                       isMulti
                       name="beperkingen"
                       options={beperkingen}
-                      className="basic-multi-select"
-                      classNamePrefix="select"
                       value={selectedBeperkingen}
                       onChange={handleBeperkingChange}
-                      styles={customStyles}// Apply custom styles
                     />
-                    <button className={styles.saveButton} onClick={handleSave}>Save</button>
                   </div>
                   <div className="input-group">
                     <label htmlFor="password">Wachtwoord</label>
