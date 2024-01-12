@@ -70,7 +70,7 @@ const Home_ALG = () => {
                 </div>
                 <div className="input-group">
                   <label htmlFor="email">Vraag</label>
-                  <textarea type="email" id="email" />
+                  <textarea type="text" id="vraag" />
                 </div>
                 <button type="submit" className="center-button button-black">
                   Verstuur
