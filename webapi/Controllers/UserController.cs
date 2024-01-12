@@ -20,7 +20,7 @@ namespace webapi.Controllers
             _context = context;
         }
 
-        // POST: api/User/Register
+        // POST: api/User/register
         [HttpPost]
         public async Task<ActionResult<User>> RegisterUser(string name, string email, string password, string postal, string availability, string born, List<string> beperkingen, bool commercial, string preference, string role)
         {
