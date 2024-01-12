@@ -36,7 +36,7 @@ function App() {
       <input
         type="text"
         id="stad"
-        value={city}
+        value={stad} 
         onChange={(e) => setStad(e.target.value)}
         required
       />
@@ -48,4 +48,4 @@ function App() {
   );
 }
 
-export default Instellingen;
+export default Instellingen; 
