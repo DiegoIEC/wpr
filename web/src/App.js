@@ -12,6 +12,7 @@ import ApiTest from './ApiTest';
 import Organisaties from './Organisaties';
 import DeskundigeEdit from './DeskundigeEdit';
 import Instellingen from './Instellingen';
+import Register from './Register';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Home_ALG />} />
             <Route path="/home_Dark" element={<Home_ALG_dark />} />
+            <Route path="/Register" element={<Register />} />
             <Route path="/home_ED" element={<Home_ED />} />
             <Route path="/home_ORG" element={<Home_ORG />} />
             <Route path="/onderzoeken" element={<Onderzoeken />} />

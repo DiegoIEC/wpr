@@ -13,22 +13,22 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     margin: 0 auto;
 }
 .section-background-blue {
-    background-color: #131B56; 
+    background-color: #D9EBF7; 
     padding: 20px;  
     border-top: 1px solid #fff; 
 }
 .div-background-blue{
-    background-color: #131B56; 
+    background-color: #D9EBF7; 
     padding: 10px;
     margin-top: 2em;
     margin-bottom: 2em;
 }
 .div-background-green{
-    background-color: #1CA883; 
+    background-color: #D9EBF7; 
     padding: 10px;
 }
 .section-background-green {
-    background-color: #1CA883; 
+    background-color: #D9EBF7; 
     padding: 20px;  
     margin: 0;
 }
@@ -102,7 +102,7 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     margin: 0px auto;
 }
 .block-middle-border-green {
-    background-color: #1CA883;
+    background-color: #D9EBF7; 
     color: #131B56;
     text-align: center;
     align-items: center;
@@ -113,7 +113,7 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
 .block-right-border-green {
     text-align: right;
     align-items: center;
-    border: 1px solid #1CA883;
+    border: 1px solid #D9EBF7; 
     border-radius: 10px;
     padding: 10px;
     margin: 5px;
