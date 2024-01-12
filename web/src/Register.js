@@ -143,7 +143,7 @@ const Register = () => {
       }
     }
     else{
-      console.log('Helaas!')
+      console.log('Helaas...')
     }
   };
     

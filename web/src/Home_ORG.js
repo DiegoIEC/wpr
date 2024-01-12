@@ -5,7 +5,7 @@ const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
 const reviewResearch = ['Onderzoek 3', 'Onderzoek 4']
 const completedResearch = ['Onderzoek 5', 'Onderzoek 6']
 const completedResearchCount = 100
-const compensation =  10
+const compensation =  18
 const Home_ORG = () => {
     
     return (
