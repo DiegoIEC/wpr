@@ -4,6 +4,13 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css'
 
+const getRandomColor = () => {
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  return `rgb(${r},${g},${b})`;
+};
+
 const Register = () => {
   const navigate = useNavigate();
   const [beperkingen, setBeperkingen] = useState([]);
@@ -66,13 +73,15 @@ const Register = () => {
     axios.get('http://20.199.89.238:8088/api/beperking')
       .then(response => {
         const options = response.data.map(beperking => ({
-          value: beperking.BeperkingId,
-          label: beperking.Naam
+          value: beperking.beperkingId,
+          label: beperking.naam,
+          color: getRandomColor()
+          
         }));
         setBeperkingen(options);
       })
       .catch(error => {
-        console.error('Error fetching beperkingen:', error);
+        setError('Error fetching Beperkingen');
       });
     });
 
