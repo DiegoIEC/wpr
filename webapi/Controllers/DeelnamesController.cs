@@ -35,19 +35,20 @@ public async Task<ActionResult<Deelname>> PostDeelname([FromBody] DeelnameDto de
     return CreatedAtAction("GetDeelname", new { deskundigeId = deelname.DeskundigeId, onderzoekId = deelname.OnderzoekId }, deelname);
 }
 
-        // GET: api/Deelname/5/10
-        [HttpGet("{deskundigeId}/{onderzoekId}")]
-        public async Task<ActionResult<Deelname>> GetDeelname(int deskundigeId, int onderzoekId)
-        {
-            var deelname = await _context.Deelnames.FindAsync(deskundigeId, onderzoekId);
+       [HttpGet("{deskundigeId}")]
+public async Task<ActionResult<IEnumerable<Deelname>>> GetDeelnames(int deskundigeId)
+{
+    var deelnames = await _context.Deelnames
+                                  .Where(d => d.DeskundigeId == deskundigeId)
+                                  .ToListAsync();
 
-            if (deelname == null)
-            {
-                return NotFound();
-            }
+    if (deelnames == null || !deelnames.Any())
+    {
+        return NotFound();
+    }
 
-            return deelname;
-        }
+    return deelnames;
+}
 
         // DELETE: api/Deelname/5/10
         [HttpDelete("{deskundigeId}/{onderzoekId}")]
