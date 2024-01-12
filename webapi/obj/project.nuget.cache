@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "mHRxVMTSsMGxzgPioaQSFo3HLqi9uZXK9FO/8k8FpSPXEhOgehJbbg93DoMBfjNR14Pk+/sg7VQ6cINAk+bLgw==",
+  "dgSpecHash": "so3nXt1cvLZVJm4afI7ZWIrOaAVcljDUndPH98OlhhvesaCfODIss+PPIKs+cwSXjYcvvY9U3o5C1xtcGu1o3A==",
   "success": true,
   "projectFilePath": "C:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\webapi.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\bartv\\.nuget\\packages\\bcrypt.net\\0.1.0\\bcrypt.net.0.1.0.nupkg.sha512",
     "C:\\Users\\bartv\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\bartv\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.10\\microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",
     "C:\\Users\\bartv\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.7\\microsoft.entityframeworkcore.7.0.7.nupkg.sha512",
@@ -36,16 +35,5 @@
     "C:\\Users\\bartv\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\bartv\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'BCrypt.Net 0.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "BCrypt.Net",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  "logs": []
 }
