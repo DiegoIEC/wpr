@@ -1,12 +1,23 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import Select from 'react-select';
+import styles from './DeskundigeEdit.module.css';
 import { useNavigate } from 'react-router-dom';
 import './Home.css'
+
+const getRandomColor = () => {
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  return `rgb(${r},${g},${b})`;
+};
 
 const Register = () => {
   const navigate = useNavigate();
   const [beperkingen, setBeperkingen] = useState([]);
+  const [error, setError] = useState('');
+  const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
   const today = new Date().toISOString().split('T')[0];
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const [email, setEmail] = useState('');
@@ -42,6 +53,28 @@ const Register = () => {
     }
     
   };
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? state.data.color : null,
+      color: state.isFocused ? 'white' : 'black',
+    }),
+    multiValue: (styles, { data }) => ({
+      ...styles,
+      backgroundColor: data.color,
+    }),
+    multiValueLabel: (styles, { data }) => ({
+      ...styles,
+      color: 'white',
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      ':hover': {
+        backgroundColor: data.color,
+        color: 'white',
+      },
+    }),
+  };
   const checkPasswordMatch = () => {
 
     if (password == password2) {
@@ -63,16 +96,18 @@ const Register = () => {
   };
 
   useEffect(() => {
-    axios.get('http://20.199.89.238:3000/api/beperking')
+    axios.get('http://20.199.89.238:8088/api/beperking')
       .then(response => {
         const options = response.data.map(beperking => ({
-          value: beperking.BeperkingId,
-          label: beperking.Naam
+          value: beperking.beperkingId,
+          label: beperking.naam,
+          color: getRandomColor()
+          
         }));
         setBeperkingen(options);
       })
       .catch(error => {
-        console.error('Error fetching beperkingen:', error);
+        setError('Error fetching Beperkingen');
       });
     });
 
@@ -83,6 +118,10 @@ const Register = () => {
 
       var resultString = `Available days: ${trueDays.join(', ')}`;
       return resultString
+    };
+  
+  const handleBeperkingChange = (selectedOptions) => {
+      setSelectedBeperkingen(selectedOptions || []);
     };
 
   const handleRegister = async (e) => {
@@ -95,7 +134,7 @@ const Register = () => {
     if (checkPW, checkPO){
       console.log('Saving user!')
       try {
-        const response = await axios.get('http://20.199.89.238:3000/api/user/register', {
+        const response = await axios.get('http://20.199.89.238:8088/api/user/register', {
           params:{
             email: email,
             name: name,
@@ -206,14 +245,13 @@ const Register = () => {
                     </select>
                   </div>
                   <div className="input-group">
-                    <label htmlFor="dropdown">Selecteer uw beperking:</label>
-                    <select id="dropdown1" value={beperking} onChange={(e) => setBeperking(e.target.checked)}>
-                      {beperkingen.map((option) => (
-                        <option key={option} value={option}>
-                          {option.charAt(0).toUpperCase() + option.slice(1)}
-                        </option>
-                      ))}
-                    </select>
+                    <Select
+                      isMulti
+                      name="beperkingen"
+                      options={beperkingen}
+                      value={selectedBeperkingen}
+                      onChange={handleBeperkingChange}
+                    />
                   </div>
                   <div className="input-group">
                     <label htmlFor="password">Wachtwoord</label>
