@@ -16,7 +16,8 @@ const Login = () => {
     e.preventDefault();
     
     try {
-      const response = await axios.get('http://localhost:8088/api/user', {
+
+      const response = await axios.get('http://20.199.89.238:8088/api/user', {
         params:{
           email: email
         }
@@ -24,6 +25,7 @@ const Login = () => {
       .then(response => {
         var data = response.data;
         console.log(response)})
+
     }
     catch (error) {
       console.error('An error occurred during login:', error);

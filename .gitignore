@@ -11,6 +11,7 @@ node_modules
 # Ignore specific cache files
 **/webapi.csproj.CoreCompileInputs.cache
 .fake
+webapi/obj
 webapi/bin/Debug/net7.0/webapi.dll
 webapi/bin/Debug/net7.0/webapi.dll
 webapi/bin/Debug/net7.0/webapi.exe
@@ -40,3 +41,6 @@ webapi/obj/project.assets.json
 webapi/bin/Debug/net7.0/webapi.pdb
 webapi/bin/Debug/net7.0/webapi.exe
 webapi/bin/Debug/net7.0/webapi.dll
+webapi/bin/Debug/net7.0/webapi.dll
+webapi/bin/Debug/net7.0/webapi.dll
+webapi/obj/Debug/net7.0/webapi.sourcelink.json

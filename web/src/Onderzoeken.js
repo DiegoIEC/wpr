@@ -9,7 +9,7 @@ const Onderzoeken = () => {
 
   useEffect(() => {
     // Fetch limitations to get their names
-    axios.get('http://localhost:8088/api/beperking')
+    axios.get('http://20.199.89.238:8088/api/beperking')
       .then(beperkingenResponse => {
         const newBeperkingenMap = {};
         beperkingenResponse.data.forEach(beperking => {
@@ -22,7 +22,7 @@ const Onderzoeken = () => {
       });
 
     // Fetch research data
-    axios.get('http://localhost:8088/api/onderzoek')
+    axios.get('http://20.199.89.238:8088/api/onderzoek')
       .then(onderzoekResponse => {
         setOnderzoeken(onderzoekResponse.data);
       })
@@ -42,7 +42,7 @@ const Onderzoeken = () => {
 
   return (
     <div className="research-list">
-      <h1>Onderzoeken</h1>
+      <h1>Onderzoeken Test</h1>
       {onderzoeken.map((onderzoek) => (
         <div key={onderzoek.onderzoekId} className="research-item">
           <h2>{onderzoek.titel}</h2>

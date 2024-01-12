@@ -1,0 +1,19 @@
+# Build environment for React app
+FROM node:16 AS build
+WORKDIR /app
+COPY web/package.json web/package-lock.json ./
+RUN npm ci
+COPY web/ ./
+RUN npm run build
+
+# Production environment for React app
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Overwrite default nginx configuration
+# Alternatively, you could add a .conf file to /etc/nginx/conf.d/ if you prefer
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

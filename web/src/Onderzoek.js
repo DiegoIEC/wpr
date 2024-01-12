@@ -12,7 +12,7 @@ const OnderzoekDetail = () => {
 
   useEffect(() => {
     // Fetch the research details
-    axios.get(`http://localhost:8088/api/onderzoek/${id}`)
+    axios.get(`http://20.199.89.238:8088/api/onderzoek/${id}`)
       .then(response => {
         setOnderzoek(response.data);
         fetchBeperkingen(response.data.beperkingenIds);
@@ -24,7 +24,7 @@ const OnderzoekDetail = () => {
   }, [id]);
 
   const fetchBeperkingen = (beperkingenIds) => {
-    axios.get('http://localhost:8088/api/beperking')
+    axios.get('http://20.199.89.238:8088/api/beperking')
       .then(response => {
         const beperkingenMap = response.data.reduce((acc, beperking) => {
           acc[beperking.beperkingId] = beperking.naam;
@@ -57,7 +57,7 @@ const OnderzoekDetail = () => {
       }
     };
   
-    axios.post(`http://localhost:8088/api/deelname`, deelnameData)
+    axios.post(`http://20.199.89.238:8088/api/deelname`, deelnameData)
       .then(response => {
         alert('Successfully joined the research');
         // Update UI or state as needed
@@ -84,7 +84,7 @@ const OnderzoekDetail = () => {
       }
     };
   
-    axios.post(`http://localhost:8088/api/deelname`, deelnameData)
+    axios.post(`http://20.199.89.238:8088/api/deelname`, deelnameData)
       .then(response => {
         alert('You have expressed disinterest');
         // Update UI or state as needed

@@ -1511,11 +1511,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\bartv\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\diego\\.nuget\\packages\\": {}
+>>>>>>> main
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\webapi.csproj",
       "projectName": "webapi",
       "projectPath": "C:\\Users\\bartv\\OneDrive\\Documenten\\GitHub\\wpr\\webapi\\webapi.csproj",
@@ -1524,6 +1529,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bartv\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "c:\\Users\\diego\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
+      "projectName": "webapi",
+      "projectPath": "c:\\Users\\diego\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
+      "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\diego\\Documents\\GitHub\\wpr\\webapi\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> main
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -1581,6 +1596,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -1589,7 +1622,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   },

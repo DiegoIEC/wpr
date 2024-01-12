@@ -10,7 +10,7 @@ function DeskundigeEdit() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:8088/api/beperking')
+    axios.get('http://20.199.89.238:8088/api/beperking')
       .then(response => {
         // Map the response to the format that react-select expects
         const options = response.data.map(beperking => ({
@@ -24,7 +24,7 @@ function DeskundigeEdit() {
         setError('Error fetching Beperkingen');
       });
   
-    axios.get('http://localhost:8088/api/deskundige/4')
+    axios.get('http://20.199.89.238:8088/api/deskundige/4')
       .then(response => {
         // Set the deskundige state
         setDeskundige(response.data);
@@ -53,7 +53,7 @@ function DeskundigeEdit() {
         DeskundigeBeperkingen: beperkingenToUpdate
       };
 
-      axios.put(`http://localhost:8088/api/deskundige/${deskundige.UserId}`, updatedDeskundige)
+      axios.put(`http://20.199.89.238:8088/api/deskundige/${deskundige.UserId}`, updatedDeskundige)
         .then(response => {
           alert('Deskundige updated successfully');
         })

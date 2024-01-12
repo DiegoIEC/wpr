@@ -6,17 +6,16 @@ networks:
 
 services:
   demo-app:
-    image: docker.io/library/demoapp   
     depends_on:
-      - "app_db"
+      - app_db
     container_name: demoapp-services
     ports:
       - "8088:80"
     build:
-      context: .
+      context: ./webapi
       dockerfile: Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=app_db;Port=5432;Database=SampleDbDriver; IntegratedSecurity=true;Pooling=true;
+      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=app_db;Port=5432;Database=SampleDbDriver;IntegratedSecurity=true;Pooling=true;
       - ASPNETCORE_URLS=http://+:80
     networks:
       - dev
@@ -35,5 +34,15 @@ services:
       - app_data:/var/lib/postgresql/data
     networks:
       - dev
+
+  web-app:
+    build:
+      context: .
+      dockerfile: web/Dockerfile-web
+    ports:
+      - "3000:80"
+    networks:
+      - dev
+
 volumes:
   app_data:
