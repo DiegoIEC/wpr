@@ -11,6 +11,7 @@ import Onderzoek from './Onderzoek';
 import ApiTest from './ApiTest';
 import Organisaties from './Organisaties';
 import DeskundigeEdit from './DeskundigeEdit';
+import Instellingen from './Instellingen';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/onderzoeken" element={<Onderzoeken />} />
             <Route path="/onderzoek/:id" element={<Onderzoek />} /> 
             <Route path="/Organisaties" element={<Organisaties />}/>
+            <Route path="/instellingen" element={<Instellingen />} />
             <Route path="/apitest" element={<ApiTest />}/>
             <Route path="/deskundigeedit" element={<DeskundigeEdit />}/>
         </Routes>         
