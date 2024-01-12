@@ -31,11 +31,17 @@ const SiteModeButton = () => {
         if (loc == "home"){
           navigate('/');
         } else{
-          navigate(loc);
+          navigate("/" + loc);
         }
     }
     else{
-        navigate('/home_Dark')
+        var loc = check.concat('_Dark')
+        if (loc == "_Dark"){
+          navigate("home_Dark")
+        }
+        else {
+          navigate("/" + loc)
+        }
     }
   };
 

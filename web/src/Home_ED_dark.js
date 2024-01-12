@@ -1,10 +1,10 @@
-import './Home.css';
+import './Darkmode.css';
 import SiteModeButton from './SiteModeButton';
 const userName = "gebruiker"
 const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
 const completedResearchCount = 100
 const compensation =  10
-const Home_ED = () => {
+const Home_ED_Dark = () => {
     
     return (
         <div className="home">
@@ -58,4 +58,4 @@ const Home_ED = () => {
 
 
 
-export default Home_ED;
+export default Home_ED_Dark;

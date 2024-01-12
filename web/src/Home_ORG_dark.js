@@ -1,4 +1,4 @@
-import './Home.css';
+import './Darkmode.css';
 import SiteModeButton from './SiteModeButton';
 const organisation = "organisatie"
 const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
@@ -6,7 +6,7 @@ const reviewResearch = ['Onderzoek 3', 'Onderzoek 4']
 const completedResearch = ['Onderzoek 5', 'Onderzoek 6']
 const completedResearchCount = 100
 const compensation =  10
-const Home_ORG = () => {
+const Home_ORG_Dark = () => {
     
     return (
         <div className="home">
@@ -84,4 +84,4 @@ const Home_ORG = () => {
 
 
 
-export default Home_ORG;
+export default Home_ORG_Dark;

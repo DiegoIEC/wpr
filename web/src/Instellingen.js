@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SiteModeButton from './SiteModeButton';
 import './Instellingen.css';
 
 const Instellingen = () => {

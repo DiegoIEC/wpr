@@ -3,6 +3,8 @@ import Home_ED from './Home_ED';
 import Login from './Login';
 import Home_ALG from './Home_ALG';
 import Home_ALG_dark from './Home_ALG_dark';
+import Home_ED_Dark from './Home_ED_dark';
+import Home_ORG_Dark from './Home_ORG_dark';
 import Home_ORG from './Home_ORG';
 import Footer from './Footer';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -26,6 +28,8 @@ function App() {
         <Routes>
             <Route path="/" element={<Home_ALG />} />
             <Route path="/home_Dark" element={<Home_ALG_dark />} />
+            <Route path="/home_ED_Dark" element={<Home_ED_Dark />} />
+            <Route path="/home_ORG_Dark" element={<Home_ORG_Dark />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/home_ED" element={<Home_ED />} />
             <Route path="/home_ORG" element={<Home_ORG />} />
