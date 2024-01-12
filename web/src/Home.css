@@ -210,4 +210,27 @@ form {
     width:300px;
   }
 
+  .format-datepicker{
+    font-size: 0.8em;
+    max-width: 200px;
+    max-height: 200px;
+  }
+  .format-label{
+    margin-top: 10px;
+  }
+  .format-checkbox{
+    margin-right: auto;
+    font-weight: normal;
+  }
+  .checkbox-container {
+    font-size: small;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+  }
+  .status-label {
+    margin-right: 280px; 
+    font-weight: bold; 
+  }
+
 

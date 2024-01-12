@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using BCrypt.Net;
 using DemoApp.Models;
 using DemoApp.Data;
 using System.Linq;
@@ -19,22 +20,21 @@ namespace webapi.Controllers
             _context = context;
         }
 
-        /*
-        // POST: api/User
+        // POST: api/User/Register
         [HttpPost]
-        public async Task<ActionResult<string>> PostUser(string email, string password)
+        public async Task<ActionResult<User>> RegisterUser(string email, string password, string postal, string availability, string born, List<string> beperkingen, bool commercial, string preference)
         {
             try{
                 var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
-                //var tried_user = await _context.Users.FindAsync(email);
+
                 if (tried_user == null){
-                    return NotFound("User not found");
+                    return NotFound();
                 }
                 else if (tried_user.Password == password){ // Hier nog een secure methode voor maken.
-                    return Ok("Login successful");
+                    return tried_user;
                 }
                 else{
-                    return BadRequest("Invalid login attempt");
+                    return BadRequest();
                 }
             }
             catch (Exception e){
@@ -42,13 +42,13 @@ namespace webapi.Controllers
                 return StatusCode(500, "error");
             }
         }
-        */
+        
 
         // GET: api/User
         [HttpGet]
         public async Task<ActionResult<User>> GetUser([FromQuery] string email)
         {
-            var user = await _context.Users.FindAsync(email);
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
 
             if (user == null)
             {

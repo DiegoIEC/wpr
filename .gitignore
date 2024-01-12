@@ -11,6 +11,7 @@ node_modules
 # Ignore specific cache files
 **/webapi.csproj.CoreCompileInputs.cache
 .fake
+webapi/obj
 webapi/bin/Debug/net7.0/webapi.dll
 webapi/bin/Debug/net7.0/webapi.dll
 webapi/bin/Debug/net7.0/webapi.exe

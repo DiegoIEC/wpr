@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'
+import './Home.css'
 //import LoginModel from '../../webapi/Models/LoginModel.cs'
 
 const Login = () => {
@@ -67,11 +67,11 @@ const Login = () => {
     
     return (
         <div className="home">
-            <section className="welcome section-background-blue text-color-green">
-            <h2 className="center-text title">Login</h2>
+            <section className="welcome section-background text-color-black">
+            <h2 className="center-text format-title">Login</h2>
             </section>
-            <section className="welcome section-background-blue text-color-green">
-              <div className="contribution-stats-green block-middle-border-blue">
+            <section className="welcome section-background text-color-black">
+              <div className="contribution-stats-black block-middle-border">
                 <form onSubmit={handleLogin}>
                   <div className="input-group">
                     <label htmlFor="email">Email</label>
@@ -99,10 +99,10 @@ const Login = () => {
                       </div>
                   )}
                   <div>
-                    <button type="submit" className="center-button button-blue">
+                    <button type="submit" className="center-button button-black">
                       Login
                     </button>
-                    <button type="button" className="center-button button-blue">
+                    <button type="button" className="center-button button-black">
                       Wachtwoord vergeten
                     </button>
                   </div>
