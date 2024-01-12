@@ -232,5 +232,10 @@ form {
     margin-right: 280px; 
     font-weight: bold; 
   }
+  .format-multi-select{
+    padding: 0px;
+    width: auto;
+    height: 0%;
+  }
 
 

@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import Select from 'react-select';
-import styles from './DeskundigeEdit.module.css';
 import { useNavigate } from 'react-router-dom';
 import './Home.css'
 
@@ -15,6 +13,7 @@ const getRandomColor = () => {
 
 const Register = () => {
   const navigate = useNavigate();
+  const bcrypt = require('bcryptjs');
   const [beperkingen, setBeperkingen] = useState([]);
   const [error, setError] = useState('');
   const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
@@ -53,28 +52,7 @@ const Register = () => {
     }
     
   };
-  const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isFocused ? state.data.color : null,
-      color: state.isFocused ? 'white' : 'black',
-    }),
-    multiValue: (styles, { data }) => ({
-      ...styles,
-      backgroundColor: data.color,
-    }),
-    multiValueLabel: (styles, { data }) => ({
-      ...styles,
-      color: 'white',
-    }),
-    multiValueRemove: (styles, { data }) => ({
-      ...styles,
-      ':hover': {
-        backgroundColor: data.color,
-        color: 'white',
-      },
-    }),
-  };
+  
   const checkPasswordMatch = () => {
 
     if (password == password2) {
@@ -120,9 +98,26 @@ const Register = () => {
       return resultString
     };
   
-  const handleBeperkingChange = (selectedOptions) => {
-      setSelectedBeperkingen(selectedOptions || []);
+  const handleBeperkingChange = (e) => {
+    const selectedOption = e.target.value
+    if (selectedBeperkingen.includes(selectedOption)){
+      const updatedSelection = selectedBeperkingen.filter((option) => option !== selectedOption);
+      setSelectedBeperkingen(updatedSelection)
+    }
+    else{
+      setSelectedBeperkingen([...selectedBeperkingen, selectedOption]);
+    }
+    console.log(selectedBeperkingen)
     };
+
+  /*
+         bcrypt.hash(password, 10, (err, hash) => {
+        if (err) {
+            console.error('Error hashing password:', err);
+        } else {
+            console.log('Hashed Password:', hash);
+        }});
+  */
 
   const handleRegister = async (e) => {
     
@@ -134,7 +129,7 @@ const Register = () => {
     if (checkPW, checkPO){
       console.log('Saving user!')
       try {
-        const response = await axios.get('http://20.199.89.238:8088/api/user/register', {
+        const response = await axios.post('http://20.199.89.238:8088/api/user/register', {
           params:{
             email: email,
             name: name,
@@ -245,13 +240,23 @@ const Register = () => {
                     </select>
                   </div>
                   <div className="input-group">
-                    <Select
-                      isMulti
-                      name="beperkingen"
-                      options={beperkingen}
-                      value={selectedBeperkingen}
-                      onChange={handleBeperkingChange}
-                    />
+                  <label>Selecteer uw beperkings catagorie:</label>
+                  <select
+                    multiple
+                    onChange={(e) => handleBeperkingChange(e)}
+                    className="format-dropdown">
+                    {beperkingen.map((beperkingOption) => (
+                      <option key={beperkingOption.value} value={beperkingOption.label}>
+                        {beperkingOption.label}
+                      </option>
+                    ))}
+                  </select>
+                  <p>Geselecteerde beperkingen:</p>
+                  <ul>
+                    {selectedBeperkingen.map((selectedOption) => (
+                      <li key={selectedOption}>{selectedOption}</li>
+                    ))}
+                  </ul>
                   </div>
                   <div className="input-group">
                     <label htmlFor="password">Wachtwoord</label>
