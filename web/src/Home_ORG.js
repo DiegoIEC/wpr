@@ -10,7 +10,7 @@ const Home_ORG = () => {
     
     return (
         <div className="home">
-          <SiteModeButton/>
+            <SiteModeButton/>
             <section className="welcome section-background text-color-black block-content">
             <div className="block-left format-div">
             <h2 className="center-text format-title">Welkom {organisation}</h2>
