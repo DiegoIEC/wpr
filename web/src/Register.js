@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import Select from 'react-select';
+import styles from './DeskundigeEdit.module.css';
 import { useNavigate } from 'react-router-dom';
 import './Home.css'
 
@@ -48,6 +50,28 @@ const Register = () => {
       setCheckPO(false);
     }
     
+  };
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? state.data.color : null,
+      color: state.isFocused ? 'white' : 'black',
+    }),
+    multiValue: (styles, { data }) => ({
+      ...styles,
+      backgroundColor: data.color,
+    }),
+    multiValueLabel: (styles, { data }) => ({
+      ...styles,
+      color: 'white',
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      ':hover': {
+        backgroundColor: data.color,
+        color: 'white',
+      },
+    }),
   };
   const checkPasswordMatch = () => {
 
@@ -214,15 +238,20 @@ const Register = () => {
                       <option value="telefonisch">Telefonisch</option>
                     </select>
                   </div>
-                  <div className="input-group">
-                    <label htmlFor="dropdown">Selecteer uw beperking:</label>
-                    <select id="dropdown1" value={beperking} onChange={(e) => setBeperking(e.target.checked)}>
-                      {beperkingen.map((option) => (
-                        <option key={option} value={option}>
-                          {option.charAt(0).toUpperCase() + option.slice(1)}
-                        </option>
-                      ))}
-                    </select>
+                  <div className={styles.deskundigeEdit}>
+                    <h2>Selecteer uw beperking</h2>
+                    {error && <p className={styles.error}>{error}</p>}
+                    <Select
+                      isMulti
+                      name="beperkingen"
+                      options={beperkingen}
+                      className="basic-multi-select"
+                      classNamePrefix="select"
+                      value={selectedBeperkingen}
+                      onChange={handleBeperkingChange}
+                      styles={customStyles}// Apply custom styles
+                    />
+                    <button className={styles.saveButton} onClick={handleSave}>Save</button>
                   </div>
                   <div className="input-group">
                     <label htmlFor="password">Wachtwoord</label>
