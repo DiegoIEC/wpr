@@ -1,5 +1,6 @@
 import React from 'react';
 import './Organisaties.css';
+import { Link } from 'react-router-dom';
 
 const Organisaties = () => {
   const organizationName = "Naam Organisatie";
@@ -10,7 +11,9 @@ const Organisaties = () => {
           <div className="welcome-content">
             <h2>Welkom {organizationName}</h2>
             <p>Hieronder een overzicht met de onderzoeken die bezig zijn</p>
-            <button className="center-button button-green">Onderzoeken</button>
+            <Link to="/onderzoeken" className="center-button button-green">
+              Onderzoeken
+            </Link>
           </div>
         </section>
 
