@@ -12,6 +12,20 @@ const getRandomColor = () => {
   return `rgb(${r},${g},${b})`;
 };
 
+const fetchBeperkingenData = async () => {
+  try {
+    const response = await axios.get('http://20.199.89.238:8088/api/beperking');
+    const options = response.data.map(beperking => ({
+      value: beperking.beperkingId,
+      label: beperking.naam,
+      color: getRandomColor(),
+    }));
+    return options;
+  } catch (error) {
+    setError('Error fetching Beperkingen');
+  }
+};
+
 const Register = () => {
   const navigate = useNavigate();
   const [beperkingen, setBeperkingen] = useState([]);
@@ -74,21 +88,15 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (beperkingen.length == 0){
-    axios.get('http://20.199.89.238:8088/api/beperking')
-      .then(response => {
-        const options = response.data.map(beperking => ({
-          value: beperking.beperkingId,
-          label: beperking.naam,
-          color: getRandomColor()
-        }));
+    const fetchData = async () => {
+      if (beperkingen.length === 0) {
+        const options = await fetchBeperkingenData();
         setBeperkingen(options);
-      })
-      .catch(error => {
-        setError('Error fetching Beperkingen');
-      });
-    }
-  }, []);
+      }
+    };
+
+    fetchData();
+  }, [beperkingen]);
 
   const checkAvailability = () => {
       const trueDays = Object.entries(availability)
