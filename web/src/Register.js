@@ -64,6 +64,7 @@ const Register = () => {
       setPostal('');
       setCheckPO(false);
     }
+    return checkPO;
     
   };
   
@@ -77,6 +78,7 @@ const Register = () => {
       setPassword2('');
       setCheckPW(false);
     }
+    return checkPW;
     
   };
 
@@ -122,11 +124,11 @@ const Register = () => {
   const handleRegister = async (e) => {
     
     e.preventDefault();
-    checkPostal();
-    checkPasswordMatch();
+    const pc = await checkPostal();
+    const pw = await checkPasswordMatch();
     var avai = checkAvailability();
 
-    if (checkPW && checkPO){
+    if (pc && pw){
       console.log('Saving user!')
       try {
         const response = await axios.post('http://20.199.89.238:8088/api/User/Register', {
