@@ -273,7 +273,7 @@ const Register = () => {
                     <input
                       type="password"
                       id="password2"
-                      placeholder="Herhaal uw wachtwoord in..."
+                      placeholder="Herhaal uw wachtwoord..."
                       value={password2}
                       onChange={(e) => setPassword2(e.target.value)}
                     />
