@@ -74,6 +74,7 @@ const Register = () => {
   };
 
   useEffect(() => {
+    if (beperkingen.length == 0){
     axios.get('http://20.199.89.238:8088/api/beperking')
       .then(response => {
         const options = response.data.map(beperking => ({
@@ -86,6 +87,7 @@ const Register = () => {
       .catch(error => {
         setError('Error fetching Beperkingen');
       });
+    }
   }, []);
 
   const checkAvailability = () => {
