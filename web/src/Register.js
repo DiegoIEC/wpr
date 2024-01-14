@@ -80,14 +80,13 @@ const Register = () => {
           value: beperking.beperkingId,
           label: beperking.naam,
           color: getRandomColor()
-          
         }));
         setBeperkingen(options);
       })
       .catch(error => {
         setError('Error fetching Beperkingen');
       });
-    });
+  }, []);
 
   const checkAvailability = () => {
       const trueDays = Object.entries(availability)
