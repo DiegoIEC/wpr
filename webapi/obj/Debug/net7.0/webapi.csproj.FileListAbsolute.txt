@@ -128,6 +128,7 @@ C:\Users\Bart\Documents\GitHub\wpr\webapi\obj\Debug\net7.0\refint\webapi.dll
 C:\Users\Bart\Documents\GitHub\wpr\webapi\obj\Debug\net7.0\webapi.pdb
 C:\Users\Bart\Documents\GitHub\wpr\webapi\obj\Debug\net7.0\webapi.genruntimeconfig.cache
 C:\Users\Bart\Documents\GitHub\wpr\webapi\obj\Debug\net7.0\ref\webapi.dll
+<<<<<<< Updated upstream
 C:\Users\julia\OneDrive\Desktop\THUAS\ICT\Year2\Website Project\wpr\webapi\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\julia\OneDrive\Desktop\THUAS\ICT\Year2\Website Project\wpr\webapi\bin\Debug\net7.0\appsettings.json
 C:\Users\julia\OneDrive\Desktop\THUAS\ICT\Year2\Website Project\wpr\webapi\bin\Debug\net7.0\webapi.exe
@@ -171,3 +172,6 @@ C:\Users\julia\OneDrive\Desktop\THUAS\ICT\Year2\Website Project\wpr\webapi\obj\D
 C:\Users\julia\OneDrive\Desktop\THUAS\ICT\Year2\Website Project\wpr\webapi\obj\Debug\net7.0\webapi.pdb
 C:\Users\julia\OneDrive\Desktop\THUAS\ICT\Year2\Website Project\wpr\webapi\obj\Debug\net7.0\webapi.genruntimeconfig.cache
 C:\Users\julia\OneDrive\Desktop\THUAS\ICT\Year2\Website Project\wpr\webapi\obj\Debug\net7.0\ref\webapi.dll
+=======
+C:\Users\Bart\Documents\GitHub\wpr\webapi\bin\Debug\net7.0\BCrypt.Net.dll
+>>>>>>> Stashed changes

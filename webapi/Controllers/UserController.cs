@@ -51,7 +51,7 @@ namespace webapi.Controllers
 
         // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<User>> GetUser([FromQuery] string email)
+        public async Task<ActionResult<User>> GetUser([FromQuery] string email, string password)
         {
             var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
 
@@ -59,8 +59,14 @@ namespace webapi.Controllers
             {
                 return NotFound();
             }
+            else if (user.Password != password){
+                return new ObjectResult("Verkeerde Wachtwoord") { StatusCode = 404 };
+            }
+            else if (user.Password == password){
+                return user;
+            }
 
-            return user;
+            return BadRequest("Geet nie goed");
         }
 
     }

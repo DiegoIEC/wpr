@@ -36,6 +36,7 @@ app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
+//app.UseEndpoints(endpoints => {endpoints.MapControllers()});
 app.MapControllers();
 
 // Apply EF Core migrations
