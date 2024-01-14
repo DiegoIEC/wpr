@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Onderzoeken from './Onderzoeken';
 import Onderzoek from './Onderzoek';
 import ApiTest from './ApiTest';
-import Organisaties from './Organisaties';
 import DeskundigeEdit from './DeskundigeEdit';
 import Instellingen from './Instellingen';
 import Register from './Register';
@@ -38,7 +37,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/onderzoeken" element={<Onderzoeken />} />
             <Route path="/onderzoek/:id" element={<Onderzoek />} /> 
-            <Route path="/Organisaties" element={<Organisaties />}/>
             <Route path="/instellingen" element={<Instellingen />} />
             <Route path="/apitest" element={<ApiTest />}/>
             <Route path="/deskundigeedit" element={<DeskundigeEdit />}/>

@@ -11,7 +11,6 @@ const NavBar = () => {
                   <a href="./Onderzoeken">Onderzoeken</a>
                   <a href="/Instellingen">Instellingen</a>
                   <a href="/logout">Uitloggen</a>
-                  <a href="/Organisaties">Organisaties</a>
                   <a href="/Register">Registreer</a>
                   <a href="./Login">Inloggen</a>
               </div>
