@@ -1,5 +1,6 @@
 import './Home.css';
 import SiteModeButton from './SiteModeButton';
+import { Link } from 'react-router-dom';
 const organisation = "organisatie"
 const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
 const reviewResearch = ['Onderzoek 3', 'Onderzoek 4']
@@ -15,7 +16,9 @@ const Home_ORG = () => {
             <div className="block-left format-div">
             <h2 className="center-text format-title">Welkom {organisation}</h2>
             <p className="center-text">Hieronder een overzicht met uw onderzoeken die nu lopen</p>
-            <button className="center-button button-black"> Onderzoeken </button>
+            <Link to="/onderzoeken" className="center-button button-black">
+            Onderzoeken
+          </Link>
             </div>
             <div className="block-right format-div">
             <h2 className="center-text format-title">Laatste nieuws</h2>

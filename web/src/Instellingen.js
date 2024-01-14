@@ -19,16 +19,16 @@ const Instellingen = () => {
 
   const handleSave = () => {
     // Save the updated values to the server or perform any necessary actions
-    setCurrentName(name);
-    setCurrentEmail(email);
-    setCurrentStad(stad);
+    setCurrentName(name.trim() !== '' ? name : currentName);
+    setCurrentEmail(email.trim() !== '' ? email : currentEmail);
+    setCurrentStad(stad.trim() !== '' ? stad : currentStad);
 
     setIsEditing(false);
   };
 
   return (
     <div className="settings-container">
-      <h2>Instellingen</h2>
+          <h2 className="center-text format-title">Instellingen</h2>
 
       <div className="current-values">
         <p>Huidige naam: {currentName}</p>
