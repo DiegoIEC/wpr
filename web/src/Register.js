@@ -14,7 +14,6 @@ const getRandomColor = () => {
 
 const Register = () => {
   const navigate = useNavigate();
-  const bcrypt = require('bcryptjs');
   const [beperkingen, setBeperkingen] = useState([]);
   const [error, setError] = useState('');
   const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
@@ -111,15 +110,6 @@ const Register = () => {
     console.log(selectedBeperkingen)
     };
 
-  /*
-         bcrypt.hash(password, 10, (err, hash) => {
-        if (err) {
-            console.error('Error hashing password:', err);
-        } else {
-            console.log('Hashed Password:', hash);
-        }});
-  */
-
   const handleRegister = async (e) => {
     
     e.preventDefault();
@@ -127,7 +117,7 @@ const Register = () => {
     checkPasswordMatch();
     var avai = checkAvailability();
 
-    if (checkPW, checkPO){
+    if (checkPW && checkPO){
       console.log('Saving user!')
       try {
         const response = await axios.post('http://20.199.89.238:8088/api/User/Register', {
@@ -153,7 +143,7 @@ const Register = () => {
       }
     }
     else{
-      console.log('Helaas!')
+      console.log('Helaas...')
     }
   };
     

@@ -15,6 +15,7 @@ import Organisaties from './Organisaties';
 import DeskundigeEdit from './DeskundigeEdit';
 import Instellingen from './Instellingen';
 import Register from './Register';
+import Deelnames from './Deelnames';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
             <Route path="/instellingen" element={<Instellingen />} />
             <Route path="/apitest" element={<ApiTest />}/>
             <Route path="/deskundigeedit" element={<DeskundigeEdit />}/>
+            <Route path="/deelnames" element={<Deelnames />}/>
         </Routes>         
         </main>
         <Footer />

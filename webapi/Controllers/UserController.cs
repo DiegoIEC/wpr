@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using BCrypt.Net;
 using DemoApp.Models;
 using DemoApp.Data;
 using System.Linq;
