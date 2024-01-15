@@ -152,7 +152,8 @@ const Register = () => {
     const pc = await checkPostal();
     const pw = await checkPasswordMatch();
     var avai = checkAvailability();
-    var age = calcAge();
+    //var age = calcAge();
+    var age = 27;
 
     userData.Email = email;
     userData.Password = password;
