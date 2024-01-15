@@ -5,6 +5,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css'
 
+const client = axios.create({
+  baseURL: "http://20.199.89.238:8088/api/" 
+});
+
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 255);
   const g = Math.floor(Math.random() * 255);
@@ -131,8 +135,8 @@ const Register = () => {
     if (pc && pw){
       console.log('Saving user!')
       try {
-        const response = await axios.post('http://20.199.89.238:8088/api/User/Register', {
-          params:{
+        const response = await axios.post('http://20.199.89.238:8088/api/user', {
+          body:{
             email: email,
             name: name,
             password: password,

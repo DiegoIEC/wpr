@@ -1489,11 +1489,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
+      "projectUniqueName": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "C:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
+      "projectPath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\webapi.csproj",
       "packagesPath": "C:\\Users\\Bart\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\obj\\",
+      "outputPath": "c:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Bart\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1561,13 +1561,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Bart\\Documents\\GitHub\\wpr\\webapi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
