@@ -22,7 +22,7 @@ const fetchBeperkingenData = async () => {
     }));
     return options;
   } catch (error) {
-    setError('Error fetching Beperkingen');
+    //setError('Error fetching Beperkingen');
   }
 };
 
