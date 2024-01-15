@@ -26,21 +26,6 @@ const fetchBeperkingenData = async () => {
   }
 };
 
-const userData = {
-  UserId: 0,
-  Email: '',
-  Password: '',
-  Role: '',
-  Postcode: '',
-  Naam: '',
-  Leeftijd: 0,
-  Beschikbaarheid: '',
-  BenaderingVoorkeur: '',
-  BenaderingCommercieel: '',
-  Aandoening: '',
-  BeperkingenIds: []
-};
-
 const Register = () => {
   const navigate = useNavigate();
   const [beperkingen, setBeperkingen] = useState([]);
@@ -155,24 +140,25 @@ const Register = () => {
     //var age = calcAge();
     var age = 27;
 
-    userData.Email = email;
-    userData.Password = password;
-    userData.Role = "ED";
-    userData.Postcode = postal;
-    userData.Naam = name;
-    userData.Leeftijd = age;
-    userData.Beschikbaarheid = avai;
-    userData.BenaderingVoorkeur = preference;
-    userData.BenaderingCommercieel = commercial.toString();
-    //userData.Aandoening = selectedBeperkingen;
-    userData.Aandoening = "Aanstelleritus";
+    const userData = {
+      Email: email,
+      Password: password,
+      Role: "ED",
+      Postcode: postal,
+      Naam: name,
+      Leeftijd: age,
+      Beschikbaarheid: avai,
+      BenaderingVoorkeur: preference,
+      BenaderingCommercieel: commercial.toString(),
+      Aandoening: "Aanstelleritus",
+      //BeperkingenIds: selectedBeperkingen.map(beperking => beperking.value),
+      BeperkingenIds: [0, 1]
+    };
 
     if (pc && pw){
       console.log('Saving user!')
       try {
-        const response = await axios.post('http://20.199.89.238:8088/api/user', {
-          body: userData
-        })
+        const response = await axios.post('http://20.199.89.238:8088/api/user', userData)
         .then(response => {
           var data = response.data;
           console.log(response)})
