@@ -164,7 +164,8 @@ const Register = () => {
     userData.Beschikbaarheid = avai;
     userData.BenaderingVoorkeur = preference;
     userData.BenaderingCommercieel = commercial.toString();
-    userData.Aandoening = selectedBeperkingen;
+    //userData.Aandoening = selectedBeperkingen;
+    userData.Aandoening = "Aanstelleritus";
 
     if (pc && pw){
       console.log('Saving user!')
