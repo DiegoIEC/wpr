@@ -264,7 +264,7 @@ const Register = () => {
                   </div>
                   <div className="input-group">
                     <label htmlFor="dropdown">Hoe wilt u het liefst benaderd worden?:</label>
-                    <select id="dropdown" value={preference} onChange={(e) => setPreference(e.target.checked)}>
+                    <select id="dropdown" value={preference} onChange={(e) => setPreference(e.target.value)}>
                       <option value="email">Via de mail</option>
                       <option value="site">Via de website</option>
                       <option value="telefonisch">Telefonisch</option>

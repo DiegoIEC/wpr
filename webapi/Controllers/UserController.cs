@@ -21,7 +21,7 @@ namespace webapi.Controllers
 
         // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<User>> RegisterUser(DeskundigeDto data)
+        public async Task<ActionResult<User>> RegisterUser([FromBody] DeskundigeDto data)
         {
             try{
                 var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data.Email);
