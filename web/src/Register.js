@@ -5,10 +5,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css'
 
-const client = axios.create({
-  baseURL: "http://20.199.89.238:8088/api/" 
-});
-
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 255);
   const g = Math.floor(Math.random() * 255);
@@ -28,6 +24,21 @@ const fetchBeperkingenData = async () => {
   } catch (error) {
     //setError('Error fetching Beperkingen');
   }
+};
+
+const userData = {
+  UserId: 0,
+  Email: '',
+  Password: '',
+  Role: '',
+  Postcode: '',
+  Naam: '',
+  Leeftijd: 0,
+  Beschikbaarheid: '',
+  BenaderingVoorkeur: '',
+  BenaderingCommercieel: '',
+  Aandoening: '',
+  BeperkingenIds: []
 };
 
 const Register = () => {
@@ -125,29 +136,40 @@ const Register = () => {
     console.log(selectedBeperkingen)
     };
 
+  const calcAge = () => {
+    var month_diff = Date.now() - birthday.getTime();
+    var age_help = new Date(month_diff);
+
+    var year = age_help.getUTCFullYear();
+    var age = Math.abs(year - 1970);
+
+    return age;
+  };
+
   const handleRegister = async (e) => {
     
     e.preventDefault();
     const pc = await checkPostal();
     const pw = await checkPasswordMatch();
     var avai = checkAvailability();
+    var age = calcAge();
+
+    userData.Email = email;
+    userData.Password = password;
+    userData.Role = "ED";
+    userData.Postcode = postal;
+    userData.Naam = name;
+    userData.Leeftijd = age;
+    userData.Beschikbaarheid = avai;
+    userData.BenaderingVoorkeur = preference;
+    userData.BenaderingCommercieel = commercial.toString();
+    userData.Aandoening = selectedBeperkingen;
 
     if (pc && pw){
       console.log('Saving user!')
       try {
         const response = await axios.post('http://20.199.89.238:8088/api/user', {
-          body:{
-            email: email,
-            name: name,
-            password: password,
-            postal: postal,
-            availability: avai,
-            born: birthday,
-            beperkingen: beperkingen,
-            commercial: commercial,
-            preference: preference,
-            role: "ED"
-          }
+          body: userData
         })
         .then(response => {
           var data = response.data;

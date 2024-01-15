@@ -21,20 +21,22 @@ namespace webapi.Controllers
 
         // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<User>> RegisterUser(string name, string email, string password, string postal, string availability, string born, List<string> beperkingen, bool commercial, string preference, string role)
+        public async Task<ActionResult<User>> RegisterUser(DeskundigeDto data)
         {
             try{
-                User user = new User(email, password, role);
-                Deskundige deskundige = new Deskundige(email, password, role, postal, name, leeftijd:10, beschikbaarheid:availability, aandoening:"ja", benaderingCommercieel:"ja", benaderingVoorkeur:"ja");
-                var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+                var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data.Email);
 
                 if (tried_user == null){
-                    // Registratie logica:
-                    return NotFound();
+                    User user = new User(data.Email, data.Password, data.Role);
+                    Deskundige deskundige = new Deskundige(data.Email, data.Password, data.Role, data.Postcode, data.Naam, data.Leeftijd, data.Beschikbaarheid, data.BenaderingVoorkeur, data.BenaderingCommercieel, data.Aandoening);
+                    _context.Users.Add(user);
+                    _context.Deskundigen.Add(deskundige);
+                    
+                    return user;
                 }
                 else if (tried_user != null){
                     // Deze email is al geregistreerd:
-                    return BadRequest();
+                    return StatusCode(500, "Deze email is al geregistreerd.");
                 }
                 else{
                     // Gaat van alles fout:
