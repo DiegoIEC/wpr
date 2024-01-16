@@ -51,18 +51,6 @@ section {
   padding: 1em;
 }
 
-button {
-  background-color: #009900;
-  color: white;
-  padding: 0.5em 1em;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #FFC0CB;
-}
-
 footer {
   background-color: #000000;
   color: #1CA883;

@@ -6,6 +6,7 @@ const NavBar = () => {
               <h1 className="title-nav">Accessibility</h1>
               <div className="navbar-right">
                   <a href="/">Home</a>
+                  <a href="./Deelnames">Mijn Onderzoeken</a>
                   <a href="/home_ED">Home ED</a>              
                   <a href="/home_ORG">Home ORG</a>
                   <a href="./Onderzoeken">Onderzoeken</a>
@@ -14,7 +15,6 @@ const NavBar = () => {
                   <a href="/Register">Registreer</a>
                   <a href="./Login">Inloggen</a>
               </div>
-
             </div>
           </nav>
     );
