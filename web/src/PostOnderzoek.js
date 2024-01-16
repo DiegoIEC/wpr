@@ -28,7 +28,8 @@ function OnderzoekPost() {
     startdatum: '2024-01-02T00:00:00Z',
     einddatum: '2024-01-30T00:00:00Z',
     beperkingenIds: [],
-    deelnames: []
+    deelnames: [],
+    status: 0
   });
   const [beperkingenOptions, setBeperkingenOptions] = useState([]);
   const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
