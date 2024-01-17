@@ -70,7 +70,7 @@ const Register = () => {
   
   const checkPasswordMatch = () => {
 
-    if (password == password2) {
+    if (password === password2) {
       setCheckPW(true);
     }
     else{
