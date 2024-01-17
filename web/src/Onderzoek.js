@@ -100,7 +100,7 @@ const OnderzoekDetail = () => {
 
   return (
     <div className="onderzoek-detail">
-      <h1>{onderzoek?.titel}</h1>
+      <h1>{onderzoek?.titel} test</h1>
       <p>Type: {onderzoek?.soort}</p>
       <p>{onderzoek?.korteBeschrijving}</p>
       <div className="tags">
