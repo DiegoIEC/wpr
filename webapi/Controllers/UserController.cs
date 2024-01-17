@@ -27,10 +27,10 @@ namespace webapi.Controllers
                 var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data.Email);
 
                 if (tried_user == null){
-                    User user = new User(data.Email, data.Password, data.Role);
-                    Deskundige deskundige = new Deskundige(data.Email, data.Password, data.Role, data.Postcode, data.Naam, data.Leeftijd, data.Beschikbaarheid, data.BenaderingVoorkeur, data.BenaderingCommercieel, data.Aandoening);
-                    _context.Users.Add(user);
-                    _context.Deskundigen.Add(deskundige);
+                    User user = new(data.Email, data.Password, data.Role);
+                    //Deskundige deskundige = new(data.Email, data.Password, data.Role, data.Postcode, data.Naam, data.Leeftijd, data.Beschikbaarheid, data.BenaderingVoorkeur, data.BenaderingCommercieel, data.Aandoening);
+                    //_context.Users.Add(user);
+                    //_context.Deskundigen.Add(deskundige);
                     
                     return user;
                 }
