@@ -58,8 +58,8 @@ namespace webapi.Controllers
                         DeskundigeController dc = new DeskundigeController(_context);
                         DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
                         var new_ed = await dc.PostDeskundige(deskundige);
-                        _context.Users.Add(user);
-                        await _context.SaveChangesAsync();
+                        //_context.Users.Add(user);
+                        //await _context.SaveChangesAsync();
                         return "Succes!";
                     }
                     else{
