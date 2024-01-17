@@ -1,5 +1,5 @@
 # Build environment for React app
-FROM node:16 AS build
+FROM node:20 AS build
 WORKDIR /app
 COPY web/package.json web/package-lock.json ./
 RUN npm ci
