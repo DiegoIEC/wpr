@@ -24,24 +24,26 @@ namespace webapi.Controllers
         public async Task<ActionResult<User>> RegisterUser([FromBody] DeskundigeDto data)
         {
             try{
-                var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data.Email);
+                User user = new User(email: data.Email, password: data.Password, role: data.Role);
+                return user;
+                //var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data.Email);
 
-                if (tried_user == null){
-                    User user = new(data.Email, data.Password, data.Role);
+                //if (tried_user == null){
+                    //User user = new(data.Email, data.Password, data.Role);
                     //Deskundige deskundige = new(data.Email, data.Password, data.Role, data.Postcode, data.Naam, data.Leeftijd, data.Beschikbaarheid, data.BenaderingVoorkeur, data.BenaderingCommercieel, data.Aandoening);
                     //_context.Users.Add(user);
                     //_context.Deskundigen.Add(deskundige);
                     
-                    return user;
-                }
-                else if (tried_user != null){
+                    //return user;
+                //}
+                //else if (tried_user != null){
                     // Deze email is al geregistreerd:
-                    return StatusCode(500, "Deze email is al geregistreerd.");
-                }
-                else{
+                    //return StatusCode(500, "Deze email is al geregistreerd.");
+                //}
+                //else{
                     // Gaat van alles fout:
-                    return BadRequest();
-                }
+                    //return BadRequest();
+                //}
             }
             catch (Exception e){
                 Console.WriteLine(e);
