@@ -18,6 +18,33 @@ namespace webapi.Controllers
         {
             _context = context;
         }
+        static List<int> ConvertStringToIntList(string input){
+
+            string[] idStrings = input.Split(',');
+            List<int> idList = idStrings.Select(s => int.Parse(s.Trim())).ToList();
+            return idList;
+        }
+        static DeskundigeDto PopulateDes(DeskundigeDto leeg, Dictionary<string, string> data){
+            //num, data["Email"], data["Password"], data["Role"], data["Postcode"], data["Naam"], int.Parse(data["Leeftijd"]), data["Beschikbaarheid"], data["BenaderingVoorkeur"], data["BenaderingCommercieel"], data["Aandoening"], idList
+            Random rnd = new Random();
+            int num = rnd.Next();
+            List<int> idList = ConvertStringToIntList(data["BeperkingenIds"]);
+
+            leeg.UserId = num;
+            leeg.Email = data["Email"];
+            leeg.Leeftijd = int.Parse(data["Leeftijd"]);
+            leeg.Beschikbaarheid = data["Beschikbaarheid"];
+            leeg.BenaderingCommercieel = data["BenaderingCommercieel"];
+            leeg.Aandoening = data["Aandoening"];
+            leeg.Password = data["Password"];
+            leeg.Role = data["Role"];
+            leeg.Postcode = data["Postcode"];
+            leeg.Naam = data["Naam"];
+            leeg.BeperkingenIds = idList;
+            leeg.BenaderingVoorkeur = data["BenaderingVoorkeur"];
+
+            return leeg;
+        }
 
         // POST: api/User
         [HttpPost]
@@ -26,30 +53,24 @@ namespace webapi.Controllers
             try{
                 if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
                     var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data["Email"]);
-                    return "Succes!";
+                    if (tried_user == null){
+                        User user = new(data["Email"], data["Password"], data["Role"]);                                                                                                      
+                        DeskundigeController dc = new DeskundigeController(_context);
+                        DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
+                        var new_ed = await dc.PostDeskundige(deskundige);
+                        _context.Users.Add(user);
+                        await _context.SaveChangesAsync();
+                        return "Succes!";
+                    }
+                    else{
+                        return "Email error";
+                    }
+                    
                 }
                 else {
                     return "Helaas!";
                 }
                 
-                //var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data.Email);
-
-                //if (tried_user == null){
-                    //User user = new(data.Email, data.Password, data.Role);
-                    //Deskundige deskundige = new(data.Email, data.Password, data.Role, data.Postcode, data.Naam, data.Leeftijd, data.Beschikbaarheid, data.BenaderingVoorkeur, data.BenaderingCommercieel, data.Aandoening);
-                    //_context.Users.Add(user);
-                    //_context.Deskundigen.Add(deskundige);
-                    
-                    //return user;
-                //}
-                //else if (tried_user != null){
-                    // Deze email is al geregistreerd:
-                    //return StatusCode(500, "Deze email is al geregistreerd.");
-                //}
-                //else{
-                    // Gaat van alles fout:
-                    //return BadRequest();
-                //}
             }
             catch (Exception e){
                 Console.WriteLine(e);
