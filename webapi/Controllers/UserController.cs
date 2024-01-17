@@ -74,7 +74,7 @@ namespace webapi.Controllers
             }
             catch (Exception e){
                 Console.WriteLine(e);
-                return StatusCode(500, "error");
+                return StatusCode(500, e.ToString());
             }
         }
         
