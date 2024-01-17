@@ -18,46 +18,50 @@ namespace webapi.Controllers
         {
             _context = context;
         }
-        
+
 
         // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<object>> RegisterUser([FromBody] Dictionary<string, string> data)
+        public ActionResult<object> RegisterUser([FromBody] Dictionary<string, string> data)
         {
-            try{
-                if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
+            try
+            {
+                if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role"))
+                {
                     User user = new User(email: data["Email"], password: data["Password"], role: data["Role"]);
                     return user;
                 }
-                else{
+                else
+                {
                     return data;
                 }
-                
+
                 //var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data.Email);
 
                 //if (tried_user == null){
-                    //User user = new(data.Email, data.Password, data.Role);
-                    //Deskundige deskundige = new(data.Email, data.Password, data.Role, data.Postcode, data.Naam, data.Leeftijd, data.Beschikbaarheid, data.BenaderingVoorkeur, data.BenaderingCommercieel, data.Aandoening);
-                    //_context.Users.Add(user);
-                    //_context.Deskundigen.Add(deskundige);
-                    
-                    //return user;
+                //User user = new(data.Email, data.Password, data.Role);
+                //Deskundige deskundige = new(data.Email, data.Password, data.Role, data.Postcode, data.Naam, data.Leeftijd, data.Beschikbaarheid, data.BenaderingVoorkeur, data.BenaderingCommercieel, data.Aandoening);
+                //_context.Users.Add(user);
+                //_context.Deskundigen.Add(deskundige);
+
+                //return user;
                 //}
                 //else if (tried_user != null){
-                    // Deze email is al geregistreerd:
-                    //return StatusCode(500, "Deze email is al geregistreerd.");
+                // Deze email is al geregistreerd:
+                //return StatusCode(500, "Deze email is al geregistreerd.");
                 //}
                 //else{
-                    // Gaat van alles fout:
-                    //return BadRequest();
+                // Gaat van alles fout:
+                //return BadRequest();
                 //}
             }
-            catch (Exception e){
+            catch (Exception e)
+            {
                 Console.WriteLine(e);
                 return StatusCode(500, "error");
             }
         }
-        
+
 
         // GET: api/User
         [HttpGet]
