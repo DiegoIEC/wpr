@@ -31,6 +31,7 @@ const Register = () => {
   const [beperkingen, setBeperkingen] = useState([]);
   const [error, setError] = useState('');
   const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
+  const [selectedIds, setSelectedIds] = useState([]);
   const today = new Date().toISOString().split('T')[0];
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const [email, setEmail] = useState('');
@@ -108,9 +109,11 @@ const Register = () => {
       var resultString = `Available days: ${trueDays.join(', ')}`;
       return resultString
     };
+
   
   const handleBeperkingChange = (e) => {
     const selectedOption = e.target.value
+    
     if (selectedBeperkingen.includes(selectedOption)){
       const updatedSelection = selectedBeperkingen.filter((option) => option !== selectedOption);
       setSelectedBeperkingen(updatedSelection)
@@ -121,8 +124,13 @@ const Register = () => {
     console.log(selectedBeperkingen)
     };
 
+  const helpBirthday = (e) => {
+    setBirthday(e);
+    console.log(birthday)
+  }
+
   const calcAge = () => {
-    var month_diff = Date.now() - birthday.getTime();
+    var month_diff = Date.now() - new Date(birthday).getTime();
     var age_help = new Date(month_diff);
 
     var year = age_help.getUTCFullYear();
@@ -137,8 +145,8 @@ const Register = () => {
     const pc = await checkPostal();
     const pw = await checkPasswordMatch();
     var avai = checkAvailability();
-    //var age = calcAge();
-    var age = "27";
+    var age = calcAge();
+    var beperkingen = `Beperkingen: ${selectedBeperkingen.join(', ')}`;
 
     const userData = {
       Email: email,
@@ -146,12 +154,12 @@ const Register = () => {
       Role: "ED",
       Postcode: postal,
       Naam: name,
-      Leeftijd: age,
+      Leeftijd: age.toString(),
       Beschikbaarheid: avai,
       BenaderingVoorkeur: preference,
       BenaderingCommercieel: commercial.toString(),
       Aandoening: "Aanstelleritus",
-      //BeperkingenIds: selectedBeperkingen.map(beperking => beperking.value),
+      Beperkingen: beperkingen,
       BeperkingenIds: "0, 1"
     };
 
@@ -198,7 +206,7 @@ const Register = () => {
                       id="birthday"
                       max={today}
                       value={birthday}
-                      onChange={(e) => setBirthday(e.target.value)}
+                      onChange={(e) => helpBirthday(e.target.value)}
                     />
                   </div>
                   <div className="input-group">

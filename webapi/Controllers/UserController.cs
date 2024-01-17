@@ -21,15 +21,15 @@ namespace webapi.Controllers
 
         // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<Dictionary<string, string>>> RegisterUser([FromBody] Dictionary<string, string> data)
+        public async Task<ActionResult<string>> RegisterUser([FromBody] Dictionary<string, string> data)
         {
             try{
                 if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
                     var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data["Email"]);
-                    return data;
+                    return "Succes!";
                 }
                 else {
-                    return data;
+                    return "Helaas!";
                 }
                 
                 //var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data.Email);
