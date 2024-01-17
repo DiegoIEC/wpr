@@ -18,14 +18,21 @@ namespace webapi.Controllers
         {
             _context = context;
         }
+        
 
         // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<User>> RegisterUser([FromBody] DeskundigeDto data)
+        public async Task<ActionResult<object>> RegisterUser([FromBody] Dictionary<string, string> data)
         {
             try{
-                User user = new User(email: data.Email, password: data.Password, role: data.Role);
-                return user;
+                if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
+                    User user = new User(email: data["Email"], password: data["Password"], role: data["Role"]);
+                    return user;
+                }
+                else{
+                    return data;
+                }
+                
                 //var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data.Email);
 
                 //if (tried_user == null){

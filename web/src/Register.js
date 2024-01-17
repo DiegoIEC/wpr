@@ -138,7 +138,7 @@ const Register = () => {
     const pw = await checkPasswordMatch();
     var avai = checkAvailability();
     //var age = calcAge();
-    var age = 27;
+    var age = "27";
 
     const userData = {
       Email: email,
@@ -152,11 +152,12 @@ const Register = () => {
       BenaderingCommercieel: commercial.toString(),
       Aandoening: "Aanstelleritus",
       //BeperkingenIds: selectedBeperkingen.map(beperking => beperking.value),
-      BeperkingenIds: [0, 1]
+      BeperkingenIds: "0, 1"
     };
 
     if (pc && pw){
       console.log('Saving user!')
+      console.log(userData)
       try {
         const response = await axios.post('http://20.199.89.238:8088/api/user', userData)
         .then(response => {
