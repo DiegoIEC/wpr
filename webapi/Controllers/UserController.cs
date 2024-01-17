@@ -40,7 +40,7 @@ namespace webapi.Controllers
             leeg.Role = data["Role"];
             leeg.Postcode = data["Postcode"];
             leeg.Naam = data["Naam"];
-            leeg.BeperkingenIds = idList;
+            //leeg.BeperkingenIds = idList;
             leeg.BenaderingVoorkeur = data["BenaderingVoorkeur"];
 
             return leeg;
