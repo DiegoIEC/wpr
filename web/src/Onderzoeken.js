@@ -43,7 +43,7 @@ const Onderzoeken = () => {
 
   return (
     <div className="research-list">
-      <h1>Onderzoeken Test1</h1>
+      <h1>Onderzoeken</h1>
       {onderzoeken.map((onderzoek) => (
         <div key={onderzoek.onderzoekId} className="research-item">
           <h2>{onderzoek.titel}</h2>
