@@ -152,7 +152,7 @@ const Register = () => {
 
     const emptyFields = Object.entries({
       Email: email,
-      Password: hashedPassword,
+      Password: password,
       Role: "ED",
       Postcode: postal,
       Naam: name,
@@ -173,7 +173,7 @@ const Register = () => {
 
     const userData = {
       Email: email,
-      Password: hashedPassword,
+      Password: password,
       Role: "ED",
       Postcode: postal,
       Naam: name,
