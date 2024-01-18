@@ -54,7 +54,9 @@ const Login = () => {
           if (isPasswordValid){
             login_user(data);
             HandleRole(data);
-            navigate(redirect.url)
+            //navigate(redirect.url)
+            console.log(user)
+            logout_user();
           }
           else{
             if (loginCounter === 1) {

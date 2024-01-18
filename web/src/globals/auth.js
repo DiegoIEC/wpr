@@ -9,12 +9,10 @@ export const AuthProvider = ({ children }) => {
   const login_user = (userData) => {
     // Perform your login logic, e.g., set user data in state
     setUser(userData);
-    var id = user.userId;
-    if (user.role == "ED" || user.role == "deskundige"){
-        axios.get('http://20.199.89.238:8088/api/deskundige', {
-            params: id
-        })
-      .then(response => {
+    var id = userData.userId;
+    if (userData.role == "ED" || userData.role == "deskundige"){
+        axios.get(`http://20.199.89.238:8088/api/deskundige/${id}`)
+        .then(response => {
         const data = response.data
         console.log(data)
       })
@@ -23,7 +21,7 @@ export const AuthProvider = ({ children }) => {
       });
 
     }
-    else if (user.role == "ORG"){
+    else if (userData.role == "ORG"){
         
     }
   };
