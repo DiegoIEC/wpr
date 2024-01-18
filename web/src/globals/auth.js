@@ -6,12 +6,15 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const login_user = (userData) => {
+  const login_user = async (userData) => {
     // Perform your login logic, e.g., set user data in state
     setUser(userData);
-    var id = userData.userId;
     if (userData.role == "ED" || userData.role == "deskundige"){
-        axios.get(`http://20.199.89.238:8088/api/deskundige/${id}`)
+        const response = await axios.get('http://20.199.89.238:8088/api/user', {
+        params:{
+          id: userData.userId
+        }
+        })
         .then(response => {
         const data = response.data
         console.log(data)
