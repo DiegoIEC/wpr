@@ -59,7 +59,7 @@ namespace webapi.Controllers
                         DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
                         var new_ed = await dc.PostDeskundige(deskundige);
                         
-                        return new_ed;
+                        return "Succes!";
                     }
                     else{
                         return "Email error";
@@ -80,23 +80,22 @@ namespace webapi.Controllers
 
         // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<User>> GetUser([FromQuery] string email, string password)
+        public async Task<ActionResult<User>> GetUser([FromQuery] string email)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+            try{
+                var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                else{
+                    return user;
+                }
+            }
+            catch (Exception e){
+                return StatusCode(500, e.ToString());
+            }
 
-            if (user == null)
-            {
-                return NotFound();
-            }
-            else if (user.Password != password){
-                return new ObjectResult("Verkeerde Wachtwoord") { StatusCode = 404 };
-            }
-            else if (user.Password == password){
-                return user;
-            }
-
-            return BadRequest("Geet nie goed");
         }
-
     }
 }

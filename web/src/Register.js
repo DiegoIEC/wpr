@@ -1,11 +1,11 @@
 import React from 'react';
+import bcrypt from 'bcryptjs';
 import SiteModeButton from './SiteModeButton';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import './Home.css'
 import { useAuth } from './globals/auth';
-import Login from './Login';
 
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 255);
@@ -151,9 +151,32 @@ const Register = () => {
     var age = calcAge();
     var beperkingen = `Beperkingen: ${selectedBeperkingen.join(', ')}`;
 
+    const emptyFields = Object.entries({
+      Email: email,
+      Password: hashedPassword,
+      Role: "ED",
+      Postcode: postal,
+      Naam: name,
+      Leeftijd: age.toString(),
+      Beschikbaarheid: avai,
+      BenaderingVoorkeur: preference,
+      BenaderingCommercieel: commercial.toString(),
+      Aandoening: "Aanstelleritus",
+      Beperkingen: beperkingen,
+      BeperkingenIds: "0, 1",
+    }).filter(([key, value]) => !value).map(([key]) => key);
+
+    if (emptyFields.length > 0) {
+      console.log(`Please fill in the following fields: ${emptyFields.join(', ')}`);
+      // Popup toevoegen voor gebruiker
+      return;
+    }
+
+    const hashedPassword = bcrypt.hashSync(password, 10); 
+
     const userData = {
       Email: email,
-      Password: password,
+      Password: hashedPassword,
       Role: "ED",
       Postcode: postal,
       Naam: name,
@@ -174,6 +197,7 @@ const Register = () => {
         .then(response => {
           var data = response.data;
           console.log(response)});
+          Navigate("./Login");
       }
       catch (error) {
         console.error('An error occurred during login:', error);

@@ -19,8 +19,7 @@ const Login = () => {
 
       const response = await axios.get('http://20.199.89.238:8088/api/user', {
         params:{
-          email: email,
-          password: password
+          email: email
         }
       })
       .then(response => {
