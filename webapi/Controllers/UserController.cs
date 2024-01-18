@@ -97,7 +97,7 @@ namespace webapi.Controllers
             }
         }
 
-        // GET: api/User
+        // GET: api/User/2
         [HttpGet]
         public async Task<ActionResult<User>> GetDeskundige([FromQuery] int id)
         {
