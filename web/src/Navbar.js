@@ -14,6 +14,7 @@ const NavBar = () => {
                   <a href="/logout">Uitloggen</a>
                   <a href="/Register">Registreer</a>
                   <a href="./Login">Inloggen</a>
+                  <a href="./Profiel">Profiel</a>
               </div>
             </div>
           </nav>

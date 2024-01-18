@@ -16,6 +16,7 @@ import Instellingen from './Instellingen';
 import Register from './Register';
 import Deelnames from './Deelnames';
 import OnderzoekPost from './PostOnderzoek';
+import Profiel from './Profiel';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/deskundigeedit" element={<DeskundigeEdit />}/>
             <Route path="/deelnames" element={<Deelnames />}/>
             <Route path="/postonderzoek" element={<OnderzoekPost />}/>
+            <Route path="/profiel" element={<Profiel />}/>
         </Routes>         
         </main>
         <Footer />
