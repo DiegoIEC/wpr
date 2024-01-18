@@ -80,7 +80,7 @@ namespace webapi.Controllers
 
         // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<User>> GetUser([FromQuery] string email)
+        public async Task<ActionResult<object>> GetUser([FromQuery] string email)
         {
             try{
                 var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
@@ -89,7 +89,22 @@ namespace webapi.Controllers
                     return NotFound();
                 }
                 else{
-                    return user;
+                    if (user.Role == "ED" || user.Role == "deskundige"){
+                        var output = await _context.Deskundigen.FindAsync(user.UserId);
+                        if (output != null){
+                            return output;
+                        }
+                    }
+                    else if(user.Role == "ORG"){
+                        var output = await _context.Organisaties.FindAsync(user.UserId);
+                        if (output != null){
+                            return output;
+                        }
+                    }
+                    else{
+                        return user;
+                    }
+                    return NotFound();
                 }
             }
             catch (Exception e){
