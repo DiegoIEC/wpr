@@ -43,9 +43,7 @@ const Login = () => {
           if (password === data.password){
             login_user(data);
             HandleRole(data);
-            //navigate(redirect.url)
-            console.log(user)
-            logout_user();
+            navigate(redirect.url)
           }
           else{
             if (loginCounter === 1) {
