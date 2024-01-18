@@ -62,7 +62,7 @@ public async Task<ActionResult<DeskundigeDto>> PostDeskundige(DeskundigeDto dto)
 
 
         // GET: api/Deskundige/5
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Deskundige>> GetDeskundige(int id)
         {
             var deskundige = await _context.Deskundigen.FindAsync(id);
