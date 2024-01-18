@@ -8,18 +8,18 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      console.log(JSON.parse(storedUser));
+      setUser(storedUser);
     }
+    
   }, []);
 
   const login_user = async (userData) => {
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
   };
 
   const logout_user = () => {
     setUser(null);
-    localStorage.removeItem('user');
   };
 
   return (

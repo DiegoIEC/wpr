@@ -6,14 +6,13 @@ import { useNavigate } from 'react-router-dom';
 
 const Home_ED = () => {
   const navigate = useNavigate();
-  const user_check = AuthCheck();
   const { user, login_user, logout_user } = useAuth();
   const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
   const completedResearchCount = 100
   const compensation =  10
 
-  if (!user_check) {
-    return navigate("/Login")
+  if (!user) {
+    console.log(user)
   }
 
     return (
