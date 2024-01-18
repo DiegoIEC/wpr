@@ -1,20 +1,26 @@
 import './Home.css';
 import SiteModeButton from './SiteModeButton';
 import { useAuth } from './globals/auth';
+import { AuthCheck } from './globals/auth_check';
+import { useNavigate } from 'react-router-dom';
 
-const userName = "gebruiker"
-const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
-const completedResearchCount = 100
-const compensation =  10
 const Home_ED = () => {
+  const navigate = useNavigate();
   const { user, login_user, logout_user } = useAuth();
-    
+  const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
+  const completedResearchCount = 100
+  const compensation =  10
+
+  if (!user) {
+    console.log(user)
+  }
+
     return (
         <div className="home">
           <SiteModeButton/>
             <section className="welcome section-background text-color-black block-content">
             <div className="block-left format-div">
-            <h2 className="center-text format-title">Welkom {userName}</h2>
+            <h2 className="center-text format-title">Welkom {user.naam}</h2>
             <p className="center-text">Hieronder een overzicht met onderzoeken waarvoor u in aanmerking komt</p>
             <button className="center-button button-black"> Onderzoeken </button>
             </div>
@@ -51,9 +57,6 @@ const Home_ED = () => {
             </div>
           </div>
         </section>
-
-
-
       </div>
     );
 }
