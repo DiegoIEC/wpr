@@ -8,20 +8,6 @@ export const AuthProvider = ({ children }) => {
 
   const login_user = async (userData) => {
     setUser(userData);
-    if (userData.role == "ED" || userData.role == "deskundige"){
-        const response = await axios.get(`http://20.199.89.238:8088/api/deskundige/${userData.userId}`)
-        .then(response => {
-        const data = response.data
-        console.log(data)
-      })
-      .catch(error => {
-        console.log(error)
-      });
-
-    }
-    else if (userData.role == "ORG"){
-        
-    }
   };
 
   const logout_user = () => {

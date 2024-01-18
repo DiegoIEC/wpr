@@ -26,7 +26,11 @@ const Login = () => {
     }
   }
   const GetData = async (e) => {
-    const response = await axios.get(`http://20.199.89.238:8088/api/deskundige/${e.userId}`)
+    const response = await axios.get('http://20.199.89.238:8088/api/deskundige', {
+        params:{
+          id: e.userId
+        }
+      })
         .then(response => {
         const data = response.data
         console.log(data)
