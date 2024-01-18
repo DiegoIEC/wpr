@@ -34,23 +34,26 @@ namespace webapi.Controllers
             return CreatedAtAction("GetDeskundigebeperking", new { deskundigeId = deskundigeBeperking.DeskundigeId, beperkingId = deskundigeBeperking.BeperkingId }, deskundigeBeperking);
         }
 
-        // GET: api/DeskundigeBeperking/5
         [HttpGet("{deskundigeId}")]
-        public async Task<ActionResult<IEnumerable<DeskundigeBeperking>>> GetDeskundigeBeperkingen(int deskundigeId)
-        {
-            var deskundigeBeperkingen = await _context.DeskundigeBeperkingen
-                                                      .Where(db => db.DeskundigeId == deskundigeId)
-                                                      .Include(db => db.Beperking)
-                                                      .ToListAsync();
+public async Task<ActionResult<IEnumerable<DeskundigeBeperkingDto>>> GetDeskundigeBeperkingen(int deskundigeId)
+{
+    var deskundigeBeperkingen = await _context.DeskundigeBeperkingen
+                                              .Where(db => db.DeskundigeId == deskundigeId)
+                                              .Select(db => new DeskundigeBeperkingDto
+                                              {
+                                                  DeskundigeId = db.DeskundigeId,
+                                                  BeperkingId = db.BeperkingId,
+                                                  // Map other properties as needed
+                                              })
+                                              .ToListAsync();
 
-            if (!deskundigeBeperkingen.Any())
-            {
-                return NotFound();
-            }
+    if (!deskundigeBeperkingen.Any())
+    {
+        return NotFound();
+    }
 
-            return deskundigeBeperkingen;
-        }
-
+    return deskundigeBeperkingen;
+}
         // DELETE: api/DeskundigeBeperking/5/10
         [HttpDelete("{deskundigeId}/{beperkingId}")]
         public async Task<IActionResult> DeleteDeskundigeBeperking(int deskundigeId, int beperkingId)
