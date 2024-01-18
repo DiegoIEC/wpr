@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from './globals/auth';
 
 const OnderzoekDetail = () => {
   const [onderzoek, setOnderzoek] = useState(null);

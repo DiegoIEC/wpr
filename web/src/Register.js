@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import SiteModeButton from './SiteModeButton';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import './Home.css'
 import { useAuth } from './globals/auth';
 
@@ -29,8 +29,8 @@ const fetchBeperkingenData = async () => {
 };
 
 const Register = () => {
-  const { user, login_user, logout_user } = useAuth();
   const navigate = useNavigate();
+  const { user, login_user, logout_user } = useAuth();
   const [beperkingen, setBeperkingen] = useState([]);
   const [error, setError] = useState('');
   const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
@@ -197,7 +197,7 @@ const Register = () => {
         .then(response => {
           var data = response.data;
           console.log(response)});
-          Navigate("./Login");
+          navigate("./Login");
       }
       catch (error) {
         console.error('An error occurred during login:', error);

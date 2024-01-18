@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from './Onderzoeken.css';
+import { useAuth } from './globals/auth';
 
 const Onderzoeken = () => {
   const [onderzoeken, setOnderzoeken] = useState(null);

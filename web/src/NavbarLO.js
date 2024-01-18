@@ -1,5 +1,16 @@
 import './Navbar.css';
-const NavBar = () => {
+import { useAuth } from './globals/auth';
+import { useNavigate } from 'react-router-dom';
+
+const NavBarLO = () => {
+  const { user, login_user, logout_user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout_user();
+    navigate('/');
+  };
+
     return (
           <nav className="navbar">
             <div className="navbar-content">
@@ -20,4 +31,4 @@ const NavBar = () => {
     );
 }
 
-export default NavBar;
+export default NavBarLO;

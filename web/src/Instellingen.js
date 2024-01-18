@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SiteModeButton from './SiteModeButton';
 import './Instellingen.css';
+import { useAuth } from './globals/auth';
 
 const Instellingen = () => {
   const [name, setName] = useState('');
