@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import bcrypt from 'bcryptjs';
 import './Home.css'
 import { useAuth } from './globals/auth';
 
@@ -13,17 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
   const [loginCounter, setLoginCounter] = useState(4);
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
   const redirect = {url: ''};
-
-  const ValidatePassword = (e) => {
-    if (e.userId > 5){
-      setIsPasswordValid(bcrypt.compareSync(password, e.password));
-    }
-    else{
-      setIsPasswordValid(password === e.password);
-    }
-  }
 
   const HandleRole = (e) => {
     if (e.role == "ED" || e.role == "deskundige"){
@@ -50,8 +39,7 @@ const Login = () => {
       .then(response => {
         var data = response.data;
         if (response.status == 200){
-          ValidatePassword(data);
-          if (isPasswordValid){
+          if (password === data.password){
             login_user(data);
             HandleRole(data);
             //navigate(redirect.url)

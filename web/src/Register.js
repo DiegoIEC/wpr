@@ -1,5 +1,4 @@
 import React from 'react';
-import bcrypt from 'bcryptjs';
 import SiteModeButton from './SiteModeButton';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -171,8 +170,6 @@ const Register = () => {
       // Popup toevoegen voor gebruiker
       return;
     }
-
-    const hashedPassword = bcrypt.hashSync(password, 10); 
 
     const userData = {
       Email: email,
