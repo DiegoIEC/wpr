@@ -73,6 +73,18 @@ public async Task<ActionResult<DeskundigeDto>> PostDeskundige(DeskundigeDto dto)
             return deskundige;
         }
 
+// GET: api/Deskundige
+[HttpGet]
+public async Task<ActionResult<Deskundige>> GetDeskundigeData([FromBody] int id)
+{
+    var deskundige = await _context.Deskundigen.FindAsync(id);
+    if (deskundige == null)
+    {
+        return NotFound();
+    }
+    return deskundige;
+}
+
         // PUT: api/Deskundige/5
 [HttpPut("{id}")]
 public async Task<IActionResult> PutDeskundige(int id, DeskundigeDto dto)

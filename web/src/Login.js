@@ -27,10 +27,10 @@ const Login = () => {
 
   const HandleRole = (e) => {
     if (e.role == "ED" || e.role == "deskundige"){
-      redirect.url = "./home_ED"
+      redirect.url = "/home_ED"
     }
     else if (e.role == "ORG"){
-      redirect.url = "./home_ORG"
+      redirect.url = "/home_ORG"
     }
     else if (e.role == "ADMIN"){
       redirect.url = "/"

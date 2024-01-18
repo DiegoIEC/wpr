@@ -19,7 +19,7 @@ const NavBarED = () => {
                   <a href="/home_ED">Home</a>
                   <a href="./Deelnames">Mijn Onderzoeken</a>
                   <a href="/Instellingen">Instellingen</a>
-                  <button onClick={handleLogout}>Uitloggen</button>
+                  <button className="button-trans" onClick={handleLogout}>Uitloggen</button>
               </div>
             </div>
           </nav>
