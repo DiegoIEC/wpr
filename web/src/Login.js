@@ -25,6 +25,17 @@ const Login = () => {
       redirect.url = "/"
     }
   }
+  const GetData = async (e) => {
+    const response = await axios.get(`http://20.199.89.238:8088/api/deskundige/${e.userId}`)
+        .then(response => {
+        const data = response.data
+        console.log(data)
+      })
+      .catch(error => {
+        console.log(error)
+      });
+    return response;
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -36,11 +47,12 @@ const Login = () => {
           email: email
         }
       })
-      .then(response => {
+      .then(async response => {
         var data = response.data;
         if (response.status == 200){
           if (password === data.password){
-            login_user(data);
+            var user_data = await GetData(data);
+            login_user(user_data);
             HandleRole(data);
             //navigate(redirect.url)
             console.log(user)
