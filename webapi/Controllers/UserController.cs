@@ -104,7 +104,7 @@ namespace webapi.Controllers
                     else{
                         return user;
                     }
-                    StatusCode(500, "No users :(");
+                    return StatusCode(500, "No users :(");
                 }
             }
             catch (Exception e){
