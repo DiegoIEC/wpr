@@ -16,10 +16,12 @@ import Instellingen from './Instellingen';
 import Register from './Register';
 import Deelnames from './Deelnames';
 import OnderzoekPost from './PostOnderzoek';
+import { AuthProvider } from './globals/auth';
 
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
     <div className="App">
         <header className="App-header">
@@ -48,6 +50,7 @@ function App() {
         <Footer />
       </div>
       </Router>
+      </AuthProvider>
   );
 }
 

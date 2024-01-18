@@ -48,19 +48,18 @@ namespace webapi.Controllers
 
         // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<string>> RegisterUser([FromBody] Dictionary<string, string> data)
+        public async Task<ActionResult<object>> RegisterUser([FromBody] Dictionary<string, string> data)
         {
             try{
                 if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
                     var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data["Email"]);
                     if (tried_user == null){
-                        User user = new(data["Email"], data["Password"], data["Role"]);                                                                                                      
+                        //User user = new(data["Email"], data["Password"], data["Role"]);                                                                                                      
                         DeskundigeController dc = new DeskundigeController(_context);
                         DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
                         var new_ed = await dc.PostDeskundige(deskundige);
-                        //_context.Users.Add(user);
-                        //await _context.SaveChangesAsync();
-                        return "Succes!";
+                        
+                        return new_ed;
                     }
                     else{
                         return "Email error";

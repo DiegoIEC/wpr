@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css'
+import { useAuth } from './globals/auth';
+import Login from './Login';
 
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 255);
@@ -27,6 +29,7 @@ const fetchBeperkingenData = async () => {
 };
 
 const Register = () => {
+  const { user, login_user, logout_user } = useAuth();
   const navigate = useNavigate();
   const [beperkingen, setBeperkingen] = useState([]);
   const [error, setError] = useState('');
@@ -170,7 +173,7 @@ const Register = () => {
         const response = await axios.post('http://20.199.89.238:8088/api/user', userData)
         .then(response => {
           var data = response.data;
-          console.log(response)})
+          console.log(response)});
       }
       catch (error) {
         console.error('An error occurred during login:', error);
