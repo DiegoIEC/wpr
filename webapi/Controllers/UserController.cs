@@ -96,24 +96,5 @@ namespace webapi.Controllers
                 return StatusCode(500, e.ToString());
             }
         }
-
-        // GET: api/User/2
-        [HttpGet]
-        public async Task<ActionResult<User>> GetDeskundige([FromQuery] int id)
-        {
-            try{
-                var deskundige = await _context.Deskundigen.FindAsync(id);
-                if (deskundige == null)
-                {
-                    return NotFound();
-                }
-                else{
-                    return deskundige;
-                }
-            }
-            catch (Exception e){
-                return StatusCode(500, e.ToString());
-            }
-        }
     }
 }

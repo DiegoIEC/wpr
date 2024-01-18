@@ -10,11 +10,7 @@ export const AuthProvider = ({ children }) => {
     // Perform your login logic, e.g., set user data in state
     setUser(userData);
     if (userData.role == "ED" || userData.role == "deskundige"){
-        const response = await axios.get('http://20.199.89.238:8088/api/user/2', {
-        params:{
-          id: userData.userId
-        }
-        })
+        const response = await axios.get(`http://20.199.89.238:8088/api/deskundige/${userData.userId}`)
         .then(response => {
         const data = response.data
         console.log(data)
