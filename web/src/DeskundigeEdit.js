@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import styles from './DeskundigeEdit.module.css';
+import { useAuth } from './globals/auth';
 
 function DeskundigeEdit() {
   const [beperkingen, setBeperkingen] = useState([]);

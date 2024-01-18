@@ -1,5 +1,7 @@
 import './Home.css';
 import SiteModeButton from './SiteModeButton';
+import { useAuth } from './globals/auth';
+
 const total_research = 87
 const total_users =  237
 

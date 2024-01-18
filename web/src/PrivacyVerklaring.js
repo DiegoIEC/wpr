@@ -1,4 +1,4 @@
-
+import { useAuth } from './globals/auth';
 
 
 const PrivacyVerklaring = () => {

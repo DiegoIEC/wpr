@@ -1,10 +1,13 @@
 import './Home.css';
 import SiteModeButton from './SiteModeButton';
+import { useAuth } from './globals/auth';
+
 const userName = "gebruiker"
 const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
 const completedResearchCount = 100
 const compensation =  10
 const Home_ED = () => {
+  const { user, login_user, logout_user } = useAuth();
     
     return (
         <div className="home">

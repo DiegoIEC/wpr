@@ -1,4 +1,6 @@
-import NavBar from './Navbar';
+import NavBarLO from './NavbarLO';
+import NavBarED from './NavbarED';
+import NavBarORG from './NavbarORG';
 import Home_ED from './Home_ED';
 import Login from './Login';
 import Home_ALG from './Home_ALG';
@@ -17,14 +19,20 @@ import Register from './Register';
 import Deelnames from './Deelnames';
 import OnderzoekPost from './PostOnderzoek';
 import Profiel from './Profiel';
+import { useAuth } from './globals/auth';
 
 
 function App() {
+  const { user, login_user, logout_user } = useAuth();
   return (
     <Router>
     <div className="App">
         <header className="App-header">
-          <NavBar />
+        {user ? (
+            <NavBarED user={user} />
+          ) : (
+            <NavBarLO />
+        )}
         </header>
         <main>
         <Routes>

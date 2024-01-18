@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import styles from './PostOnderzoek.css';
+import { useAuth } from './globals/auth';
 
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 255);

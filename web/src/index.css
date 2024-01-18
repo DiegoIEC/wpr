@@ -157,4 +157,12 @@ ul {
 li {
   margin-bottom: 8px;
 }
+.button-trans{
+  padding: 0;
+  padding-left: 1em;
+  border: 0;
+  background: none;
+  color: #1CA883;
+  font-size:15px;
+}
 

@@ -1,5 +1,7 @@
 import './Darkmode.css';
 import SiteModeButton from './SiteModeButton';
+import { useAuth } from './globals/auth';
+
 const organisation = "organisatie"
 const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
 const reviewResearch = ['Onderzoek 3', 'Onderzoek 4']
