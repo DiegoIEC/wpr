@@ -1,0 +1,53 @@
+.deskundige-detail {
+    background-color: #fff; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    padding: 20px; 
+    margin: 20px auto; 
+    max-width: 600px; 
+  }
+  
+  .deskundige-detail h1 {
+    color: #003366; 
+    margin-bottom: 10px; 
+  }
+  
+  .deskundige-detail p {
+    color: #333;
+    line-height: 1.5; 
+    margin-bottom: 10px; 
+  }
+  
+  .deskundige-detail .button {
+    background-color: #0055ff; 
+    color: #ffffff; 
+    padding: 10px 15px; 
+    border: none;
+    border-radius: 3px; 
+    cursor: pointer; 
+    text-transform: uppercase;
+    margin-right: 10px;
+    text-decoration: none; 
+    display: inline-block; 
+  }
+  
+  .deskundige-detail .button:hover {
+    background-color: #003366; 
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .deskundige-detail {
+      margin: 20px; 
+      padding: 15px; 
+    }
+  }
+  .tag {
+    display: inline-block;
+    background-color: #009900;
+    border-radius: 2px;
+    padding: 5px 10px;
+    margin: 2px;
+    font-size: 0.8em;
+  }
+  
