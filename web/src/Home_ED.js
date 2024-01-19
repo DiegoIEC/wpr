@@ -11,13 +11,6 @@ const Home_ED = () => {
   const completedResearchCount = 100
   const compensation =  10
 
-  useEffect(() => {
-    const userCookie = document.cookie.split('; ').find(row => row.startsWith('user='));
-    if (userCookie) {
-      const userData = JSON.parse(decodeURIComponent(userCookie.split('=')[1]));
-    }
-  }, [login_user]);
-
   if (loading) {
     return <p>Loading...</p>;
   }
