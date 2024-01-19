@@ -2,14 +2,24 @@ import './Home.css';
 import SiteModeButton from './SiteModeButton';
 import { Link } from 'react-router-dom';
 import { useAuth } from './globals/auth';
+import { useNavigate } from 'react-router-dom';
 
-const organisation = "organisatie"
-const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
-const reviewResearch = ['Onderzoek 3', 'Onderzoek 4']
-const completedResearch = ['Onderzoek 5', 'Onderzoek 6']
-const completedResearchCount = 100
-const compensation =  18
 const Home_ORG = () => {
+  const navigate = useNavigate();
+  const organisation = "organisatie"
+  const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
+  const reviewResearch = ['Onderzoek 3', 'Onderzoek 4']
+  const completedResearch = ['Onderzoek 5', 'Onderzoek 6']
+  const completedResearchCount = 100
+  const compensation =  18
+  const { user, loading, logout_user } = useAuth();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  else if(!user){
+    navigate("/Login")
+  }
     
     return (
         <div className="home">
