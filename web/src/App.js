@@ -10,6 +10,8 @@ import Home_ORG_Dark from './Home_ORG_dark';
 import Home_ORG from './Home_ORG';
 import Footer from './Footer';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
+import React, { useEffect } from 'react';
 import Onderzoeken from './Onderzoeken';
 import Onderzoek from './Onderzoek';
 import ApiTest from './ApiTest';
@@ -21,18 +23,23 @@ import OnderzoekPost from './PostOnderzoek';
 import Profiel from './Profiel';
 import { useAuth } from './globals/auth';
 
-
 function App() {
   const { user, login_user, logout_user } = useAuth();
+
+  useEffect(() => {
+    const userCookie = document.cookie.split('; ').find(row => row.startsWith('user='));
+    if (userCookie) {
+      const userData = JSON.parse(decodeURIComponent(userCookie.split('=')[1]));
+      login_user(userData);
+    }
+  }, []);
+
   return (
+    <CookiesProvider>
     <Router>
     <div className="App">
         <header className="App-header">
-        {user ? (
-            <NavBarED user={user} />
-          ) : (
-            <NavBarLO />
-        )}
+        {user ? <NavBarED user={user} onLogout={logout_user} /> : <NavBarLO />}
         </header>
         <main>
         <Routes>
@@ -58,6 +65,7 @@ function App() {
         <Footer />
       </div>
       </Router>
+      </CookiesProvider>
   );
 }
 

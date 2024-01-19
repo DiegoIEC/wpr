@@ -1,18 +1,25 @@
 import './Home.css';
 import SiteModeButton from './SiteModeButton';
 import { useAuth } from './globals/auth';
-import { AuthCheck } from './globals/auth_check';
 import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
 
 const Home_ED = () => {
   const navigate = useNavigate();
-  const { user, login_user, logout_user } = useAuth();
+  const { user, login_user, loading, logout_user } = useAuth();
   const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
   const completedResearchCount = 100
   const compensation =  10
 
-  if (!user) {
-    console.log(user)
+  useEffect(() => {
+    const userCookie = document.cookie.split('; ').find(row => row.startsWith('user='));
+    if (userCookie) {
+      const userData = JSON.parse(decodeURIComponent(userCookie.split('=')[1]));
+    }
+  }, [login_user]);
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
 
     return (

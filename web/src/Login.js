@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css'
 import { useAuth } from './globals/auth';
 
-const Login = () => {
+function Login({ onLogin }) {
   const { user, login_user, logout_user } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
