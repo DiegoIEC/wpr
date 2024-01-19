@@ -39,7 +39,7 @@ const Onderzoeken = () => {
   };
 
   if (onderzoeken === null) {
-    return <p>Onderzoeken worden geladen...</p>;
+    return <p>Onderzoeken worden geladen....</p>;
   }
 
   return (
