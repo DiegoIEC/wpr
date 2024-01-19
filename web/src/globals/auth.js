@@ -18,7 +18,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const login_user = async (userData) => {
-    userData.password = "";
     setUser(userData);
     setCookie("user", userData, { path: "/" });
     setLoading(false);
