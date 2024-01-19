@@ -23,6 +23,8 @@ import OnderzoekPost from './PostOnderzoek';
 import Profiel from './Profiel';
 import { useAuth } from './globals/auth';import Chat from './Chat';
 import Beheerdersportaal from './Beheerdersportaal';
+import PrivacyPolicy from './PrivacyVerklaring';
+import PrivacyVerklaring from './PrivacyVerklaring';
 
 
 function App() {
@@ -69,6 +71,9 @@ function App() {
             <Route path="/apitest" element={<ApiTest />}/>
             <Route path="/deskundigeedit" element={<DeskundigeEdit />}/>
             <Route path="/deelnames" element={<Deelnames />}/>
+            <Route path="/privacyverklaring" element={<PrivacyVerklaring />}/>
+            <Route path="/postonderzoek" element={<OnderzoekPost />}/>
+            <Route path="/profiel" element={<Profiel />}/>
         </Routes>         
         </main>
         <Footer />
