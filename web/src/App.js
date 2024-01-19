@@ -15,6 +15,8 @@ import DeskundigeEdit from './DeskundigeEdit';
 import Instellingen from './Instellingen';
 import Register from './Register';
 import Deelnames from './Deelnames';
+import Chat from './Chat';
+import Beheerdersportaal from './Beheerdersportaal';
 
 
 function App() {
@@ -33,6 +35,7 @@ function App() {
             <Route path="/Register" element={<Register />} />
             <Route path="/home_ED" element={<Home_ED />} />
             <Route path="/home_ORG" element={<Home_ORG />} />
+            <Route path="/beheerdersportaal" element={<Beheerdersportaal />} />
             <Route path="/onderzoeken" element={<Onderzoeken />} />
             <Route path="/login" element={<Login />} />
             <Route path="/onderzoeken" element={<Onderzoeken />} />
@@ -41,7 +44,8 @@ function App() {
             <Route path="/apitest" element={<ApiTest />}/>
             <Route path="/deskundigeedit" element={<DeskundigeEdit />}/>
             <Route path="/deelnames" element={<Deelnames />}/>
-        </Routes>         
+        </Routes> 
+        <Chat />        
         </main>
         <Footer />
       </div>
