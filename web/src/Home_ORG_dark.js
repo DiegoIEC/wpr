@@ -1,14 +1,24 @@
 import './Darkmode.css';
 import SiteModeButton from './SiteModeButton';
 import { useAuth } from './globals/auth';
+import { useNavigate } from 'react-router-dom';
 
-const organisation = "organisatie"
-const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
-const reviewResearch = ['Onderzoek 3', 'Onderzoek 4']
-const completedResearch = ['Onderzoek 5', 'Onderzoek 6']
-const completedResearchCount = 100
-const compensation =  10
 const Home_ORG_Dark = () => {
+  const navigate = useNavigate();
+  const organisation = "organisatie"
+  const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
+  const reviewResearch = ['Onderzoek 3', 'Onderzoek 4']
+  const completedResearch = ['Onderzoek 5', 'Onderzoek 6']
+  const completedResearchCount = 100
+  const compensation =  10
+  const { user, loading, logout_user } = useAuth();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  else if(!user){
+    navigate("/Login")
+  }
     
     return (
         <div className="home">

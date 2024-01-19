@@ -6,13 +6,16 @@ import React, { useEffect } from 'react';
 
 const Home_ED = () => {
   const navigate = useNavigate();
-  const { user, login_user, loading, logout_user } = useAuth();
+  const { user, loading, logout_user } = useAuth();
   const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
   const completedResearchCount = 100
   const compensation =  10
 
   if (loading) {
     return <p>Loading...</p>;
+  }
+  else if(!user){
+    navigate("/Login")
   }
 
     return (
