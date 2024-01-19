@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SiteModeButton from './SiteModeButton';
 import './Instellingen.css';
-import { useAuth } from './globals/auth';
+import { useAuth } from './globals/auth'; //Deze
+import { useNavigate } from 'react-router-dom'; //Deze
 
 const Instellingen = () => {
+  const { user, loading, logout_user } = useAuth(); //Deze
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [stad, setStad] = useState('');
@@ -27,12 +30,27 @@ const Instellingen = () => {
     setIsEditing(false);
   };
 
+  // Start
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (loading){
+        navigate("/Login");
+      }
+    }, 1000);
+    return () => clearTimeout(timeoutId);
+  }, [loading, navigate]);
+
+  if (loading) {
+    return <p style={{ color: 'black' }}>Loading...</p>;
+  }
+  // Eind
+
   return (
     <div className="settings-container">
           <h2 className="center-text format-title">Instellingen</h2>
 
       <div className="current-values">
-        <p>Huidige naam: {currentName}</p>
+        <p>Huidige naam: {user.naam}</p>
         <p>Huidige e-mail: {currentEmail}</p>
         <p>Huidige woonplaats: {currentStad}</p>
       </div>
