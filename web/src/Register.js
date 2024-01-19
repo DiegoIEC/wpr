@@ -194,7 +194,7 @@ const Register = () => {
         .then(response => {
           var data = response.data;
           console.log(response)});
-          navigate("./Login");
+          navigate("/Login");
       }
       catch (error) {
         console.error('An error occurred during login:', error);
