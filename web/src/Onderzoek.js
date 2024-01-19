@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from './globals/auth';
 
 const OnderzoekDetail = () => {
   const [onderzoek, setOnderzoek] = useState(null);
@@ -8,7 +9,7 @@ const OnderzoekDetail = () => {
   const [beperkingen, setBeperkingen] = useState([]);
   const { id } = useParams(); // Get the ID from the URL
   const navigate = useNavigate();
-  const deskundigeId = 4; // Replace with actual logged in deskundige ID
+  const deskundigeId = 1; // Replace with actual logged in deskundige ID
 
   useEffect(() => {
     // Fetch the research details
@@ -47,7 +48,7 @@ const OnderzoekDetail = () => {
       status: 1,
       deskundige: {
         // Populate with the deskundige details
-        userId: 17, // This should come from the actual logged-in user's data
+        userId: deskundigeId, // This should come from the actual logged-in user's data
         // Other properties as needed
       },
       onderzoek: {
@@ -74,7 +75,7 @@ const OnderzoekDetail = () => {
       status: 0,
       deskundige: {
         // Populate with the deskundige details
-        userId: 17, // This should come from the actual logged-in user's data
+        userId: deskundigeId, // This should come from the actual logged-in user's data
         // Other properties as needed
       },
       onderzoek: {
@@ -100,7 +101,7 @@ const OnderzoekDetail = () => {
 
   return (
     <div className="onderzoek-detail">
-      <h1>{onderzoek?.titel}</h1>
+      <h1>{onderzoek?.titel} test</h1>
       <p>Type: {onderzoek?.soort}</p>
       <p>{onderzoek?.korteBeschrijving}</p>
       <div className="tags">

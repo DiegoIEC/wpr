@@ -2,8 +2,9 @@ import React from 'react';
 import SiteModeButton from './SiteModeButton';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import './Home.css'
+import { useAuth } from './globals/auth';
 
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 255);
@@ -28,9 +29,11 @@ const fetchBeperkingenData = async () => {
 
 const Register = () => {
   const navigate = useNavigate();
+  const { user, login_user, logout_user } = useAuth();
   const [beperkingen, setBeperkingen] = useState([]);
   const [error, setError] = useState('');
   const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
+  const [selectedIds, setSelectedIds] = useState([]);
   const today = new Date().toISOString().split('T')[0];
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const [email, setEmail] = useState('');
@@ -70,7 +73,7 @@ const Register = () => {
   
   const checkPasswordMatch = () => {
 
-    if (password == password2) {
+    if (password === password2) {
       setCheckPW(true);
     }
     else{
@@ -108,9 +111,11 @@ const Register = () => {
       var resultString = `Available days: ${trueDays.join(', ')}`;
       return resultString
     };
+
   
   const handleBeperkingChange = (e) => {
     const selectedOption = e.target.value
+    
     if (selectedBeperkingen.includes(selectedOption)){
       const updatedSelection = selectedBeperkingen.filter((option) => option !== selectedOption);
       setSelectedBeperkingen(updatedSelection)
@@ -121,33 +126,75 @@ const Register = () => {
     console.log(selectedBeperkingen)
     };
 
+  const helpBirthday = (e) => {
+    setBirthday(e);
+    console.log(birthday)
+  }
+
+  const calcAge = () => {
+    var month_diff = Date.now() - new Date(birthday).getTime();
+    var age_help = new Date(month_diff);
+
+    var year = age_help.getUTCFullYear();
+    var age = Math.abs(year - 1970);
+
+    return age;
+  };
+
   const handleRegister = async (e) => {
     
     e.preventDefault();
     const pc = await checkPostal();
     const pw = await checkPasswordMatch();
     var avai = checkAvailability();
+    var age = calcAge();
+    var beperkingen = `Beperkingen: ${selectedBeperkingen.join(', ')}`;
+
+    const emptyFields = Object.entries({
+      Email: email,
+      Password: password,
+      Role: "ED",
+      Postcode: postal,
+      Naam: name,
+      Leeftijd: age.toString(),
+      Beschikbaarheid: avai,
+      BenaderingVoorkeur: preference,
+      BenaderingCommercieel: commercial.toString(),
+      Aandoening: "Aanstelleritus",
+      Beperkingen: beperkingen,
+      BeperkingenIds: "0, 1",
+    }).filter(([key, value]) => !value).map(([key]) => key);
+
+    if (emptyFields.length > 0) {
+      console.log(`Please fill in the following fields: ${emptyFields.join(', ')}`);
+      // Popup toevoegen voor gebruiker
+      return;
+    }
+
+    const userData = {
+      Email: email,
+      Password: password,
+      Role: "ED",
+      Postcode: postal,
+      Naam: name,
+      Leeftijd: age.toString(),
+      Beschikbaarheid: avai,
+      BenaderingVoorkeur: preference,
+      BenaderingCommercieel: commercial.toString(),
+      Aandoening: "Aanstelleritus",
+      Beperkingen: beperkingen,
+      BeperkingenIds: "0, 1"
+    };
 
     if (pc && pw){
       console.log('Saving user!')
+      console.log(userData)
       try {
-        const response = await axios.post('http://20.199.89.238:8088/api/User/Register', {
-          params:{
-            email: email,
-            name: name,
-            password: password,
-            postal: postal,
-            availability: avai,
-            born: birthday,
-            beperkingen: beperkingen,
-            commercial: commercial,
-            preference: preference,
-            role: "ED"
-          }
-        })
+        const response = await axios.post('http://20.199.89.238:8088/api/user', userData)
         .then(response => {
           var data = response.data;
-          console.log(response)})
+          console.log(response)});
+          navigate("./Login");
       }
       catch (error) {
         console.error('An error occurred during login:', error);
@@ -183,7 +230,7 @@ const Register = () => {
                       id="birthday"
                       max={today}
                       value={birthday}
-                      onChange={(e) => setBirthday(e.target.value)}
+                      onChange={(e) => helpBirthday(e.target.value)}
                     />
                   </div>
                   <div className="input-group">
@@ -236,7 +283,7 @@ const Register = () => {
                   </div>
                   <div className="input-group">
                     <label htmlFor="dropdown">Hoe wilt u het liefst benaderd worden?:</label>
-                    <select id="dropdown" value={preference} onChange={(e) => setPreference(e.target.checked)}>
+                    <select id="dropdown" value={preference} onChange={(e) => setPreference(e.target.value)}>
                       <option value="email">Via de mail</option>
                       <option value="site">Via de website</option>
                       <option value="telefonisch">Telefonisch</option>

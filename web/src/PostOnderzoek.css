@@ -1,0 +1,93 @@
+.onderzoekPost {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: auto;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .onderzoekPost h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input[type="text"],
+  textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+    
+  }
+  
+  .basic-multi-select,
+  .basic-multi-select * {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .select__control {
+    padding: 2px;
+    margin-bottom: 10px;
+  }
+  
+  .select__value-container {
+    padding: 2px 8px;
+  }
+  
+  .select__multi-value {
+    background-color: #e0e0e0;
+  }
+  
+  .submitButton {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: #003d82;
+  }
+  .label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .input,
+  .textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  /* You can add responsive styles as needed */
+  @media (max-width: 768px) {
+    .onderzoekPost {
+      width: 95%;
+      padding: 10px;
+    }
+  
+    .form {
+      flex-direction: column;
+    }
+  
+    .submitButton {
+      padding: 8px 10px;
+    }
+  }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import styles from './Onderzoeken.css';
+import { useAuth } from './globals/auth';
 
 const Onderzoeken = () => {
   const [onderzoeken, setOnderzoeken] = useState(null);
@@ -37,12 +39,12 @@ const Onderzoeken = () => {
   };
 
   if (onderzoeken === null) {
-    return <p>Loading onderzoeken...</p>;
+    return <p>Onderzoeken worden geladen....</p>;
   }
 
   return (
     <div className="research-list">
-      <h1>Onderzoeken Test1</h1>
+      <h1>Onderzoeken</h1>
       {onderzoeken.map((onderzoek) => (
         <div key={onderzoek.onderzoekId} className="research-item">
           <h2>{onderzoek.titel}</h2>
@@ -50,8 +52,7 @@ const Onderzoeken = () => {
           <p>{onderzoek.korteBeschrijving}</p>
           <div className="tags">
             {onderzoek.beperkingenIds.map((id, index) => (
-              <span key={index} className="tag">{beperkingenMap[id] || 'Loading...'}</span>
-              // Display the name using the beperkingenMap or 'Loading...' if not found
+              <span key={index} className="tag">{beperkingenMap[id] || 'Laden...'}</span>
             ))}
           </div>
           <button onClick={() => handleMeerInfoClick(onderzoek.onderzoekId)}>Meer info</button>

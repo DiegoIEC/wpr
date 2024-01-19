@@ -3,14 +3,28 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css'
-//import LoginModel from '../../webapi/Models/LoginModel.cs'
+import { useAuth } from './globals/auth';
 
-const Login = () => {
+function Login({ onLogin }) {
+  const { user, login_user, logout_user } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
   const [loginCounter, setLoginCounter] = useState(4);
+  const redirect = {url: ''};
+
+  const HandleRole = (e) => {
+    if (e.role == "ED" || e.role == "deskundige"){
+      redirect.url = "/home_ED"
+    }
+    else if (e.role == "ORG"){
+      redirect.url = "/home_ORG"
+    }
+    else if (e.role == "ADMIN"){
+      redirect.url = "/"
+    }
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,51 +33,48 @@ const Login = () => {
 
       const response = await axios.get('http://20.199.89.238:8088/api/user', {
         params:{
-          email: email,
-          password: password
+          email: email
         }
       })
-      .then(response => {
+      .then(async response => {
         var data = response.data;
+        console.log(response)
+        if (response.status == 200){
+          if (password === data.password){
+            login_user(data);
+            HandleRole(data);
+            navigate(redirect.url)
+          }
+          else{
+            if (loginCounter === 1) {
+              navigate('/');
+            }
+            else{
+              setLoginCounter(loginCounter - 1);
+              setLoginError(true);
+              setEmail('');
+              setPassword('');
+            }
+          }
+        }
+        else{
+          if (loginCounter === 1) {
+            navigate('/');
+          }
+          else{
+            setLoginCounter(loginCounter - 1);
+            setLoginError(true);
+            setEmail('');
+            setPassword('');
+          }
+        }
+        
         console.log(response)})
 
     }
     catch (error) {
       console.error('An error occurred during login:', error);
     }
-      /*
-      const response = await fetch('http://localhost:8088/api/Login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      console.log(response)
-      
-
-      if (response.ok) {
-        // Login successful, navigate to the desired page
-        console.log(response);
-        navigate('/home_ED');
-      } else {
-        // Login failed, handle the error
-        const errorMessage = await response.text();
-        console.error(errorMessage);
-
-        if (loginCounter === 1) {
-          navigate('/');
-        } else {
-          setLoginCounter(loginCounter - 1);
-          setLoginError(true);
-          setEmail('');
-          setPassword('');
-        }
-      }
-    } catch (error) {
-      console.error('An error occurred during login:', error);
-    }
-    */
   };
     
     return (
@@ -96,7 +107,7 @@ const Login = () => {
                   </div>
                   {loginError && (
                     <div className="error-message">
-                      <label htmlFor='error' className="error">Incorrecte email of wachtwoord. U heeft nog {loginCounter} pogingen.</label>
+                      <label htmlFor='error' className="error">Incorrect email of wachtwoord. U heeft nog {loginCounter} pogingen.</label>
                       </div>
                   )}
                   <div>

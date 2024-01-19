@@ -18,55 +18,98 @@ namespace webapi.Controllers
         {
             _context = context;
         }
+        static List<int> ConvertStringToIntList(string input){
 
-        // POST: api/User/register
+            string[] idStrings = input.Split(',');
+            List<int> idList = idStrings.Select(s => int.Parse(s.Trim())).ToList();
+            return idList;
+        }
+        static DeskundigeDto PopulateDes(DeskundigeDto leeg, Dictionary<string, string> data){
+            //num, data["Email"], data["Password"], data["Role"], data["Postcode"], data["Naam"], int.Parse(data["Leeftijd"]), data["Beschikbaarheid"], data["BenaderingVoorkeur"], data["BenaderingCommercieel"], data["Aandoening"], idList
+            Random rnd = new Random();
+            int num = rnd.Next();
+            List<int> idList = ConvertStringToIntList(data["BeperkingenIds"]);
+
+            leeg.UserId = num;
+            leeg.Email = data["Email"];
+            leeg.Leeftijd = int.Parse(data["Leeftijd"]);
+            leeg.Beschikbaarheid = data["Beschikbaarheid"];
+            leeg.BenaderingCommercieel = data["BenaderingCommercieel"];
+            leeg.Aandoening = data["Aandoening"];
+            leeg.Password = data["Password"];
+            leeg.Role = data["Role"];
+            leeg.Postcode = data["Postcode"];
+            leeg.Naam = data["Naam"];
+            //leeg.BeperkingenIds = idList;
+            leeg.BenaderingVoorkeur = data["BenaderingVoorkeur"];
+
+            return leeg;
+        }
+
+        // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<User>> RegisterUser(string name, string email, string password, string postal, string availability, string born, List<string> beperkingen, bool commercial, string preference, string role)
+        public async Task<ActionResult<object>> RegisterUser([FromBody] Dictionary<string, string> data)
         {
             try{
-                User user = new User(email, password, role);
-                Deskundige deskundige = new Deskundige(email, password, role, postal, name, leeftijd:10, beschikbaarheid:availability, aandoening:"ja", benaderingCommercieel:"ja", benaderingVoorkeur:"ja");
-                var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
-
-                if (tried_user == null){
-                    // Registratie logica:
-                    return NotFound();
+                if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
+                    var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data["Email"]);
+                    if (tried_user == null){
+                        //User user = new(data["Email"], data["Password"], data["Role"]);                                                                                                      
+                        DeskundigeController dc = new DeskundigeController(_context);
+                        DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
+                        var new_ed = await dc.PostDeskundige(deskundige);
+                        
+                        return "Succes!";
+                    }
+                    else{
+                        return "Email error";
+                    }
+                    
                 }
-                else if (tried_user != null){
-                    // Deze email is al geregistreerd:
-                    return BadRequest();
+                else {
+                    return "Helaas!";
                 }
-                else{
-                    // Gaat van alles fout:
-                    return BadRequest();
-                }
+                
             }
             catch (Exception e){
                 Console.WriteLine(e);
-                return StatusCode(500, "error");
+                return StatusCode(500, e.ToString());
             }
         }
         
 
         // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<User>> GetUser([FromQuery] string email, string password)
+        public async Task<ActionResult<object>> GetUser([FromQuery] string email)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
-
-            if (user == null)
-            {
-                return NotFound();
+            try{
+                var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                else{
+                    if (user.Role == "ED" || user.Role == "deskundige"){
+                        var output = await _context.Deskundigen.FindAsync(user.UserId);
+                        if (output != null){
+                            return output;
+                        }
+                    }
+                    else if(user.Role == "ORG"){
+                        var output = await _context.Organisaties.FindAsync(user.UserId);
+                        if (output != null){
+                            return output;
+                        }
+                    }
+                    else{
+                        return user;
+                    }
+                    return StatusCode(500, "No users :(");
+                }
             }
-            else if (user.Password != password){
-                return new ObjectResult("Verkeerde Wachtwoord") { StatusCode = 404 };
+            catch (Exception e){
+                return StatusCode(500, e.ToString());
             }
-            else if (user.Password == password){
-                return user;
-            }
-
-            return BadRequest("Geet nie goed");
         }
-
     }
 }

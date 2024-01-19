@@ -1,17 +1,38 @@
 import './Darkmode.css';
 import SiteModeButton from './SiteModeButton';
-const userName = "gebruiker"
-const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
-const completedResearchCount = 100
-const compensation =  10
+import { useAuth } from './globals/auth';
+import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+
 const Home_ED_Dark = () => {
-    
+  const navigate = useNavigate();
+  const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2']
+  const completedResearchCount = 100
+  const compensation =  10
+  const { user, loading, logout_user } = useAuth();
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (loading){
+        navigate("/Login");
+      }
+    }, 1000);
+    return () => clearTimeout(timeoutId);
+  }, [loading, navigate]);
+
+  if (loading) {
+    return <p style={{ color: 'black' }}>Loading...</p>;
+  }
+  else if(user.role != "ED" && user.role != "deskundige"){
+    return <p style={{ color: 'red' }}>U heeft geen permissie.</p>;
+  }
+  else{
     return (
         <div className="home">
           <SiteModeButton/>
             <section className="welcome section-background text-color-black block-content">
             <div className="block-left format-div">
-            <h2 className="center-text format-title">Welkom {userName}</h2>
+            <h2 className="center-text format-title">Welkom {user.naam}</h2>
             <p className="center-text">Hieronder een overzicht met onderzoeken waarvoor u in aanmerking komt</p>
             <button className="center-button button-black"> Onderzoeken </button>
             </div>
@@ -53,6 +74,7 @@ const Home_ED_Dark = () => {
 
       </div>
     );
+}
 }
     
 

@@ -8,6 +8,7 @@ public class Onderzoek
         public double Beloning { get; set; }
         public string Locatie { get; set; }
         public string Soort { get; set; }
+        public int status { get; set; }
         public DateTime Startdatum { get; set; }
         public DateTime Einddatum { get; set; }
         public List<int> BeperkingenIds { get; set; }
