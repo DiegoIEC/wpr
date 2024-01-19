@@ -38,9 +38,17 @@ function App() {
     <CookiesProvider>
     <Router>
     <div className="App">
-        <header className="App-header">
-        {user ? <NavBarED user={user} onLogout={logout_user} /> : <NavBarLO />}
-        </header>
+    <header className="App-header">
+      {user ? (
+        user.role === "ED" || user.role === "deskundige" ? (
+          <NavBarED user={user} onLogout={logout_user} />
+        ) : user.role === "ORG" ? (
+          <NavBarORG user={user} onLogout={logout_user} />
+        ) : null
+      ) : (
+        <NavBarLO />
+      )}
+    </header>
         <main>
         <Routes>
             <Route path="/" element={<Home_ALG />} />

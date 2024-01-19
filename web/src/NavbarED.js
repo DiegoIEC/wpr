@@ -17,7 +17,8 @@ const NavBarED = () => {
               <h1 className="title-nav">Accessibility</h1>
               <div className="navbar-right">
                   <a href="/home_ED">Home</a>
-                  <a href="./Deelnames">Mijn Onderzoeken</a>
+                  <a href="./Onderzoeken">Onderzoeken</a>
+                  <a href="./Deelnames">Mijn deelnames</a>
                   <a href="/Instellingen">Instellingen</a>
                   <button className="button-trans" onClick={handleLogout}>Uitloggen</button>
               </div>

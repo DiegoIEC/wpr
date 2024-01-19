@@ -3,6 +3,7 @@ import SiteModeButton from './SiteModeButton';
 import { Link } from 'react-router-dom';
 import { useAuth } from './globals/auth';
 import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 const Home_ORG = () => {
   const navigate = useNavigate();
@@ -14,13 +15,22 @@ const Home_ORG = () => {
   const compensation =  18
   const { user, loading, logout_user } = useAuth();
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (loading){
+        navigate("/Login");
+      }
+    }, 1000);
+    return () => clearTimeout(timeoutId);
+  }, [loading, navigate]);
+
   if (loading) {
-    return <p>Loading...</p>;
+    return <p style={{ color: 'black' }}>Loading...</p>;
   }
-  else if(!user){
-    navigate("/Login")
+  else if(user.role != "ORG"){
+    return <p style={{ color: 'red' }}>U heeft geen permissie.</p>;
   }
-    
+  else{
     return (
         <div className="home">
             <SiteModeButton/>
@@ -94,6 +104,7 @@ const Home_ORG = () => {
 
       </div>
     );
+}
 }
     
 
