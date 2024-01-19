@@ -3,6 +3,7 @@ import SiteModeButton from './SiteModeButton';
 import { useAuth } from './globals/auth';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import Chat from './Chat';
 
 const Home_ED = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const Home_ED = () => {
   else{
     return (
         <div className="home">
+          <Chat/>
           <SiteModeButton/>
             <section className="welcome section-background text-color-black block-content">
             <div className="block-left format-div">

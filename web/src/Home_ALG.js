@@ -1,5 +1,6 @@
 import './Home.css';
 import SiteModeButton from './SiteModeButton';
+import Chat from './Chat';
 import { useAuth } from './globals/auth';
 
 const total_research = 87

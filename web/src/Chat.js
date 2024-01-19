@@ -4,16 +4,18 @@ import './Chat.css';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue, push, serverTimestamp } from 'firebase/database';
 import firebaseConfig from './firebaseConfig';
+import { useAuth } from './globals/auth';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 const Chat = () => {
+  const { user, loading, logout_user } = useAuth();
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
-  const [currentUser] = useState({ uid: 'default_user' }); // Set a default user
+  const [currentUser] = useState({ uid: user.userId }); // Set a default user
 
   const messagesRef = ref(database, 'messages');
 
