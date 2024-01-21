@@ -19,6 +19,7 @@ const NavBarORG = () => {
                   <a href="/home_ORG">Home</a>
                   <a href="/Deelnames">Mijn Onderzoeken</a>
                   <a href="/Instellingen">Instellingen</a>
+                  <a href="/Profiel">Profiel</a>
                   <button className="button-trans" onClick={handleLogout}>Uitloggen</button>
               </div>
             </div>

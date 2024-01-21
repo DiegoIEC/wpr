@@ -20,6 +20,7 @@ const NavBarED = () => {
                   <a href="/Onderzoeken">Onderzoeken</a>
                   <a href="/Deelnames">Mijn deelnames</a>
                   <a href="/Instellingen">Instellingen</a>
+                  <a href="/Profiel">Profiel</a>
                   <button className="button-trans" onClick={handleLogout}>Uitloggen</button>
               </div>
             </div>
