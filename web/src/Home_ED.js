@@ -62,11 +62,11 @@ const Home_ED = () => {
             <button className="center-button button-black">Bekijk details</button>
             <div className="contribution-stats-black block-content">
             <div className="block-left-border">
-              <h2 className="center-text smaller-text">U heeft meegedaan aan zoveel onderzoeken:</h2>
+              <h2 className="center-text smaller-text title-black">U heeft meegedaan aan zoveel onderzoeken:</h2>
               <p className="center-text">{completedResearchCount}</p>
             </div>
             <div className="block-right-border">
-                <h2 className="center-text smaller-text">Ontvangen compensatie:</h2>
+                <h2 className="center-text smaller-text title-black">Ontvangen compensatie:</h2>
                 <p className="center-text">€{compensation}</p>
             </div>
           </div>
