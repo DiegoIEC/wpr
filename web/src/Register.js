@@ -6,20 +6,12 @@ import {useNavigate } from 'react-router-dom';
 import './Home.css'
 import { useAuth } from './globals/auth';
 
-const getRandomColor = () => {
-  const r = Math.floor(Math.random() * 255);
-  const g = Math.floor(Math.random() * 255);
-  const b = Math.floor(Math.random() * 255);
-  return `rgb(${r},${g},${b})`;
-};
-
 const fetchBeperkingenData = async () => {
   try {
     const response = await axios.get('http://20.199.89.238:8088/api/beperking');
     const options = response.data.map(beperking => ({
       value: beperking.beperkingId,
-      label: beperking.naam,
-      color: getRandomColor(),
+      label: beperking.naam
     }));
     return options;
   } catch (error) {
@@ -52,38 +44,38 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const [commercial, setCommercial] = useState(false);
-  const [preference, setPreference] = useState('');
+  const [preference, setPreference] = useState('Via de mail');
   const [beperking, setBeperking] = useState('');
-  const [checkPW, setCheckPW] = useState(false);
-  const [checkPO, setCheckPO] = useState(false);
 
-  const checkPostal = () => {
+  const checkInput = async () => {
+    var pw = false;
+    var pc = false;
     const postalRegex = /^\d{4}[A-Za-z]{2}$/;
 
     if (postalRegex.test(postal)) {
-      setCheckPO(true);
+      pc = true;
     }
     else{
       setPostal('');
-      setCheckPO(false);
     }
-    return checkPO;
-    
-  };
-  
-  const checkPasswordMatch = () => {
-
     if (password === password2) {
-      setCheckPW(true);
+      pw = true;
     }
     else{
       setPassword('');
       setPassword2('');
-      setCheckPW(false);
     }
-    return checkPW;
-    
-  };
+    if (pc === false && pw != false){
+      return 'Uw postcode voldoet niet aan het verplichte format: 1234AB';
+    }
+    if (pw === false && pc != false){
+      return 'Uw wachtwoord komt niet overeen, voer tweemaal hetzelfde wachtwoord in.';
+    }
+    if (pc === false && pw === false){
+      return 'Uw wachtwoord en postcode zijn incorrect ingevuld.';
+    }
+    return '';
+  }
 
   const handleCheckboxChange = (day) => {
     setAvailability((prevAvailability) => ({
@@ -112,9 +104,11 @@ const Register = () => {
       return resultString
     };
 
-  
   const handleBeperkingChange = (e) => {
-    const selectedOption = e.target.value
+    //const selectedOption = e.target.value;
+    const help = beperkingen.find(item => item.label === e.target.value);
+    const selectedOption = e.target.value;
+    const selectedId = help['value']
     
     if (selectedBeperkingen.includes(selectedOption)){
       const updatedSelection = selectedBeperkingen.filter((option) => option !== selectedOption);
@@ -123,7 +117,15 @@ const Register = () => {
     else{
       setSelectedBeperkingen([...selectedBeperkingen, selectedOption]);
     }
+    if (selectedIds.includes(selectedId)){
+      const updatedSelection = selectedIds.filter((option) => option !== selectedId);
+      setSelectedIds(updatedSelection)
+    }
+    else{
+      setSelectedIds([...selectedIds, selectedId]);
+    }
     console.log(selectedBeperkingen)
+    console.log(selectedIds)
     };
 
   const helpBirthday = (e) => {
@@ -144,8 +146,8 @@ const Register = () => {
   const handleRegister = async (e) => {
     
     e.preventDefault();
-    const pc = await checkPostal();
-    const pw = await checkPasswordMatch();
+    var message = await checkInput();
+    setError(message);
     var avai = checkAvailability();
     var age = calcAge();
     var beperkingen = `Beperkingen: ${selectedBeperkingen.join(', ')}`;
@@ -160,14 +162,14 @@ const Register = () => {
       Beschikbaarheid: avai,
       BenaderingVoorkeur: preference,
       BenaderingCommercieel: commercial.toString(),
-      Aandoening: "Aanstelleritus",
+      Aandoening: "Ongespecificeerd",
       Beperkingen: beperkingen,
-      BeperkingenIds: "0, 1",
+      BeperkingenIds: selectedIds,
     }).filter(([key, value]) => !value).map(([key]) => key);
 
     if (emptyFields.length > 0) {
-      console.log(`Please fill in the following fields: ${emptyFields.join(', ')}`);
-      // Popup toevoegen voor gebruiker
+      const ErrorMessage = `U ben de volgende veld(en) vergeten in te vullen: ${emptyFields.join(', ')}`;
+      setError(ErrorMessage);
       return;
     }
 
@@ -183,10 +185,10 @@ const Register = () => {
       BenaderingCommercieel: commercial.toString(),
       Aandoening: "Aanstelleritus",
       Beperkingen: beperkingen,
-      BeperkingenIds: "0, 1"
+      BeperkingenIds: selectedIds
     };
 
-    if (pc && pw){
+    if (message.length === 0){
       console.log('Saving user!')
       console.log(userData)
       try {
@@ -195,13 +197,12 @@ const Register = () => {
           var data = response.data;
           console.log(response)});
           navigate("/Login");
+          console.log(error)
       }
       catch (error) {
-        console.error('An error occurred during login:', error);
+        console.error('error: ', error);
+        setError('Er is iets fout gegaan tijdens de registratie, probeer opnieuw.');
       }
-    }
-    else{
-      console.log('Helaas...')
     }
   };
     
@@ -325,6 +326,9 @@ const Register = () => {
                       value={password2}
                       onChange={(e) => setPassword2(e.target.value)}
                     />
+                  </div>
+                  <div className="error-message">
+                    {error && <p>{error}</p>}
                   </div>
                   <div>
                     <button type="submit" className="center-button button-black">
