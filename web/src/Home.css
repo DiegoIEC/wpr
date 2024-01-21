@@ -1,53 +1,54 @@
 /* Home_A*/
 /* Targeting the main home container */
+/*
 .home {
-  background-color: #f0f0f0; /* Sets the background color of the entire home container */
-  padding: 20px; /* Adds space inside the borders of the home container */
+  background-color: #f0f0f0; /* Sets the background color of the entire home container 
+  padding: 20px; /* Adds space inside the borders of the home container
 }
 
-/* Styling for all sections */
+/* Styling for all sections 
 section {
-  margin-bottom: 20px; /* Adds space below each section for separation */
+  margin-bottom: 20px; /* Adds space below each section for separation 
 }
 
-/* Specific styling for the welcome section */
+/* Specific styling for the welcome section 
 .welcome {
-  background-color: #eaeaea; /* Sets a different background color for the welcome section */
+  background-color: #eaeaea; /* Sets a different background color for the welcome section 
 }
 
-/* Styling for headings in the welcome section */
+/* Styling for headings in the welcome section 
 .welcome h2 {
-  color: #333; /* Sets the text color for all h2 elements inside the welcome section */
-  font-weight: bold; /* Makes the font weight bold for these headings */
+  color: #333; /* Sets the text color for all h2 elements inside the welcome section 
+  font-weight: bold; /* Makes the font weight bold for these headings 
 }
 
-/* Styling for buttons */
+/* Styling for buttons 
 button {
-  background-color: black; /* Sets the background color of buttons */
-  color: white; /* Sets the text color inside the button to white */
-  padding: 10px 20px; /* Adds padding inside the button for top-bottom and left-right */
-  border: none; /* Removes any default border from the button */
-  cursor: pointer; /* Changes the cursor to a pointer when hovering over the button */
-  transition: background-color 0.3s ease; /* Smooth transition for background color change on hover */
+  background-color: black; /* Sets the background color of buttons 
+  color: white; /* Sets the text color inside the button to white 
+  padding: 10px 20px; /* Adds padding inside the button for top-bottom and left-right 
+  border: none; /* Removes any default border from the button 
+  cursor: pointer; /* Changes the cursor to a pointer when hovering over the button 
+  transition: background-color 0.3s ease; /* Smooth transition for background color change on hover 
 }
 
 button:hover {
-  background-color: #555; /* Changes background color when the button is hovered over */
+  background-color: #555; /* Changes background color when the button is hovered over 
 }
 
-/* Responsiveness for smaller screens */
+/* Responsiveness for smaller screens 
 @media (max-width: 768px) {
   .home {
-      padding: 10px; /* Reduces the padding inside the home container for smaller screens */
+      padding: 10px; /* Reduces the padding inside the home container for smaller screens 
   }
 
   .welcome h2 {
-      font-size: 1.5em; /* Decreases the font size of h2 elements in the welcome section for smaller screens */
+      font-size: 1.5em; /* Decreases the font size of h2 elements in the welcome section for smaller screens 
   }
 }
+*/
 
-
-/* body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .contribution{
+body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .contribution{
     margin:0;
     padding:0;
 }
@@ -99,6 +100,7 @@ button:hover {
     margin:10px;
 }
 .format-title{
+    color: black;
     border-bottom: 2px solid #fff;
     background-color: #bde1f8;
     padding-bottom: 25px;
@@ -108,7 +110,7 @@ button:hover {
 .title{
     margin:0;
     color: black;
-    text-align: left;
+    text-align: center;
 }
 .block-content {
     display: flex;
@@ -143,6 +145,7 @@ button:hover {
     margin: 20px auto;
 }
 .block-right-border {
+    color: black;
     text-align: right;
     align-items: center;
     border: 1px solid black;
@@ -152,6 +155,7 @@ button:hover {
     margin-right: 25px;
 }
 .block-left-border{
+    color: black;
     text-align: center;
     align-items: center;
     border: 1px solid black;
@@ -169,8 +173,13 @@ button:hover {
     max-width: 40%; 
     padding: 20px; 
 }
+.title-black{
+  color: black;
+  border-bottom: 1px solid black;
+}
 
 form {
+    color: black;
     margin: 3rem auto;
     width: 500px;
     max-width: 80%;
@@ -287,4 +296,4 @@ form {
     height: 0%;
   }
 
- */
+ 

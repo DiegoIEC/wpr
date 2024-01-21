@@ -31,12 +31,12 @@ const Home_ALG = () => {
             <button className="center-button button-black">Bekijk details</button>
             <div className="contribution-stats-black block-content">
             <div className="block-left-border">
-              <h2 className="center-text smaller-text">Geplaatste onderzoeken:</h2>
-              <p className="center-text">{total_research}</p>
+              <h2 className="center-text smaller-text title-black">Geplaatste onderzoeken:</h2>
+              <p className="center-text text-bold">{total_research}</p>
             </div>
             <div className="block-right-border">
-                <h2 className="center-text smaller-text">Aantal gebruikers die mee hebben gedaan:</h2>
-                <p className="center-text">{total_users}</p>
+                <h2 className="center-text smaller-text title-black">Aantal gebruikers die mee hebben gedaan:</h2>
+                <p className="center-text text-bold">{total_users}</p>
             </div>
           </div>
           </section>
@@ -45,12 +45,12 @@ const Home_ALG = () => {
             <p className="center-text">Een inclusieve samenleving waarin alle mensen met of zonder beperking gelijkwaardig participeren.</p>
             <div className='block-content contribution-stats-black'>
             <div className="block-left-border format-div">
-            <h2 className="center-text smaller-text"> Onderzoeken</h2>
+            <h2 className="center-text smaller-text title-black"> Onderzoeken</h2>
             <p className="center-text">Wij van Stichting Accessibility hebben als doel om onderzoeken  gericht op mensen met beperkingen makkelijker te maken voor onszelf en externe partijen. Deze onderzoeken gaan van toegankelijkheids onderzoeken m.b.t. websites tot ervarings-onderzoeken voor verschillende activiteiten. Klik hieronder voor meer informatie.</p>
             <button className="center-button button-black" href="./Onderzoeken"> Onze onderzoeken </button>
             </div>
             <div className="block-right-border format-div">
-            <h2 className="center-text smaller-text"> Partners</h2>
+            <h2 className="center-text smaller-text title-black"> Partners</h2>
             <p className="center-text">Wij werken samen met verschillende partijen om ons doel te delen met de rest van Nederland. Een paar van onze partners zijn: Bol, Amazon, Gemeente Den Haag en Shell.
             Wij zijn continu opzoek naar nieuwe partners, heeft u of uw organisatie interesse? Klik dan hieronder om te registreren en begin meteen!</p>
             <button className="center-button button-black"> Registreer </button>
@@ -61,7 +61,7 @@ const Home_ALG = () => {
             <h2 className="center-text format-title">Contact</h2>
             <p className="center-text">Voor eventuele vragen of opmerkingen kunt u hieronder het formulier invullen om contact met ons op te nemen.</p>
             <div className="contribution-stats-black block-middle-border">
-              <h2 className="center-text smaller-text">Contactformulier</h2>
+              <h2 className="center-text smaller-text title-black">Contactformulier</h2>
               <form className='form'>
                 <div className="input-group">
                   <label htmlFor="name">Naam</label>

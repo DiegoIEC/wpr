@@ -7,6 +7,7 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
 }
 .smaller-text{
     font-size: 20px;
+    border-bottom: 2px solid rgb(109, 109, 109);
 }
 .center-button{
     display: block;
@@ -23,7 +24,7 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
     margin-bottom: 2em;
 }
 .text-color-white {
-    color: rgb(176, 253, 172); 
+    color: white; 
 }
 .text-bold{
   font-weight: bold;
@@ -48,17 +49,19 @@ body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .cont
 .format-div{
     padding:1em;
     margin:10px;
+    color: white;
 }
 .format-title-dark{
     border-bottom: 2px solid rgb(109, 109, 109);
     background-color: #242424;
+    color: white;
     padding-bottom: 25px;
     padding-top: 25px;
     width: 100%;
 }
 .title-white{
     margin:0;
-    color: rgb(176, 253, 172);
+    color: white;
     text-align: left;
 }
 .block-content {
