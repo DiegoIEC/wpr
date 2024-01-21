@@ -21,23 +21,24 @@ namespace webapi.Controllers
 [HttpPost]
 public async Task<ActionResult<DeskundigeDto>> PostDeskundige(DeskundigeDto dto)
 {
-    var deskundige = new Deskundige
-    {
-        Email = dto.Email,
-        Password = dto.Password,
-        Role = dto.Role,
-        Postcode = dto.Postcode,
-        Naam = dto.Naam,
-        Leeftijd = dto.Leeftijd,
-        Beschikbaarheid = dto.Beschikbaarheid,
-        BenaderingVoorkeur = dto.BenaderingVoorkeur,
-        BenaderingCommercieel = dto.BenaderingCommercieel,
-        Aandoening = dto.Aandoening,
-        DeskundigeBeperkingen = new List<DeskundigeBeperking>()
-    };
+            var deskundige = new Deskundige(
+                email: dto.Email,
+                password: dto.Password,
+                role: dto.Role,
+                postcode: dto.Postcode,
+                naam: dto.Naam,
+                leeftijd: dto.Leeftijd,
+                beschikbaarheid: dto.Beschikbaarheid,
+                benaderingVoorkeur: dto.BenaderingVoorkeur,
+                benaderingCommercieel: dto.BenaderingCommercieel,
+                aandoening: dto.Aandoening
+            )
+            {
+                DeskundigeBeperkingen = new List<DeskundigeBeperking>()
+            };
 
-    // Handle the mapping for Beperkingen if provided in the DTO
-    if (dto.BeperkingenIds != null && dto.BeperkingenIds.Any())
+            // Handle the mapping for Beperkingen if provided in the DTO
+            if (dto.BeperkingenIds != null && dto.BeperkingenIds.Any())
     {
         foreach (var beperkingId in dto.BeperkingenIds)
         {
