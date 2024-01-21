@@ -53,8 +53,7 @@ namespace webapi.Controllers
             try{
                 if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
                     var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == (string)data["Email"]);
-                    if (tried_user == null){
-                        //User user = new(data["Email"], data["Password"], data["Role"]);                                                                                                      
+                    if (tried_user == null){                                                                                                    
                         DeskundigeController dc = new DeskundigeController(_context);
                         DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
                         var new_ed = await dc.PostDeskundige(deskundige);
