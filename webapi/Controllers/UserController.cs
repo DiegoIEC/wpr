@@ -24,35 +24,35 @@ namespace webapi.Controllers
             List<int> idList = idStrings.Select(s => int.Parse(s.Trim())).ToList();
             return idList;
         }
-        static DeskundigeDto PopulateDes(DeskundigeDto leeg, Dictionary<string, object> data){
+        static DeskundigeDto PopulateDes(DeskundigeDto leeg, Dictionary<string, string> data){
             //num, data["Email"], data["Password"], data["Role"], data["Postcode"], data["Naam"], int.Parse(data["Leeftijd"]), data["Beschikbaarheid"], data["BenaderingVoorkeur"], data["BenaderingCommercieel"], data["Aandoening"], idList
             Random rnd = new Random();
             int num = rnd.Next();
-            //List<int> idList = ConvertStringToIntList(data["BeperkingenIds"]);
+            List<int> idList = ConvertStringToIntList(data["BeperkingenIds"]);
 
             leeg.UserId = num;
-            leeg.Email = (string)data["Email"];
-            leeg.Leeftijd = int.Parse((string)data["Leeftijd"]);
-            leeg.Beschikbaarheid = (string)data["Beschikbaarheid"];
-            leeg.BenaderingCommercieel = (string)data["BenaderingCommercieel"];
-            leeg.Aandoening = (string)data["Aandoening"];
-            leeg.Password = (string)data["Password"];
-            leeg.Role = (string)data["Role"];
-            leeg.Postcode = (string)data["Postcode"];
-            leeg.Naam = (string)data["Naam"];
-            leeg.BeperkingenIds = (List<int>)data["BeperkingenIds"];
-            leeg.BenaderingVoorkeur = (string)data["BenaderingVoorkeur"];
+            leeg.Email = data["Email"];
+            leeg.Leeftijd = int.Parse(data["Leeftijd"]);
+            leeg.Beschikbaarheid = data["Beschikbaarheid"];
+            leeg.BenaderingCommercieel = data["BenaderingCommercieel"];
+            leeg.Aandoening = data["Aandoening"];
+            leeg.Password = data["Password"];
+            leeg.Role = data["Role"];
+            leeg.Postcode = data["Postcode"];
+            leeg.Naam = data["Naam"];
+            leeg.BeperkingenIds = idList;
+            leeg.BenaderingVoorkeur = data["BenaderingVoorkeur"];
 
             return leeg;
         }
 
         // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<object>> RegisterUser([FromBody] Dictionary<string, object> data)
+        public async Task<ActionResult<object>> RegisterUser([FromBody] Dictionary<string, string> data)
         {
             try{
                 if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
-                    var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == (string)data["Email"]);
+                    var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data["Email"]);
                     if (tried_user == null){                                                                                                    
                         DeskundigeController dc = new DeskundigeController(_context);
                         DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
@@ -112,3 +112,4 @@ namespace webapi.Controllers
         }
     }
 }
+

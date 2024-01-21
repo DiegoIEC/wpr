@@ -124,6 +124,7 @@ const Register = () => {
     else{
       setSelectedIds([...selectedIds, selectedId]);
     }
+
     console.log(selectedBeperkingen)
     console.log(selectedIds)
     };
@@ -164,7 +165,7 @@ const Register = () => {
       BenaderingCommercieel: commercial.toString(),
       Aandoening: "Ongespecificeerd",
       Beperkingen: beperkingen,
-      BeperkingenIds: selectedIds,
+      BeperkingenIds: selectedIds.join(', '),
     }).filter(([key, value]) => !value).map(([key]) => key);
 
     if (emptyFields.length > 0) {
@@ -185,7 +186,7 @@ const Register = () => {
       BenaderingCommercieel: commercial.toString(),
       Aandoening: "Aanstelleritus",
       Beperkingen: beperkingen,
-      BeperkingenIds: selectedIds
+      BeperkingenIds: selectedIds.join(', ')
     };
 
     if (message.length === 0){
