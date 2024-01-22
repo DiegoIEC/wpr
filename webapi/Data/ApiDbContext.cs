@@ -12,7 +12,7 @@ namespace DemoApp.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Deelname> Deelnames { get; set; }
         public DbSet<Driver> Drivers { get; set; }
-        public DbSet<Deskundige> Deskundigen { get; set; }
+        public virtual DbSet<Deskundige> Deskundigen { get; set; }
         public DbSet<Beperking> Beperkingen { get; set; } 
         public DbSet<DeskundigeBeperking> DeskundigeBeperkingen { get; set; } 
         public DbSet<Message> Messages { get; set; }
