@@ -16,31 +16,33 @@ namespace webapi.Controllers
         {
             _context = context;
         }
-
+        
         // POST: api/Deskundige
 [HttpPost]
 public async Task<ActionResult<DeskundigeDto>> PostDeskundige(DeskundigeDto dto)
 {
-    var deskundige = new Deskundige(
-        dto.Email,
-        dto.Password,
-        dto.Role,
-        dto.Postcode,
-        dto.Naam,
-        dto.Leeftijd,
-        dto.Beschikbaarheid,
-        dto.BenaderingVoorkeur,
-        dto.BenaderingCommercieel,
-        dto.Aandoening
-    );
+            var deskundige = new Deskundige(
+                email: dto.Email,
+                password: dto.Password,
+                role: dto.Role,
+                postcode: dto.Postcode,
+                naam: dto.Naam,
+                leeftijd: dto.Leeftijd,
+                beschikbaarheid: dto.Beschikbaarheid,
+                benaderingVoorkeur: dto.BenaderingVoorkeur,
+                benaderingCommercieel: dto.BenaderingCommercieel,
+                aandoening: dto.Aandoening
+            )
+            {
+                DeskundigeBeperkingen = new List<DeskundigeBeperking>()
+            };
 
-    // Handle the mapping for Beperkingen if provided in the DTO
-    if (dto.BeperkingenIds != null && dto.BeperkingenIds.Count > 0)
+            // Handle the mapping for Beperkingen if provided in the DTO
+            if (dto.BeperkingenIds != null && dto.BeperkingenIds.Any())
     {
-        deskundige.DeskundigeBeperkingen = new List<DeskundigeBeperking>();
         foreach (var beperkingId in dto.BeperkingenIds)
         {
-            deskundige.DeskundigeBeperkingen.Add(new DeskundigeBeperking { DeskundigeId = deskundige.UserId, BeperkingId = beperkingId });
+            deskundige.DeskundigeBeperkingen.Add(new DeskundigeBeperking { BeperkingId = beperkingId });
         }
     }
 
@@ -50,15 +52,14 @@ public async Task<ActionResult<DeskundigeDto>> PostDeskundige(DeskundigeDto dto)
     // Create a DTO for the response
     var returnDto = new DeskundigeDto
     {
-        // Populate the properties of the DTO
-        Email = deskundige.Email,
-        // ... other properties
+        UserId = deskundige.UserId,
+        // ... other properties ...
         BeperkingenIds = deskundige.DeskundigeBeperkingen.Select(db => db.BeperkingId).ToList()
     };
 
-    // Return the created DTO with a '201 Created' response, including the route to get the deskundige
     return CreatedAtAction(nameof(GetDeskundige), new { id = deskundige.UserId }, returnDto);
 }
+
 
 
         // GET: api/Deskundige/5

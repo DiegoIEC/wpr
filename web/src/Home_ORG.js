@@ -36,7 +36,7 @@ const Home_ORG = () => {
             <SiteModeButton/>
             <section className="welcome section-background text-color-black block-content">
             <div className="block-left format-div">
-            <h2 className="center-text format-title">Welkom {organisation}</h2>
+            <h2 className="center-text format-title">Welkom {user.naam}</h2>
             <p className="center-text">Hieronder een overzicht met uw onderzoeken die nu lopen</p>
             <Link to="/onderzoeken" className="center-button button-black">
             Onderzoeken

@@ -62,6 +62,7 @@ section {
     margin:10px;
 }
 .format-title{
+    color: black;
     border-bottom: 2px solid #fff;
     background-color: #bde1f8;
     padding-bottom: 25px;
@@ -71,7 +72,7 @@ section {
 .title{
     margin:0;
     color: black;
-    text-align: left;
+    text-align: center;
 }
 .block-content {
     display: flex;
@@ -106,6 +107,7 @@ section {
     margin: 20px auto;
 }
 .block-right-border {
+    color: black;
     text-align: right;
     align-items: center;
     border: 1px solid black;
@@ -115,6 +117,7 @@ section {
     margin-right: 25px;
 }
 .block-left-border{
+    color: black;
     text-align: center;
     align-items: center;
     border: 1px solid black;
@@ -132,8 +135,13 @@ section {
     max-width: 40%; 
     padding: 20px; 
 }
+.title-black{
+  color: black;
+  border-bottom: 1px solid black;
+}
 
 form {
+    color: black;
     margin: 3rem auto;
     width: 500px;
     max-width: 80%;
@@ -250,4 +258,4 @@ form {
     height: 0%;
   }
 
- */
+ 
