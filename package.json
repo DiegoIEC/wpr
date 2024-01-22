@@ -4,6 +4,10 @@
     "firebase": "^10.7.2",
     "react-cookie": "^7.0.1",
     "react-datepicker": "^4.25.0",
-    "react-select": "^5.8.0"
+    "react-select": "^5.8.0",
+    "util": "^0.12.5"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
