@@ -11,7 +11,7 @@ const Home_ALG = () => {
     return (
         <div className="home">
           <SiteModeButton/>
-            <section className="welcome section-background text-color-black block-content">
+            <section>
             <div className="block-left format-div">
             <h2 className="center-text format-title">Welkom bij Stichting Accessibility</h2>
             <p className="center-text">Het verbeteren van digitale accessibility voor iedereen</p>
