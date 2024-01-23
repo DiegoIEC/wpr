@@ -81,7 +81,7 @@ namespace webapi.Controllers
                                 result = await vc.PostVerzorger(verzorger, ed);
                             }
                             else{
-                                result = "Deskundige niet aangemaakt";
+                                result = "Deskundige niet aangemaakt.";
                             }
                         }
                         return result;
