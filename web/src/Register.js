@@ -113,6 +113,11 @@ const Register = () => {
       setErrorCaretaker(ErrorMessage);
       return ErrorMessage;
     }
+    if (0 < careTakerFields.length && careTakerFields.length < 3) {
+      const ErrorMessage = `Als u een verzorger wilt toevoegen, moet u de volgende veld(en) nog invullen: ${careTakerFields.join(', ')}`;
+      setErrorCaretaker(ErrorMessage);
+      return ErrorMessage;
+    }
 
     return '';
   }
@@ -230,7 +235,6 @@ const Register = () => {
         .then(response => {
           var data = response.data;
           console.log(response)});
-          //navigate("/Login");
           console.log(error)
       }
       catch (error) {
@@ -252,6 +256,9 @@ const Register = () => {
           console.error('error: ', error);
           setError('Er is iets fout gegaan tijdens de registratie, probeer opnieuw.');
         }
+      }
+      else{
+        navigate("/Login");
       }
     }
   };

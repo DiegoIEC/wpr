@@ -66,7 +66,7 @@ namespace webapi.Controllers
                 if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
                     var email = data["Email"];
                     var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data["Email"]);
-                    
+
                     if (tried_user == null){                                                                                                    
                         DeskundigeController dc = new DeskundigeController(_context);
                         DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
@@ -89,7 +89,6 @@ namespace webapi.Controllers
             }
         }
         
-
         // GET: api/User
         [HttpGet]
         public async Task<ActionResult<object>> GetUser([FromQuery] string email)
