@@ -16,12 +16,13 @@ namespace webapi.Controllers
         
         // POST: api/Verzorger
         [HttpPost]
-        public async Task<string> PostVerzorger(VerzorgerDto dto)
+        public async Task<string> PostVerzorger(VerzorgerDto dto, Deskundige de)
         {
             try{
-                var deskundige = await _context.Deskundigen.FindAsync(dto.DeskundigeID);
-                var verzorger = new Verzorger(naam: dto.Naam, email: dto.Email, postcode: dto.Postcode, deskundigeID: dto.DeskundigeID);
-                verzorger.Deskundige = deskundige;
+                var verzorger = new Verzorger(naam: dto.Naam, email: dto.Email, postcode: dto.Postcode, deskundigeID: dto.DeskundigeID)
+                {
+                    Deskundige = de
+                };
                 _context.Verzorgers.Add(verzorger);
                 await _context.SaveChangesAsync();
             }

@@ -46,7 +46,7 @@ namespace webapi.Controllers
             return leeg;
         }
 
-        static VerzorgerDto PopulateVer(VerzorgerDto leeg, Dictionary<string, string> data, DeskundigeDto des){
+        static VerzorgerDto PopulateVer(VerzorgerDto leeg, Dictionary<string, string> data, Deskundige des){
             Random rnd = new Random();
             int num = rnd.Next();
 
@@ -67,18 +67,20 @@ namespace webapi.Controllers
                 var result = "Succes!";
                 Dictionary<string, string> data = dataList[0];
                 if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
+                    var email = data["Email"];
                     var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data["Email"]);
                     if (tried_user == null){                                                                                                    
                         DeskundigeController dc = new DeskundigeController(_context);
                         VerzorgerController vc = new VerzorgerController(_context);
                         DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
                         var new_ed = await dc.PostDeskundige(deskundige);
+                        
                         if (dataList.Count == 2){
                             Dictionary<string, string> data2 = dataList[1];
-                            var ed = new_ed.Value as DeskundigeDto;
-                            if (ed != null){
-                                VerzorgerDto verzorger = PopulateVer(new VerzorgerDto(), data2, ed);
-                                result = await vc.PostVerzorger(verzorger);
+                            var ed = await dc.DeskForVerz(email);
+                            if (ed.ToString() != "nee"){
+                                VerzorgerDto verzorger = PopulateVer(new VerzorgerDto(), data2, (Deskundige)ed);
+                                result = await vc.PostVerzorger(verzorger, (Deskundige)ed);
                             }
                             else{
                                 result = "Deskundige niet aangemaakt";

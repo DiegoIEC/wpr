@@ -17,6 +17,14 @@ namespace webapi.Controllers
             _context = context;
         }
         
+public async Task<object> DeskForVerz(string email){
+    var user = await _context.Deskundigen.SingleOrDefaultAsync(u => u.Email == email);
+    if (user != null){
+        return user;
+    }
+    return "nee";
+}
+
         // POST: api/Deskundige
 [HttpPost]
 public async Task<ActionResult<DeskundigeDto>> PostDeskundige(DeskundigeDto dto)
