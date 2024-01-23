@@ -1,6 +1,7 @@
 import NavBarLO from './NavbarLO';
 import NavBarED from './NavbarED';
 import NavBarORG from './NavbarORG';
+import Login_Dark from './Login_Dark';
 import Home_ED from './Home_ED';
 import Login from './Login';
 import Home_ALG from './Home_ALG';
@@ -18,6 +19,7 @@ import ApiTest from './ApiTest';
 import DeskundigeEdit from './DeskundigeEdit';
 import Instellingen from './Instellingen';
 import Register from './Register';
+import Register_Dark from './Register_Dark';
 import Deelnames from './Deelnames';
 import OnderzoekPost from './PostOnderzoek';
 import Profiel from './Profiel';
@@ -25,6 +27,7 @@ import { useAuth } from './globals/auth';import Chat from './Chat';
 import Beheerdersportaal from './Beheerdersportaal';
 import PrivacyPolicy from './PrivacyVerklaring';
 import PrivacyVerklaring from './PrivacyVerklaring';
+import Register_ORG from './Register_ORG';
 
 
 function App() {
@@ -60,11 +63,14 @@ function App() {
             <Route path="/home_ED_Dark" element={<Home_ED_Dark />} />
             <Route path="/home_ORG_Dark" element={<Home_ORG_Dark />} />
             <Route path="/Register" element={<Register />} />
+            <Route path="/Register_Dark" element={<Register_Dark />} />
             <Route path="/home_ED" element={<Home_ED />} />
             <Route path="/home_ORG" element={<Home_ORG />} />
             <Route path="/beheerdersportaal" element={<Beheerdersportaal />} />
             <Route path="/onderzoeken" element={<Onderzoeken />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/login_Dark" element={<Login_Dark />} />
+            <Route path="/register_org" element={<Register_ORG />} />
             <Route path="/onderzoeken" element={<Onderzoeken />} />
             <Route path="/onderzoek/:id" element={<Onderzoek />} /> 
             <Route path="/instellingen" element={<Instellingen />} />

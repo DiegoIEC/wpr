@@ -6,9 +6,15 @@ namespace DemoApp.Models
         public string Naam { get; set; }
         public string Postcode { get; set; }
         public string Email { get; set; }
-
-        // Navigation property for the Deskundige
         public int DeskundigeID { get; set; }
-        public virtual Deskundige Deskundige { get; set; }
+        //public virtual Deskundige Deskundige { get; set; }
+
+        public Verzorger(string naam, string postcode, string email, int deskundigeID) 
+        {
+            Naam = naam;
+            Postcode = postcode;
+            Email = email;
+            DeskundigeID = deskundigeID;
+        }
     }
 }

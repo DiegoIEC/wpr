@@ -1,16 +1,5 @@
-/* Home_A*/
-.home{
-  background-color: #D9EBF7
-}
-section {
-  /* Add your CSS styles here */
-  background-color: #D9EBF7;
-  text-align: center;
-  padding: 20px;
-  margin: 20px 0;
-}
 
-/* body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .contribution{
+body, section, h1, h2, h3, div, .welcome, .latest-news, .ongoing-research, .contribution{
     margin:0;
     padding:0;
 }
@@ -77,6 +66,18 @@ section {
 .block-content {
     display: flex;
     justify-content: space-between;
+}
+
+.block-content-reg {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.block-content-head {
+  display:flex;
+  justify-content: center;
+  padding-left: 25%;
 }
 
 .block-right {
@@ -256,6 +257,6 @@ form {
     padding: 0px;
     width: auto;
     height: 0%;
-  }*/
+  }
 
  

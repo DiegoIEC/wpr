@@ -46,19 +46,39 @@ namespace webapi.Controllers
             return leeg;
         }
 
+        static VerzorgerDto PopulateVer(VerzorgerDto leeg, Dictionary<string, string> data, ActionResult<DeskundigeDto> des){
+            Random rnd = new Random();
+            int num = rnd.Next();
+
+            leeg.VerzorgerID = num;
+            leeg.Email = data["Email"];
+            leeg.Postcode = data["Postcode"];
+            leeg.Naam = data["Naam"];
+            leeg.DeskundigeID = des.Value.UserId;
+
+            return leeg;
+        }
+
         // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<object>> RegisterUser([FromBody] Dictionary<string, string> data)
+        public async Task<ActionResult<object>> RegisterUser([FromBody] List<Dictionary<string, string>> dataList)
         {
             try{
+                var result = "Succes!";
+                Dictionary<string, string> data = dataList[0];
                 if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
                     var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data["Email"]);
                     if (tried_user == null){                                                                                                    
                         DeskundigeController dc = new DeskundigeController(_context);
+                        VerzorgerController vc = new VerzorgerController(_context);
                         DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
                         var new_ed = await dc.PostDeskundige(deskundige);
-                        
-                        return "Succes!";
+                        if (dataList.Count == 2){
+                            Dictionary<string, string> data2 = dataList[1];
+                            VerzorgerDto verzorger = PopulateVer(new VerzorgerDto(), data2, new_ed);
+                            result = await vc.PostVerzorger(verzorger);
+                        }
+                        return result;
                     }
                     else{
                         return "Email error";

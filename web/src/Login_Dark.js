@@ -3,10 +3,11 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css'
+import './Darkmode.css';
 import { useAuth } from './globals/auth';
 import SiteModeButton from './SiteModeButton';
 
-function Login({ onLogin }) {
+function Login_Dark({ onLogin }) {
   const { user, login_user, logout_user } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -81,13 +82,11 @@ function Login({ onLogin }) {
     return (
         <div className="home">
             <SiteModeButton/>
-            <section className="welcome section-background text-color-black">
-            <h2 className="center-text format-title">Login</h2>
-            </section>
-            <section className="welcome section-background text-color-black">
-              <div className="contribution-stats-black block-middle-border">
-                <form onSubmit={handleLogin}>
-                  <div className="input-group">
+            <section className="welcome section-background-dark text-color-white">
+            <h2 className="center-text format-title-dark">Login</h2>
+              <div className="contribution-stats-white block-middle-border-dark">
+                <form className='form-dark' onSubmit={handleLogin}>
+                  <div className="input-group-dark">
                     <label htmlFor="email">Email</label>
                     <input
                       type="email"
@@ -97,7 +96,7 @@ function Login({ onLogin }) {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
-                  <div className="input-group">
+                  <div className="input-group-dark">
                     <label htmlFor="password">Wachtwoord</label>
                     <input
                       type="password"
@@ -113,10 +112,10 @@ function Login({ onLogin }) {
                       </div>
                   )}
                   <div>
-                    <button type="submit" className="center-button button-black">
+                    <button type="submit" className="center-button button-white">
                       Login
                     </button>
-                    <button type="button" className="center-button button-black">
+                    <button type="button" className="center-button button-white">
                       Wachtwoord vergeten
                     </button>
                   </div>
@@ -129,4 +128,4 @@ function Login({ onLogin }) {
 }
     
 
-export default Login;
+export default Login_Dark;

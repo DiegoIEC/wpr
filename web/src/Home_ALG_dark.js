@@ -1,11 +1,13 @@
 import './Darkmode.css';
 import SiteModeButton from './SiteModeButton';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from './globals/auth';
 
 const total_research = 87
 const total_users =  237
 
 const Home_ALG_dark = () => {
+  const navigate = useNavigate();
     
     return (
         <div className="home">
@@ -14,7 +16,7 @@ const Home_ALG_dark = () => {
             <div className="block-left format-div">
             <h2 className="center-text format-title-dark">Welkom bij Stichting Accessibility</h2>
             <p className="center-text text-color-white">Het verbeteren van digitale accessibility voor iedereen</p>
-            <button className="center-button button-white"> Meer weten </button>
+            <button className="center-button button-white" onClick={() => navigate('//www.accessibility.nl/over-ons/')}> Meer weten </button>
             </div>
             <div className="block-right format-div">
             <h2 className="center-text format-title-dark">Laatste nieuws</h2>
@@ -27,7 +29,7 @@ const Home_ALG_dark = () => {
           <section className="ongoing-research remove-margins section-background-dark text-color-white">
             <h2 className="center-text format-title-dark">Onze resultaten</h2>
             <p className="center-text text-color-white">Bekijk de verschillende onderzoeken die door ons zijn uitgevoerd</p>
-            <button className="center-button button-white">Bekijk details</button>
+            <button className="center-button button-white" onClick={() => navigate('/Onderzoeken')}>Bekijk details</button>
             <div className="contribution-stats-white block-content">
             <div className="block-left-border-dark">
               <h2 className="center-text smaller-text text-color-white">Geplaatste onderzoeken:</h2>
@@ -46,13 +48,13 @@ const Home_ALG_dark = () => {
             <div className="block-left-border-dark format-div">
             <h2 className="center-text smaller-text text-color-white"> Onderzoeken</h2>
             <p className="center-text text-color-white">Wij van Stichting Accessibility hebben als doel om onderzoeken  gericht op mensen met beperkingen makkelijker te maken voor onszelf en externe partijen. Deze onderzoeken gaan van toegankelijkheids onderzoeken m.b.t. websites tot ervarings-onderzoeken voor verschillende activiteiten. Klik hieronder voor meer informatie.</p>
-            <button className="center-button button-white" href="./Onderzoeken"> Onze onderzoeken </button>
+            <button className="center-button button-white" onClick={() => navigate('/Onderzoeken')}> Onze onderzoeken </button>
             </div>
             <div className="block-right-border-dark format-div">
             <h2 className="center-text smaller-text text-color-white"> Partners</h2>
             <p className="center-text text-color-white">Wij werken samen met verschillende partijen om ons doel te delen met de rest van Nederland. Een paar van onze partners zijn: Bol, Amazon, Gemeente Den Haag en Shell.
             Wij zijn continu opzoek naar nieuwe partners, heeft u of uw organisatie interesse? Klik dan hieronder om te registreren en begin meteen!</p>
-            <button className="center-button button-white"> Registreer </button>
+            <button className="center-button button-white" onClick={() => navigate('/register_org')}> Registreer </button>
             </div>
             </div>
         </section>

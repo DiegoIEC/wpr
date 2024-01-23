@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import {useNavigate } from 'react-router-dom';
 import './Home.css'
+import './Darkmode.css';
 import { useAuth } from './globals/auth';
 
 const fetchBeperkingenData = async () => {
@@ -19,22 +20,18 @@ const fetchBeperkingenData = async () => {
   }
 };
 
-const Register = () => {
+const Register_Dark = () => {
   const navigate = useNavigate();
   const { user, login_user, logout_user } = useAuth();
   const [beperkingen, setBeperkingen] = useState([]);
   const [error, setError] = useState('');
-  const [errorCaretaker, setErrorCaretaker] = useState('');
   const [selectedBeperkingen, setSelectedBeperkingen] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   const today = new Date().toISOString().split('T')[0];
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const [email, setEmail] = useState('');
-  const [emailCaretaker, setEmailCaretaker] = useState('');
   const [name, setName] = useState('');
-  const [nameCaretaker, setNameCaretaker] = useState('');
   const [postal, setPostal] = useState('');
-  const [postalCaretaker, setPostalCaretaker] = useState('');
   const [birthday, setBirthday] = React.useState(new Date());
   const [availability, setAvailability] = useState({
     monday: false,
@@ -52,9 +49,6 @@ const Register = () => {
   const [beperking, setBeperking] = useState('');
 
   const checkInput = async () => {
-    var avai = checkAvailability();
-    var age = calcAge();
-    var beperkingen = `Beperkingen: ${selectedBeperkingen.join(', ')}`;
     var pw = false;
     var pc = false;
     const postalRegex = /^\d{4}[A-Za-z]{2}$/;
@@ -81,39 +75,6 @@ const Register = () => {
     if (pc === false && pw === false){
       return 'Uw wachtwoord en postcode zijn incorrect ingevuld.';
     }
-
-    const emptyFields = Object.entries({
-      Email: email,
-      Password: password,
-      Role: "ED",
-      Postcode: postal,
-      Naam: name,
-      Leeftijd: age.toString(),
-      Beschikbaarheid: avai,
-      BenaderingVoorkeur: preference,
-      BenaderingCommercieel: commercial.toString(),
-      Aandoening: "Ongespecificeerd",
-      Beperkingen: beperkingen,
-      BeperkingenIds: selectedIds.join(', '),
-    }).filter(([key, value]) => !value).map(([key]) => key);
-
-    if (emptyFields.length > 0) {
-      const ErrorMessage = `U ben de volgende veld(en) vergeten in te vullen: ${emptyFields.join(', ')}`;
-      return ErrorMessage;
-    }
-
-    const careTakerFields = Object.entries({
-      Naam: nameCaretaker,
-      Email: emailCaretaker,
-      Postcode: postalCaretaker
-    }).filter(([key, value]) => !value).map(([key]) => key);
-
-    if (careTakerFields.length > 0 && age < 18) {
-      const ErrorMessage = `Als minderjarige moet u een verzorger aanmelden, u ben de volgende veld(en) vergeten in te vullen: ${careTakerFields.join(', ')}`;
-      setErrorCaretaker(ErrorMessage);
-      return ErrorMessage;
-    }
-
     return '';
   }
 
@@ -145,6 +106,7 @@ const Register = () => {
     };
 
   const handleBeperkingChange = (e) => {
+    //const selectedOption = e.target.value;
     const help = beperkingen.find(item => item.label === e.target.value);
     const selectedOption = e.target.value;
     const selectedId = help['value']
@@ -186,12 +148,32 @@ const Register = () => {
   const handleRegister = async (e) => {
     
     e.preventDefault();
-    var caretaker = false;
     var message = await checkInput();
     setError(message);
     var avai = checkAvailability();
     var age = calcAge();
     var beperkingen = `Beperkingen: ${selectedBeperkingen.join(', ')}`;
+
+    const emptyFields = Object.entries({
+      Email: email,
+      Password: password,
+      Role: "ED",
+      Postcode: postal,
+      Naam: name,
+      Leeftijd: age.toString(),
+      Beschikbaarheid: avai,
+      BenaderingVoorkeur: preference,
+      BenaderingCommercieel: commercial.toString(),
+      Aandoening: "Ongespecificeerd",
+      Beperkingen: beperkingen,
+      BeperkingenIds: selectedIds.join(', '),
+    }).filter(([key, value]) => !value).map(([key]) => key);
+
+    if (emptyFields.length > 0) {
+      const ErrorMessage = `U ben de volgende veld(en) vergeten in te vullen: ${emptyFields.join(', ')}`;
+      setError(ErrorMessage);
+      return;
+    }
 
     const userData = {
       Email: email,
@@ -208,31 +190,11 @@ const Register = () => {
       BeperkingenIds: selectedIds.join(', ')
     };
 
-    const careTakerFields = Object.entries({
-      Naam: nameCaretaker,
-      Email: emailCaretaker,
-      Postcode: postalCaretaker
-    }).filter(([key, value]) => !value).map(([key]) => key);
-
-    const careTaker = {
-      Naam: nameCaretaker,
-      Email: emailCaretaker,
-      Postcode: postalCaretaker
-    }
-
-    if (careTakerFields.length === 0){
-      var input = [userData, careTaker];
-    }
-    else{
-      var input = [userData];
-    }
-
-
     if (message.length === 0){
       console.log('Saving user!')
       console.log(userData)
       try {
-        const response = await axios.post('http://20.199.89.238:8088/api/user', input)
+        const response = await axios.post('http://20.199.89.238:8088/api/user', userData)
         .then(response => {
           var data = response.data;
           console.log(response)});
@@ -249,14 +211,12 @@ const Register = () => {
     return (
         <div className="home">
             <SiteModeButton/>
-            <section className="welcome section-background text-color-black">
-            <h2 className="center-text format-title">Registreren</h2>
-            </section>
-            <section className="welcome section-background text-color-black block-content-reg">
-              <div className="contribution-stats-black block-left-border">
-                <p className='center-text'>Gegevens gebruiker</p>
-                <form onSubmit={handleRegister}>
-                <div className="input-group">
+            <section className="welcome section-background-dark text-color-white">
+            <h2 className="center-text format-title-dark">Registreren</h2>
+              <div className="contribution-stats-white block-middle-border-dark">
+                <button className="center-button button-white" onClick={() => navigate('/register_org')}> Als organisatie klik hier </button>
+                <form className='form-dark' onSubmit={handleRegister}>
+                <div className="input-group-dark">
                     <label htmlFor="name">Naam</label>
                     <input
                       type="text"
@@ -266,7 +226,7 @@ const Register = () => {
                       onChange={(e) => setName(e.target.value)}
                     />
                   </div>
-                  <div className="input-group">
+                  <div className="input-group-dark">
                     <label htmlFor="age">Geboorte datum</label>
                     <input
                       type="date"
@@ -276,7 +236,7 @@ const Register = () => {
                       onChange={(e) => helpBirthday(e.target.value)}
                     />
                   </div>
-                  <div className="input-group">
+                  <div className="input-group-dark">
                     <label htmlFor="email">Email</label>
                     <input
                       type="email"
@@ -286,7 +246,7 @@ const Register = () => {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
-                  <div className="input-group">
+                  <div className="input-group-dark">
                     <label htmlFor="postal">Postcode</label>
                     <input
                       type="text"
@@ -296,7 +256,7 @@ const Register = () => {
                       onChange={(e) => setPostal(e.target.value)}
                     />
                   </div>
-                  <div className="input-group">
+                  <div className="input-group-dark">
                     <label>Beschikbaarheid</label>
                     {days.map((day) => (
                       
@@ -311,7 +271,7 @@ const Register = () => {
                       
                     ))}
                   </div>
-                  <div className="input-group">
+                  <div className="input-group-dark">
                     <label htmlFor="commercial">Wilt u commercieel benaderd worden?</label>
                     <div className="checkbox-container">
                       <input className="format-checkbox"
@@ -324,7 +284,7 @@ const Register = () => {
                       <label className="status-label">{commercial ? 'Ja' : 'Nee'}</label>
                     </div>
                   </div>
-                  <div className="input-group">
+                  <div className="input-group-dark">
                     <label htmlFor="dropdown">Hoe wilt u het liefst benaderd worden?:</label>
                     <select id="dropdown" value={preference} onChange={(e) => setPreference(e.target.value)}>
                       <option value="email">Via de mail</option>
@@ -332,7 +292,7 @@ const Register = () => {
                       <option value="telefonisch">Telefonisch</option>
                     </select>
                   </div>
-                  <div className="input-group">
+                  <div className="input-group-dark">
                   <label>Selecteer uw beperkings catagorie:</label>
                   <select
                     multiple
@@ -344,14 +304,14 @@ const Register = () => {
                       </option>
                     ))}
                   </select>
-                  <p>Geselecteerde beperkingen:</p>
+                  <p className="text-color-white">Geselecteerde beperkingen:</p>
                   <ul>
                     {selectedBeperkingen.map((selectedOption) => (
-                      <li key={selectedOption}>{selectedOption}</li>
+                      <li className="text-color-white" key={selectedOption}>{selectedOption}</li>
                     ))}
                   </ul>
                   </div>
-                  <div className="input-group">
+                  <div className="input-group-dark">
                     <label htmlFor="password">Wachtwoord</label>
                     <input
                       type="password"
@@ -373,53 +333,12 @@ const Register = () => {
                     {error && <p>{error}</p>}
                   </div>
                   <div>
-                    <button type="submit" className="center-button button-black">
+                    <button type="submit" className="center-button button-white">
                       Registreer
                     </button>
-                    <button className="center-button button-black" onClick={() => navigate('/register_org')}> Registreren als organisatie </button>
                   </div>
                 </form>
               </div>
-              <div className="contribution-stats-black block-right-border">
-                <p className='center-text'>Gegevens verzorger (indien de gebruiker jonger dan 18 jaar is of een verzorger wenst)</p>
-                <form>
-                <div className="input-group">
-                    <label htmlFor="name">Naam</label>
-                    <input
-                      type="text"
-                      id="name2"
-                      placeholder="Voer hier uw naam in..."
-                      value={name}
-                      onChange={(e) => setNameCaretaker(e.target.value)}
-                    />
-                  </div>
-                  <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      type="email"
-                      id="email2"
-                      placeholder="Voer hier uw email in..."
-                      value={email}
-                      onChange={(e) => setEmailCaretaker(e.target.value)}
-                    />
-                  </div>
-                  <div className="input-group">
-                    <label htmlFor="postal">Postcode</label>
-                    <input
-                      type="text"
-                      id="postal2"
-                      placeholder="Voer hier uw postcode in..."
-                      value={postal}
-                      onChange={(e) => setPostalCaretaker(e.target.value)}
-                    />
-                  </div>
-                  <div className="error-message">
-                    {errorCaretaker && <p>{errorCaretaker}</p>}
-                  </div>
-                </form>
-              </div>
-              
-
              
         </section>
       </div>
@@ -427,4 +346,4 @@ const Register = () => {
 }
     
 
-export default Register;
+export default Register_Dark;
