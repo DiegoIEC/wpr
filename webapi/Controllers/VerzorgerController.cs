@@ -16,13 +16,33 @@ namespace webapi.Controllers
         
         // POST: api/Verzorger
         [HttpPost]
-        public async Task<string> PostVerzorger(VerzorgerDto dto, Deskundige de)
+        public async Task<string> PostVerzorger(VerzorgerDto Vdto, DeskundigeDto dto)
         {
             try{
-                var verzorger = new Verzorger(naam: dto.Naam, email: dto.Email, postcode: dto.Postcode, deskundigeID: dto.DeskundigeID)
-                {
-                    Deskundige = de
+                var deskundige = new Deskundige(
+                email: dto.Email,
+                password: dto.Password,
+                role: dto.Role,
+                postcode: dto.Postcode,
+                naam: dto.Naam,
+                leeftijd: dto.Leeftijd,
+                beschikbaarheid: dto.Beschikbaarheid,
+                benaderingVoorkeur: dto.BenaderingVoorkeur,
+                benaderingCommercieel: dto.BenaderingCommercieel,
+                aandoening: dto.Aandoening){
+                DeskundigeBeperkingen = new List<DeskundigeBeperking>()
                 };
+
+                if (dto.BeperkingenIds != null && dto.BeperkingenIds.Any()){
+                    foreach (var beperkingId in dto.BeperkingenIds){
+                        deskundige.DeskundigeBeperkingen.Add(new DeskundigeBeperking { BeperkingId = beperkingId });
+                    }
+                }
+
+                var verzorger = new Verzorger(naam: Vdto.Naam, email: Vdto.Email, postcode: Vdto.Postcode, deskundigeID: Vdto.DeskundigeID){
+                    Deskundige = deskundige
+                };
+
                 _context.Verzorgers.Add(verzorger);
                 await _context.SaveChangesAsync();
             }
