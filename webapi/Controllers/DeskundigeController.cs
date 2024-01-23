@@ -53,7 +53,16 @@ public async Task<ActionResult<DeskundigeDto>> PostDeskundige(DeskundigeDto dto)
     var returnDto = new DeskundigeDto
     {
         UserId = deskundige.UserId,
-        // ... other properties ...
+        Email = deskundige.Email,
+        Password = deskundige.Password,
+        Role = deskundige.Role,
+        Postcode = deskundige.Postcode,
+        Naam = deskundige.Naam,
+        Leeftijd = deskundige.Leeftijd,
+        Beschikbaarheid = deskundige.Beschikbaarheid,    
+        BenaderingVoorkeur = deskundige.BenaderingVoorkeur,
+        BenaderingCommercieel = deskundige.BenaderingCommercieel,
+        Aandoening = deskundige.Aandoening,
         BeperkingenIds = deskundige.DeskundigeBeperkingen.Select(db => db.BeperkingId).ToList()
     };
 

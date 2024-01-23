@@ -7,7 +7,7 @@ namespace DemoApp.Models
         public string Postcode { get; set; }
         public string Email { get; set; }
         public int DeskundigeID { get; set; }
-        //public virtual Deskundige Deskundige { get; set; }
+        public virtual Deskundige Deskundige { get; set; }
 
         public Verzorger(string naam, string postcode, string email, int deskundigeID) 
         {
