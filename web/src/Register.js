@@ -217,14 +217,8 @@ const Register = () => {
     const careTaker = {
       Naam: nameCaretaker,
       Email: emailCaretaker,
-      Postcode: postalCaretaker
-    }
-
-    if (careTakerFields.length === 0){
-      var input = [userData, careTaker];
-    }
-    else{
-      var input = [userData];
+      Postcode: postalCaretaker,
+      Email_ED: email
     }
 
 
@@ -232,16 +226,32 @@ const Register = () => {
       console.log('Saving user!')
       console.log(userData)
       try {
-        const response = await axios.post('http://20.199.89.238:8088/api/user', input)
+        const response = await axios.post('http://20.199.89.238:8088/api/user', userData)
         .then(response => {
           var data = response.data;
           console.log(response)});
-          navigate("/Login");
+          //navigate("/Login");
           console.log(error)
       }
       catch (error) {
         console.error('error: ', error);
         setError('Er is iets fout gegaan tijdens de registratie, probeer opnieuw.');
+      }
+      if (careTakerFields.length === 0){
+        console.log('Saving verzorger!')
+        console.log(careTaker)
+        try {
+          const response = await axios.post('http://20.199.89.238:8088/api/verzorger', careTaker)
+          .then(response => {
+            var data = response.data;
+            console.log(response)});
+            navigate("/Login");
+            console.log(error)
+        }
+        catch (error) {
+          console.error('error: ', error);
+          setError('Er is iets fout gegaan tijdens de registratie, probeer opnieuw.');
+        }
       }
     }
   };
