@@ -46,7 +46,7 @@ namespace webapi.Controllers
             return leeg;
         }
 
-        static VerzorgerDto PopulateVer(VerzorgerDto leeg, Dictionary<string, string> data, ActionResult<DeskundigeDto> des){
+        static VerzorgerDto PopulateVer(VerzorgerDto leeg, Dictionary<string, string> data, DeskundigeDto des){
             Random rnd = new Random();
             int num = rnd.Next();
 
@@ -54,7 +54,7 @@ namespace webapi.Controllers
             leeg.Email = data["Email"];
             leeg.Postcode = data["Postcode"];
             leeg.Naam = data["Naam"];
-            leeg.DeskundigeID = des.Value.UserId;
+            leeg.DeskundigeID = des.UserId;
 
             return leeg;
         }
@@ -75,8 +75,14 @@ namespace webapi.Controllers
                         var new_ed = await dc.PostDeskundige(deskundige);
                         if (dataList.Count == 2){
                             Dictionary<string, string> data2 = dataList[1];
-                            VerzorgerDto verzorger = PopulateVer(new VerzorgerDto(), data2, new_ed);
-                            result = await vc.PostVerzorger(verzorger);
+                            var ed = new_ed.Value as DeskundigeDto;
+                            if (ed != null){
+                                VerzorgerDto verzorger = PopulateVer(new VerzorgerDto(), data2, ed);
+                                result = await vc.PostVerzorger(verzorger);
+                            }
+                            else{
+                                result = "Deskundige niet aangemaakt";
+                            }
                         }
                         return result;
                     }

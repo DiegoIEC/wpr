@@ -389,7 +389,7 @@ const Register = () => {
                       type="text"
                       id="name2"
                       placeholder="Voer hier uw naam in..."
-                      value={name}
+                      value={nameCaretaker}
                       onChange={(e) => setNameCaretaker(e.target.value)}
                     />
                   </div>
@@ -399,7 +399,7 @@ const Register = () => {
                       type="email"
                       id="email2"
                       placeholder="Voer hier uw email in..."
-                      value={email}
+                      value={emailCaretaker}
                       onChange={(e) => setEmailCaretaker(e.target.value)}
                     />
                   </div>
@@ -409,7 +409,7 @@ const Register = () => {
                       type="text"
                       id="postal2"
                       placeholder="Voer hier uw postcode in..."
-                      value={postal}
+                      value={postalCaretaker}
                       onChange={(e) => setPostalCaretaker(e.target.value)}
                     />
                   </div>
