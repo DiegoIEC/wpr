@@ -25,7 +25,6 @@ namespace webapi.Controllers
             return idList;
         }
         static DeskundigeDto PopulateDes(DeskundigeDto leeg, Dictionary<string, string> data){
-            //num, data["Email"], data["Password"], data["Role"], data["Postcode"], data["Naam"], int.Parse(data["Leeftijd"]), data["Beschikbaarheid"], data["BenaderingVoorkeur"], data["BenaderingCommercieel"], data["Aandoening"], idList
             Random rnd = new Random();
             int num = rnd.Next();
             List<int> idList = ConvertStringToIntList(data["BeperkingenIds"]);

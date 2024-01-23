@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using DemoApp.Models;
 using DemoApp.Data;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace webapi.Controllers
 {
