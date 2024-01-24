@@ -5,7 +5,8 @@ import { useAuth } from './globals/auth';
 
 const OnderzoekDetail = () => {
   const [onderzoek, setOnderzoek] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user, loading, logout_user } = useAuth();
+  const [loading2, setLoading2] = useState(true);
   const [beperkingen, setBeperkingen] = useState([]);
   const { id } = useParams(); // Get the ID from the URL
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const OnderzoekDetail = () => {
       })
       .catch(error => {
         console.error('Error fetching onderzoek details:', error);
-        setLoading(false);
+        setLoading2(false);
       });
   }, [id]);
 
@@ -33,11 +34,11 @@ const OnderzoekDetail = () => {
         }, {});
         const beperkingenNames = beperkingenIds.map(id => beperkingenMap[id]);
         setBeperkingen(beperkingenNames);
-        setLoading(false);
+        setLoading2(false);
       })
       .catch(error => {
         console.error('Error fetching beperkingen:', error);
-        setLoading(false);
+        setLoading2(false);
       });
   };
 
@@ -95,22 +96,28 @@ const OnderzoekDetail = () => {
       });
   };
 
-  if (loading) {
+  if (loading2) {
     return <p>Loading onderzoek details...</p>;
   }
 
   return (
     <div className="onderzoek-detail">
-      <h1>{onderzoek?.titel} test</h1>
-      <p>Type: {onderzoek?.soort}</p>
+      <h1 className='format-title'>{onderzoek?.titel} test</h1>
+      <div className='format-div'>
+      <p className='smaller-text'>Type: {onderzoek?.soort}</p>
       <p>{onderzoek?.korteBeschrijving}</p>
       <div className="tags">
         {beperkingen.map((beperking, index) => (
-          <span key={index} className="tag">{beperking}</span>
+          <span key={index} className="tag-black">{beperking}</span>
         ))}
       </div>
-      <button onClick={handleDeelnemen}>Deelnemen</button>
-      <button onClick={handleNietGeinteresseerd}>Niet geïnteresseerd</button>
+      {user && (
+          <>
+            <button onClick={handleDeelnemen}>Deelnemen</button>
+            <button onClick={handleNietGeinteresseerd}>Niet geïnteresseerd</button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

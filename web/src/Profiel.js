@@ -55,7 +55,7 @@ const Profiel = () => {
 
     return (
       <div className="deskundige-detail">
-          <h1>{deskundige.naam}</h1>
+          <h1 className='format-title'>{deskundige.naam}</h1>
           <p>Postcode: {deskundige.postcode}</p>
           <p>Leeftijd: {deskundige.leeftijd}</p>
           <p>Beschikbaarheid: {deskundige.beschikbaarheid}</p>
