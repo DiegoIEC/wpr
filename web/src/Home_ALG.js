@@ -2,8 +2,7 @@ import './Home.css';
 import { useState, useEffect } from 'react';
 import SiteModeButton from './SiteModeButton';
 import { useNavigate } from 'react-router-dom';
-import Chat from './Chat';
-import { useAuth } from './globals/auth';
+import axios from 'axios';
 
 const fetchNewsData = async () => {
   try {
