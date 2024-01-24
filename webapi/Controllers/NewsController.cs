@@ -23,11 +23,11 @@ namespace webapi.Controllers
         {
             try{
                 //https://newsapi.org/v2/everything?q=+online accessibility&apiKey=089c8f2e2dfe4d818e24dcf00a2bb122
-                //string keywords = "online accessibility";
-                //string encodedKeywords = HttpUtility.UrlEncode(keywords);
+                string keywords = "online accessibility";
+                string encodedKeywords = HttpUtility.UrlEncode(keywords);
                 //string apiKey = "089c8f2e2dfe4d818e24dcf00a2bb122";
 
-                var url = "https://newsapi.org/v2/everything?q=online accessibility&sortBy=publishedAt&apiKey=089c8f2e2dfe4d818e24dcf00a2bb122";
+                var url = $"https://newsapi.org/v2/everything?q={encodedKeywords}&sortBy=publishedAt&apiKey=089c8f2e2dfe4d818e24dcf00a2bb122";
             
                 try{
                     string response = await _httpClient.GetStringAsync(url);
