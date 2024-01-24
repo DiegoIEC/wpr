@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using DemoApp.Data;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using NewsAPI;
+using NewsAPI.Models;
+using NewsAPI.Constants;
+using System.Text.Encodings.Web;
 using System.Web;
 
 namespace webapi.Controllers
@@ -16,29 +16,42 @@ namespace webapi.Controllers
         {
             _httpClient = httpClient;
         }
-        
+
         // GET: api/News
         [HttpGet]
-        public async Task<object> GetNews()
+        public ActionResult<object> GetNews()
         {
-            try{
+            try
+            {
                 //https://newsapi.org/v2/everything?q=+online accessibility&apiKey=089c8f2e2dfe4d818e24dcf00a2bb122
-                string keywords = "online accessibility";
-                string encodedKeywords = HttpUtility.UrlEncode(keywords);
-                //string apiKey = "089c8f2e2dfe4d818e24dcf00a2bb122";
+                var newsApiClient = new NewsApiClient("089c8f2e2dfe4d818e24dcf00a2bb122");
+                var articlesResponse = newsApiClient.GetEverything(new EverythingRequest{
+                    Q = "Online AND Accessibility",
+                    SortBy = SortBys.Relevancy
+                });
+                if (articlesResponse.Status == Statuses.Ok)
+                {
+                    // total results found
+                    Console.WriteLine(articlesResponse.TotalResults);
 
-                var url = $"https://newsapi.org/v2/everything?q={encodedKeywords}&sortBy=publishedAt&apiKey=089c8f2e2dfe4d818e24dcf00a2bb122";
-            
-                try{
-                    string response = await _httpClient.GetStringAsync(url);
-                    return Ok(response);
+                    int count = 0;
+                    List<List<string>> news = new List<List<string>>();
+                    foreach (var article in articlesResponse.Articles)
+                    {
+                        while (count < 5)
+                        {
+                            news.Add(new List<string> { article.Title, article.Description, article.Url });
+                            count++;
+                            break;
+                        }
+                    }
+                    return news;
                 }
-                catch (HttpRequestException e){
-                    return BadRequest(e.Message);
-                }
+                return "Niet ok";
             }
-            catch (Exception e){
-                return StatusCode(500, e.ToString());
+            catch (Exception e)
+            {
+                return e.ToString();
             }
         }
     }
