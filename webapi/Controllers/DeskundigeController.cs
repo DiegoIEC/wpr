@@ -161,6 +161,26 @@ public async Task<IActionResult> PutDeskundige(int id, DeskundigeDto dto)
 
             return NoContent();
         }
+        // GET: api/Deskundige
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<DeskundigeDto>>> GetDeskundigen()
+        {
+            var deskundigen = await _context.Deskundigen
+                .Select(d => new DeskundigeDto
+                {
+                    UserId = d.UserId,
+                    Postcode = d.Postcode,
+                    BeperkingenIds = d.Deelnames
+                                     .SelectMany(de => de.Onderzoek.BeperkingenIds)
+                                     .Distinct()
+                                     .ToList(),
+                    BenaderingVoorkeur = d.BenaderingVoorkeur,
+                    BenaderingCommercieel = d.BenaderingCommercieel
+                })
+                .ToListAsync();
+
+            return deskundigen;
+        }
 
         private bool DeskundigeExists(int id)
         {
