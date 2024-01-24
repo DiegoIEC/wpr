@@ -1,14 +1,37 @@
 import './Home.css';
+import { useState, useEffect } from 'react';
 import SiteModeButton from './SiteModeButton';
 import { useNavigate } from 'react-router-dom';
 import Chat from './Chat';
 import { useAuth } from './globals/auth';
 
+const fetchNewsData = async () => {
+  try {
+    const response = await axios.get('http://20.199.89.238:8088/api/news');
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log("error fetching news.")
+  }
+};
+
 const total_research = 87
 const total_users =  237
-
 const Home_ALG = () => {
   const navigate = useNavigate();
+  const [news, setNews] = useState([]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (news.length === 0) {
+        const output = await fetchNewsData();
+        setNews(output);
+      }
+    };
+    fetchData();
+  }, [news]);
+
     
     return (
         <div className="home">
