@@ -6,13 +6,13 @@ using Xunit;
 public class UnitTestNews{
 
     [Fact]
-    public void GetNewsReturnsStatus(){
+    public async void GetNewsReturnsStatus(){
         //Arrange
         HttpClient client = new();
         NewsController controller = new NewsController(client);
 
         //Act
-        var response = controller.GetNews();
+        var response = await controller.GetNews();
 
         //Assert
         if (response.Value != null)

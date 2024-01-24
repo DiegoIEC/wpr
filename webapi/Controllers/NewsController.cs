@@ -19,13 +19,12 @@ namespace webapi.Controllers
 
         // GET: api/News
         [HttpGet]
-        public ActionResult<object> GetNews()
+        public async Task<ActionResult<object>> GetNews()
         {
             try
             {
-                //https://newsapi.org/v2/everything?q=+online accessibility&apiKey=089c8f2e2dfe4d818e24dcf00a2bb122
                 var newsApiClient = new NewsApiClient("089c8f2e2dfe4d818e24dcf00a2bb122");
-                var articlesResponse = newsApiClient.GetEverything(new EverythingRequest{
+                var articlesResponse = await newsApiClient.GetEverythingAsync(new EverythingRequest{
                     Q = "Online AND Accessibility",
                     SortBy = SortBys.Relevancy
                 });

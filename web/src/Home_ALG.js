@@ -6,9 +6,9 @@ import axios from 'axios';
 
 const fetchNewsData = async () => {
   try {
-    const response = await axios.get('http://20.199.89.238:8088/api/news');
+    const response = await axios.get('http://20.199.89.238:8088/api/News');
     console.log(response);
-    return response;
+    return response.data;
   } catch (error) {
     console.log("error fetching news.")
   }
@@ -23,7 +23,7 @@ const Home_ALG = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (news.length === 0) {
+      if (news.length == 0) {
         const output = await fetchNewsData();
         setNews(output);
       }
