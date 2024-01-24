@@ -3,38 +3,98 @@ using Microsoft.EntityFrameworkCore;
 using webapi.Controllers;
 using DemoApp.Data;
 using DemoApp.Models;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Xunit;
+using Newtonsoft.Json.Linq;
 
-public class UnitTest1
+public class OnderzoekApiTests
 {
     [Fact]
-    public async Task PostDeskundige_ReturnsCreatedAtActionResult_WithDeskundige()
+    public async Task GetOnderzoeken_200OK()
     {
         // Arrange
-        var options = new DbContextOptionsBuilder<ApiDbContext>()
-            .UseInMemoryDatabase(databaseName: "TestDatabase") // Use a unique name for the database
-            .Options;
-
-        using var context = new ApiDbContext(options);
-        context.Database.EnsureDeleted(); 
-
-        var controller = new DeskundigeController(context);
-        var newDeskundige = new DeskundigeDto
-        {
-            Email = "test@test.com",
-            Password = "password",
-            Role = "ED",
-            
-        };
+        using var client = new HttpClient();
+        var requestUrl = "http://20.199.89.238:8088/api/onderzoek";
 
         // Act
-        var result = await controller.PostDeskundige(newDeskundige);
+        var response = await client.GetAsync(requestUrl);
 
         // Assert
-        var actionResult = Assert.IsType<CreatedAtActionResult>(result.Result);
-        var returnValue = Assert.IsType<DeskundigeDto>(actionResult.Value);
-        Assert.Equal("test@test.com", returnValue.Email);
-        var deskundigeInDb = context.Deskundigen.FirstOrDefault(d => d.Email == returnValue.Email);
-        Assert.NotNull(deskundigeInDb);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+    [Fact]
+    public async Task GetOnderzoek11_Titel_Toegankelijkheid_Haagse_Hogeschool()
+    {
+        // Arrange
+        using var client = new HttpClient();
+        var requestUrl = "http://20.199.89.238:8088/api/onderzoek/11";
+
+        // Act
+        var response = await client.GetAsync(requestUrl);
+
+        // Assert
+        response.EnsureSuccessStatusCode(); // This will throw if the status code does not indicate success
+
+        var responseContent = await response.Content.ReadAsStringAsync();
+        var responseObject = JObject.Parse(responseContent);
+
+        var actualTitle = responseObject["titel"].ToString();
+        var expectedTitle = "Toegankelijkheid Haagse Hogeschool";
+        Assert.Equal(expectedTitle, actualTitle);
+    }
+
+    [Fact]
+    public async Task GetDeskundige_200OK()
+    {
+        // Arrange
+        using var client = new HttpClient();
+        var requestUrl = "http://20.199.89.238:8088/api/deskundige/1";
+
+        // Act
+        var response = await client.GetAsync(requestUrl);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+    [Fact]
+    public async Task GetDeelnames_200OK()
+    {
+        // Arrange
+        using var client = new HttpClient();
+        var requestUrl = "http://20.199.89.238:8088/api/deelname/1";
+
+        // Act
+        var response = await client.GetAsync(requestUrl);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+    [Fact]
+    public async Task GetBeperkingen_200OK()
+    {
+        // Arrange
+        using var client = new HttpClient();
+        var requestUrl = "http://20.199.89.238:8088/api/beperking";
+
+        // Act
+        var response = await client.GetAsync(requestUrl);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+    [Fact]
+    public async Task GetdeskundigeBeperkingen_200OK()
+    {
+        // Arrange
+        using var client = new HttpClient();
+        var requestUrl = "http://20.199.89.238:8088/api/deskundigebeperking/1";
+
+        // Act
+        var response = await client.GetAsync(requestUrl);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }
