@@ -51,8 +51,8 @@ const Instellingen = () => {
 
       <div className="current-values">
         <p>Huidige naam: {user.naam}</p>
-        <p>Huidige e-mail: {currentEmail}</p>
-        <p>Huidige woonplaats: {currentStad}</p>
+        <p>Huidige e-mail: {user.email}</p>
+        <p>Huidige postcode: {user.postcode}</p>
       </div>
 
       {isEditing ? (
