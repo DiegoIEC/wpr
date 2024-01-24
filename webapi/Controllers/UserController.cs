@@ -60,31 +60,18 @@ namespace webapi.Controllers
 
         // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<object>> RegisterUser([FromBody] List<Dictionary<string, string>> dataList)
+        public async Task<ActionResult<object>> RegisterUser([FromBody] Dictionary<string, string> data)
         {
             try{
-                var result = "Succes!";
-                Dictionary<string, string> data = dataList[0];
                 if (data.ContainsKey("Email") && data.ContainsKey("Password") && data.ContainsKey("Role")){
                     var email = data["Email"];
                     var tried_user = await _context.Users.SingleOrDefaultAsync(u => u.Email == data["Email"]);
+
                     if (tried_user == null){                                                                                                    
                         DeskundigeController dc = new DeskundigeController(_context);
-                        VerzorgerController vc = new VerzorgerController(_context);
                         DeskundigeDto deskundige = PopulateDes(new DeskundigeDto(), data);
                         var new_ed = await dc.PostDeskundige(deskundige);
-                        var ed = new_ed.Value;
-                        if (dataList.Count == 2){
-                            Dictionary<string, string> data2 = dataList[1];
-                            if (ed != null){
-                                VerzorgerDto verzorger = PopulateVer(new VerzorgerDto(), data2, ed);
-                                result = await vc.PostVerzorger(verzorger, ed);
-                            }
-                            else{
-                                result = "Deskundige niet aangemaakt.";
-                            }
-                        }
-                        return result;
+                        return "Succes!";
                     }
                     else{
                         return "Email error";
@@ -102,7 +89,6 @@ namespace webapi.Controllers
             }
         }
         
-
         // GET: api/User
         [HttpGet]
         public async Task<ActionResult<object>> GetUser([FromQuery] string email)

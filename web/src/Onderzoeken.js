@@ -44,15 +44,15 @@ const Onderzoeken = () => {
 
   return (
     <div className="research-list">
-      <h1>Onderzoeken</h1>
+      <h1 className='format-title'>Onderzoeken</h1>
       {onderzoeken.map((onderzoek) => (
-        <div key={onderzoek.onderzoekId} className="research-item">
+        <div key={onderzoek.onderzoekId} className="research-item smaller-text title-white format-div-rs">
           <h2>{onderzoek.titel}</h2>
           <p>Type: {onderzoek.soort}</p>
-          <p>{onderzoek.korteBeschrijving}</p>
+          <p className='tiny-text'>{onderzoek.korteBeschrijving}</p>
           <div className="tags">
             {onderzoek.beperkingenIds.map((id, index) => (
-              <span key={index} className="tag">{beperkingenMap[id] || 'Laden...'}</span>
+              <span key={index} className="tag-black tiny-text">{beperkingenMap[id] || 'Laden...'}</span>
             ))}
           </div>
           <button onClick={() => handleMeerInfoClick(onderzoek.onderzoekId)}>Meer info</button>

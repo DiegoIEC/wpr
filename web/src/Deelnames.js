@@ -64,8 +64,8 @@ const renderDeelnames = () => {
 
 return (
   <div className="deelnames-container"> {/* Updated class name */}
-    <h1>Mijn Onderzoeken </h1>
-    <div className="deelnames-list">
+    <h1 className='format-title'>Mijn Onderzoeken </h1>
+    <div className="deelnames-list format-div-dn">
       {deelnames.length ? renderDeelnames() : <p>Deelnames worden geladen...</p>}
     </div>
   </div>
