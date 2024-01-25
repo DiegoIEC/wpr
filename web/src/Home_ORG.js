@@ -80,7 +80,8 @@ const Home_ORG = () => {
             <button className="center-button button-big"> Upload een bestaand onderzoek </button>
             </div>
             <div className="block-right">
-            <button className="center-button button-big"> Vul een van onze templates </button>
+            <Link to="/postonderzoek" >
+          <button className="center-button button-big"> Vul een van onze templates </button></Link>
             </div>
           </div>
         </section>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Beheerdersportaal.css';
 import SiteModeButton from './SiteModeButton';
 import { Link } from 'react-router-dom';
+import DeskundigenList from './DeskundigenList';
 
 const admin = "beheerder";
 const ongoingResearch = ['Onderzoek 1', 'Onderzoek 2'];
@@ -128,26 +129,7 @@ const Beheerdersportaal = () => {
 
       <section className="ervaringsdeskundigen-section section-background text-color-black">
         <h2 className="center-text format-title">Overzicht van de ervaringsdeskundigen</h2>
-        <div className="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Gebruikersnaam</th>
-                <th>Type beperking</th>
-                <th>Contact informatie</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ervaringsdeskundigen.map((ervaringsdeskundige, index) => (
-                <tr key={index}>
-                  <td>{ervaringsdeskundige.gebruikersnaam}</td>
-                  <td>{ervaringsdeskundige.typeBeperking}</td>
-                  <td>{ervaringsdeskundige.contactInfo}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <DeskundigenList />
       </section>
     </div>
   );
