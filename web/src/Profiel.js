@@ -80,7 +80,7 @@ useEffect(() => {
           <p>Benadering Commercieel: {user.benaderingCommercieel}</p>
           <p>Aandoening: {user.aandoening}</p>
           <div className="tags">
-      {user.beperkingenIds && user.beperkingenIds.map((id, index) => (
+      {deskundige.beperkingenIds && deskundige.beperkingenIds.map((id, index) => (
         <span key={index} className="tag">{beperkingenMap[id] || 'Laden...'}</span>
       ))}
     </div>
